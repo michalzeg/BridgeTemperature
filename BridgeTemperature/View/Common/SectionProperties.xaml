@@ -1,0 +1,67 @@
+﻿<UserControl x:Class="BridgeTemperature.View.SectionProperties"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:BridgeTemperature.View"
+             xmlns:converter="clr-namespace:BridgeTemperature.Converters"
+             xmlns:helpers="clr-namespace:BridgeTemperature.Helpers"
+             mc:Ignorable="d" 
+             >
+
+    <UserControl.Resources>
+        <converter:SectionTypeToBoolConverter x:Key="SectionTypeToBoolConverter"/>
+        <converter:MultiplyValueConverter x:Key="MultiplyValueConverter"/>
+    </UserControl.Resources>
+    <DockPanel>
+        <GroupBox Header="Properties" DockPanel.Dock="Top">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                    
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <ComboBox 
+                    Name="comboMaterials"
+                    Grid.Column="0"
+                    Grid.Row="0"
+                    SelectedItem="{Binding SelectedMaterial, Mode=OneWayToSource}"
+                    DisplayMemberPath="Grade"
+                    
+                    ></ComboBox>
+                <Label 
+                   Grid.Column="0" Grid.Row="1"
+                    Content="Modulus of elasticity [GPa]"/>
+                <TextBox
+                    Grid.Column="1" Grid.Row="1"
+                    Text="{Binding ModulusOfElasticity,Converter={StaticResource MultiplyValueConverter},ConverterParameter=0.000001}"/>
+                <Label
+                    Grid.Column="0" Grid.Row="2"
+                    Content="Thermal coefficient [1/°C]">
+                </Label>
+                <TextBox
+                    Grid.Column="1"
+                    Grid.Row="2"
+                    Text="{Binding ThermalCoefficient}"/>
+                
+            </Grid>
+        </GroupBox>
+        <GroupBox Header="Type" DockPanel.Dock="Bottom">
+            <StackPanel Orientation="Horizontal">
+                <RadioButton 
+                    Content="Fill"
+                    IsChecked="{Binding Path=Type,Converter={StaticResource SectionTypeToBoolConverter},ConverterParameter={x:Static helpers:SectionType.Fill}}"/>
+                <RadioButton 
+                    Content="Void"
+                    IsChecked="{Binding Path=Type,Converter={StaticResource SectionTypeToBoolConverter},ConverterParameter={x:Static helpers:SectionType.Void}}"/>
+            </StackPanel>
+        </GroupBox>
+    </DockPanel>
+</UserControl>

@@ -1,0 +1,15 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:BridgeTemperature.View"
+                    xmlns:view="clr-namespace:BridgeTemperature.View"
+                    xmlns:common="clr-namespace:BridgeTemperature.Common"
+                    xmlns:vm="clr-namespace:BridgeTemperature.ViewModel">
+
+    <DataTemplate x:Key="sectionPropertiesPanel" DataType="{x:Type vm:SectionPropertiesViewModel}">
+        <view:SectionProperties/>
+    </DataTemplate>
+    <DataTemplate x:Key="mainPanel" DataType="{x:Type vm:MainPanelViewModel}">
+        <view:MainPanel/>
+    </DataTemplate>
+    
+</ResourceDictionary>

@@ -1,0 +1,47 @@
+﻿<RibbonWindow x:Class="BridgeTemperature.View.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BridgeTemperature.View"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="350" Width="600"
+        DataContext="{Binding Source={StaticResource Locator}, Path=Main}">
+    
+    <DockPanel>
+        <Ribbon DockPanel.Dock="Top">
+            <Ribbon.ApplicationMenu>
+                <RibbonApplicationMenu KeyTip="F">
+                    <RibbonApplicationMenuItem Header="New" ImageSource="/Images/Ribbon/NewIcon.png"/>
+                    <RibbonApplicationMenuItem Header="Close" ImageSource="/Images/Ribbon/CloseIcon.png"/>
+                </RibbonApplicationMenu>
+            </Ribbon.ApplicationMenu>
+            <RibbonTab Header="Section">
+                <RibbonGroup Header="Steel">
+                    <Grid>
+                        <RibbonButton Grid.Column="2" Label="Plate Girder" LargeImageSource="/Images/Ribbon/SteelGirder.png"/>
+                    </Grid>
+                </RibbonGroup>
+                <RibbonGroup Header="Composite">
+                    <RibbonButton Label="Plate Girder (Simplified)" LargeImageSource="/Images/Ribbon/CompositeGirder.png"/>
+                    <RibbonButton Label="Plate Girder (Normal)" LargeImageSource="/Images/Ribbon/CompositeGirder.png"/>
+                </RibbonGroup>
+                <RibbonGroup Header="Concrete">
+                    <RibbonButton Label="Slab" LargeImageSource="/Images/Ribbon/Slab.png"/>
+                    <RibbonButton Label="I-Girder" LargeImageSource="/Images/Ribbon/IGirder.png"/>
+                    <RibbonButton Label="Box" LargeImageSource="/Images/Ribbon/BoxSection.png"/>
+                </RibbonGroup>
+                <RibbonGroup Header="Non-typical">
+                    <RibbonButton Label="Rectangular" LargeImageSource="/Images/Ribbon/RectangularSection.png" />
+                    <RibbonButton Label="Custom Section" Command="{Binding OpenCustomWindow}" LargeImageSource="/Images/Ribbon/CustomSection.png" />
+                </RibbonGroup>
+            </RibbonTab>
+            <RibbonTab Header="Results">
+
+            </RibbonTab>
+
+        </Ribbon>
+        <ContentControl DockPanel.Dock="Top"
+                ContentTemplate="{StaticResource mainPanel}"/>
+    </DockPanel>
+</RibbonWindow>
