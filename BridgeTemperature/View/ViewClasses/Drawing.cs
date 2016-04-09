@@ -227,25 +227,29 @@ namespace BridgeTemperature.Drawing
                 return;
 
             Children.Clear();
+            var sectionCoordinates = new List<IList<PointD>>();
+            sectionCoordinates.Add(sectionBoxCoordinates());
+            sectionScaleCalculator.UpdateProperties(sectionCoordinates);
+
+            var distributionCoordinates = new List<IList<PointD>>();
+            foreach (var distribution in DistributionData)
+            {
+                var distributionPoints = this.distributionCoordinates(distribution.Distribution);
+                distributionCoordinates.Add(distributionPoints);
+                
+            }
+            distributionScaleCalculator.UpdateProperties(distributionCoordinates);
+            distributionScaleCalculator.ScaleY = sectionScaleCalculator.ScaleY;
+            distributionScaleCalculator.Centre.Y = sectionScaleCalculator.Centre.Y;
 
             foreach (var distribution in DistributionData)
             {
                 PolygonDrawing drawing = new PolygonDrawing(distributionScaleCalculator);
-                var sectionCoordinates = new List<IList<PointD>>();
-                sectionCoordinates.Add(sectionBoxCoordinates(distribution));
-                sectionScaleCalculator.UpdateProperties(sectionCoordinates);
-
-
-                var distributionCoordinates = new List<IList<PointD>>();
-                var distributionPoints = this.distributionCoordinates(DistributionData.Distribution);
-                distributionCoordinates.Add(distributionPoints);
-                distributionScaleCalculator.UpdateProperties(distributionCoordinates);
-                distributionScaleCalculator.ScaleY = sectionScaleCalculator.ScaleY;
-                distributionScaleCalculator.Centre.Y = sectionScaleCalculator.Centre.Y;
-
+                var popup = new DistributionPopup();
+                var distributionPoints = this.distributionCoordinates(distribution.Distribution);
                 var polygon = drawing.CreatePolygonDrawing(distributionPoints);
                 setPolygonProperties(polygon);
-                showPopUp(polygon, drawing);
+                showPopUp(polygon, drawing, popup);
 
                 Children.Add(polygon);
                 Children.Add(popup);
@@ -261,12 +265,20 @@ namespace BridgeTemperature.Drawing
             
                 return result;
         }
-        private IList<PointD> sectionBoxCoordinates(DistributionDrawingData distributionData)
+        private IList<PointD> sectionBoxCoordinates()
         {
+            var maxX = DistributionData.Max(e => e.SectionMaxX);
+            var minX = DistributionData.Min(e => e.SectionMinX);
+            var maxY = DistributionData.Max(e => e.SectionMaxY);
+            var minY = DistributionData.Min(e => e.SectionMinY);
+
+
             var result = new List<PointD>()
             {
-                new PointD(distributionData.SectionMaxX,distributionData.SectionMinY),
-                new PointD(distributionData.SectionMinX,distributionData.SectionMaxY)
+                //new PointD(distributionData.SectionMaxX,distributionData.SectionMinY),
+                //new PointD(distributionData.SectionMinX,distributionData.SectionMaxY)
+                new PointD(maxX,minY),
+                new PointD(minX,maxY),
             };
             return result;
         }
@@ -284,7 +296,7 @@ namespace BridgeTemperature.Drawing
             polygon.Name = "polygon";
             
         }
-        private void showPopUp(Polygon polygon,PolygonDrawing drawing)
+        private void showPopUp(Polygon polygon,PolygonDrawing drawing,DistributionPopup popup)
         {
             polygon.MouseLeave += (s, e) => popup.IsOpen = false;
             polygon.MouseMove += (s, e) =>

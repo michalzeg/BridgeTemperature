@@ -47,8 +47,8 @@ namespace BridgeTemperature.Sections
     public interface ISection : ICompositePropertiesCalculations, IDistributable
     {
         double ThermalCooeficient { get; }
-        //double YMax { get; }
-        //double YMin { get; }
+        double XMax { get; }
+        double XMin { get; }
         double Height { get; }
 
         //IList<PointD> Coordinates { get; }
@@ -74,6 +74,8 @@ namespace BridgeTemperature.Sections
         public PointD CentreOfGravity { get; }
         public double YMax { get; }
         public double YMin { get; }
+        public double XMax { get; }
+        public double XMin { get; }
         public double Height { get;}
         public IList<PointD> Coordinates { get; }
 
@@ -92,6 +94,8 @@ namespace BridgeTemperature.Sections
             this.MomentOfInertia = properties.Ix0;
             this.YMax = properties.YMax;
             this.YMin = properties.YMin;
+            this.XMax = properties.XMax;
+            this.XMin = properties.XMin;
             this.Height = properties.YMax - properties.YMin;
 
             this.ExternalTemperature = new TemperatureDistribution(externalTemperatureDistribution);

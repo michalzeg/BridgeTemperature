@@ -46,7 +46,7 @@ namespace BridgeTemperature.ViewModel
         public ObservableCollection<PointD> Points { get; set; }
         public ObservableCollection<Distribution> Temperature {get;set;}
         public IList<SectionDrawingData> Section { get; set; }
-        public DistributionDrawingData Distribution { get; set; }
+        public IList<DistributionDrawingData> Distribution { get; set; }
 
 
         private void apply()
@@ -55,6 +55,7 @@ namespace BridgeTemperature.ViewModel
                 SectionPropertiesVM.ModulusOfElasticity, SectionPropertiesVM.ThermalCoefficient,
                 Temperature);
             Messenger.Default.Send<ISection>(section);
+            
 
         }
         private void pointUpdated()
@@ -73,7 +74,7 @@ namespace BridgeTemperature.ViewModel
             distribution.SectionMinY = Points.Min(e => e.Y);
             distribution.SectionMaxX = Points.Max(e => e.X);
             distribution.SectionMinX = Points.Min(e => e.X);
-            Distribution = distribution;
+            Distribution = new List<DistributionDrawingData>() { distribution };
             
             RaisePropertyChanged(() => Distribution);
         }
