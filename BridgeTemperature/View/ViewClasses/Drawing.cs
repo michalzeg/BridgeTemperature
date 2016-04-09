@@ -179,15 +179,15 @@ namespace BridgeTemperature.Drawing
             var metaData = new FrameworkPropertyMetadata(new PropertyChangedCallback(OnDistributionChanged));
             metaData.AffectsRender = true;
             metaData.BindsTwoWayByDefault = true;
-            DistributionDependencyProperty = DependencyProperty.Register("DistributionData", typeof(DistributionDrawingData), typeof(DistributionDrawing), metaData);
+            DistributionDependencyProperty = DependencyProperty.Register("DistributionData", typeof(List<DistributionDrawingData>), typeof(DistributionDrawing), metaData);
             SectionCanvasHeightDependencyProperty = DependencyProperty.Register("SectionCanvasHeight", typeof(double), typeof(DistributionDrawing));
             SectionCanvasWidthDependencyProperty = DependencyProperty.Register("SectionCanvasWidth", typeof(double), typeof(DistributionDrawing));
         }
 
         public static readonly DependencyProperty DistributionDependencyProperty;
-        public DistributionDrawingData DistributionData
+        public IList<DistributionDrawingData> DistributionData
         {
-            get { return GetValue(DistributionDependencyProperty) as DistributionDrawingData; }
+            get { return GetValue(DistributionDependencyProperty) as IList<DistributionDrawingData>; }
             set { SetValue(DistributionDependencyProperty, value); }
         }
         public static readonly DependencyProperty SectionCanvasHeightDependencyProperty;
@@ -206,48 +206,50 @@ namespace BridgeTemperature.Drawing
         public static void OnDistributionChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var canvas = d as DistributionDrawing;
-            canvas.DistributionData = e.NewValue as DistributionDrawingData;
+            canvas.DistributionData = e.NewValue as List<DistributionDrawingData>;
             canvas.RefreshDrawing();
         }
 
         private ScaleCalculator distributionScaleCalculator;
         private ScaleCalculator sectionScaleCalculator;
-        private DistributionPopup popup;
+        //private DistributionPopup popup;
 
         public DistributionDrawing()
         {
             distributionScaleCalculator = new DistributionScaleCalculator(() => ActualWidth,()=>ActualHeight);
             sectionScaleCalculator = new ScaleCalculator(() => SectionCanvasWidth, () => SectionCanvasHeight);
-            popup = new DistributionPopup();
+            //popup = new DistributionPopup();
             
         }
         public void RefreshDrawing()
         {
-            if (DistributionData == null)
+            if (DistributionData == null || DistributionData.Count == 0) 
                 return;
 
             Children.Clear();
 
-            PolygonDrawing drawing = new PolygonDrawing(distributionScaleCalculator);
-            var sectionCoordinates = new List<IList<PointD>>();
-            sectionCoordinates.Add(sectionBoxCoordinates());
-            sectionScaleCalculator.UpdateProperties(sectionCoordinates);
+            foreach (var distribution in DistributionData)
+            {
+                PolygonDrawing drawing = new PolygonDrawing(distributionScaleCalculator);
+                var sectionCoordinates = new List<IList<PointD>>();
+                sectionCoordinates.Add(sectionBoxCoordinates(distribution));
+                sectionScaleCalculator.UpdateProperties(sectionCoordinates);
 
 
-            var distributionCoordinates = new List<IList<PointD>>();
-            var distributionPoints = this.distributionCoordinates(DistributionData.Distribution);
-            distributionCoordinates.Add(distributionPoints);
-            distributionScaleCalculator.UpdateProperties(distributionCoordinates);
-            distributionScaleCalculator.ScaleY = sectionScaleCalculator.ScaleY;
-            distributionScaleCalculator.Centre.Y = sectionScaleCalculator.Centre.Y;
+                var distributionCoordinates = new List<IList<PointD>>();
+                var distributionPoints = this.distributionCoordinates(DistributionData.Distribution);
+                distributionCoordinates.Add(distributionPoints);
+                distributionScaleCalculator.UpdateProperties(distributionCoordinates);
+                distributionScaleCalculator.ScaleY = sectionScaleCalculator.ScaleY;
+                distributionScaleCalculator.Centre.Y = sectionScaleCalculator.Centre.Y;
 
-            var polygon = drawing.CreatePolygonDrawing(distributionPoints);
-            setPolygonProperties(polygon);
-            showPopUp(polygon, drawing);
+                var polygon = drawing.CreatePolygonDrawing(distributionPoints);
+                setPolygonProperties(polygon);
+                showPopUp(polygon, drawing);
 
-            Children.Add(polygon);
-            Children.Add(popup);
-
+                Children.Add(polygon);
+                Children.Add(popup);
+            }
         }
         private IList<PointD> distributionCoordinates(IList<Distribution> distribution)
         {
@@ -259,12 +261,12 @@ namespace BridgeTemperature.Drawing
             
                 return result;
         }
-        private IList<PointD> sectionBoxCoordinates()
+        private IList<PointD> sectionBoxCoordinates(DistributionDrawingData distributionData)
         {
             var result = new List<PointD>()
             {
-                new PointD(DistributionData.SectionMaxX,DistributionData.SectionMinY),
-                new PointD(DistributionData.SectionMinX,DistributionData.SectionMaxY)
+                new PointD(distributionData.SectionMaxX,distributionData.SectionMinY),
+                new PointD(distributionData.SectionMinX,distributionData.SectionMaxY)
             };
             return result;
         }
