@@ -20,6 +20,8 @@ namespace BridgeTemperature.ViewModel
     public class CustomWindowViewModel : ViewModelBase
     {
 
+
+      
         public SectionPropertiesViewModel SectionPropertiesVM { get; set; }
         public RelayCommand Apply { get; private set; }
         public RelayCommand PointsUpdated { get; private set; }

@@ -231,9 +231,13 @@ namespace BridgeTemperature.Drawing
             sectionCoordinates.Add(sectionBoxCoordinates());
             sectionScaleCalculator.UpdateProperties(sectionCoordinates);
 
+
+            //REFACTOR THAT METHOD LATER
             var distributionCoordinates = new List<IList<PointD>>();
             foreach (var distribution in DistributionData)
             {
+                if (distribution.Distribution == null || distribution.Distribution.Count == 0)
+                    continue;
                 var distributionPoints = this.distributionCoordinates(distribution.Distribution);
                 distributionCoordinates.Add(distributionPoints);
                 
@@ -244,6 +248,8 @@ namespace BridgeTemperature.Drawing
 
             foreach (var distribution in DistributionData)
             {
+                if (distribution.Distribution == null || distribution.Distribution.Count == 0)
+                    continue;
                 PolygonDrawing drawing = new PolygonDrawing(distributionScaleCalculator);
                 var popup = new DistributionPopup();
                 var distributionPoints = this.distributionCoordinates(distribution.Distribution);
@@ -257,13 +263,10 @@ namespace BridgeTemperature.Drawing
         }
         private IList<PointD> distributionCoordinates(IList<Distribution> distribution)
         {
-
-
             var result = distribution.Select(e => e.ConvertToPointD()).OrderBy(f => f.Y).ToList();
             result.Add(new PointD(0,distribution.Max(e => e.Y)));
             result.Add(new PointD(0,distribution.Min(e => e.Y)));
-            
-                return result;
+            return result;
         }
         private IList<PointD> sectionBoxCoordinates()
         {
