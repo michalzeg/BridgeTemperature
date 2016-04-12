@@ -29,8 +29,8 @@ namespace BridgeTemperature.Common
         public CustomWindow()
         {
             InitializeComponent();
-            var viewModel = new CustomWindowViewModel();
-            this.DataContext = viewModel;
+            //var viewModel = new CustomWindowViewModel();
+            //this.DataContext = viewModel;
 
             this.sectionCanvas.SizeChanged += (a, e) => this.sectionCanvas.RefreshDrawing();
             this.distributionDrawing.SizeChanged += (a, e) => this.distributionDrawing.RefreshDrawing();

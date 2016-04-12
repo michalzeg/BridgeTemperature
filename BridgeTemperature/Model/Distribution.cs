@@ -256,8 +256,8 @@ namespace BridgeTemperature.DistributionOperations
         5) convert all stresses to temperature*/
 
 
-        public IEnumerable<IEnumerable<Distribution>> StressResults { get; private set; }
-        public IEnumerable<IEnumerable<Distribution>> TemperatureResults { get; private set; }
+        //public IEnumerable<IEnumerable<Distribution>> StressResults { get; private set; }
+        //public IEnumerable<IEnumerable<Distribution>> TemperatureResults { get; private set; }
 
         ICompositeSection compositeSection;
 

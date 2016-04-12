@@ -37,11 +37,20 @@
                 </RibbonGroup>
             </RibbonTab>
             <RibbonTab Header="Results">
-
+                <RibbonGroup Header="Calculations">
+                    <RibbonButton Label="Run" LargeImageSource="/Images/Ribbon/Run.png" 
+                                  HorizontalAlignment="Center"
+                                  Command="{Binding Run}"/>
+                </RibbonGroup>
+                <RibbonGroup Header="Result Type">
+                    <RibbonButton Label="Stress"/>
+                    <RibbonButton Label="Temperature"/>
+                </RibbonGroup>
             </RibbonTab>
 
         </Ribbon>
         <ContentControl DockPanel.Dock="Top"
-                ContentTemplate="{StaticResource mainPanel}"/>
+                ContentTemplate="{StaticResource mainPanel}"
+                Content="{Binding MainPanelVM}"/>
     </DockPanel>
 </RibbonWindow>

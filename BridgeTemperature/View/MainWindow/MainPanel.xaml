@@ -18,13 +18,13 @@
         <Grid Grid.Column="0">
             <drawing:SectionCanvas
                 x:Name="sectionCanvas"
-                Sections="{Binding Sections,Mode=TwoWay}"
+                Sections="{Binding SectionDrawing,Mode=TwoWay}"
                 />
         </Grid>
         <Grid Grid.Column="1">
             <drawing:DistributionDrawing 
                 x:Name="externalDistributionDrawing"
-                DistributionData="{Binding ExternalDistribution,Mode=TwoWay}" 
+                DistributionData="{Binding ExternalDistributionDrawing,Mode=TwoWay}" 
                 SectionCanvasHeight="{Binding ActualHeight, ElementName=sectionCanvas, Mode=OneWay}" 
                 SectionCanvasWidth="{Binding ActualWidth, ElementName=sectionCanvas, Mode=OneWay}"
                 />
@@ -32,7 +32,7 @@
         <Grid Grid.Column="2">
             <drawing:DistributionDrawing 
                 x:Name="uniformDistributionDrawing"
-                DistributionData="{Binding UniformDistribution,Mode=TwoWay}" 
+                DistributionData="{Binding UniformDistributionDrawing,Mode=TwoWay}" 
                 SectionCanvasHeight="{Binding ActualHeight, ElementName=sectionCanvas, Mode=OneWay}" 
                 SectionCanvasWidth="{Binding ActualWidth, ElementName=sectionCanvas, Mode=OneWay}"
                 />
@@ -40,7 +40,7 @@
         <Grid Grid.Column="3">
             <drawing:DistributionDrawing 
                 x:Name="bendingDistributionDrawing"
-                DistributionData="{Binding BendingDistribution,Mode=TwoWay}" 
+                DistributionData="{Binding BendingDistributionDrawing,Mode=TwoWay}" 
                 SectionCanvasHeight="{Binding ActualHeight, ElementName=sectionCanvas, Mode=OneWay}" 
                 SectionCanvasWidth="{Binding ActualWidth, ElementName=sectionCanvas, Mode=OneWay}"
                 />
@@ -48,7 +48,7 @@
         <Grid Grid.Column="4">
             <drawing:DistributionDrawing 
                 x:Name="selfEqulibratingDistributionDrawing"
-                DistributionData="{Binding SelfEqulibratingDistribution,Mode=TwoWay}" 
+                DistributionData="{Binding SelfEqulibratingDistributionDrawing,Mode=TwoWay}" 
                 SectionCanvasHeight="{Binding ActualHeight, ElementName=sectionCanvas, Mode=OneWay}" 
                 SectionCanvasWidth="{Binding ActualWidth, ElementName=sectionCanvas, Mode=OneWay}"
                 />

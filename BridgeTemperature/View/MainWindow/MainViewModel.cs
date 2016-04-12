@@ -2,7 +2,8 @@ using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Ioc;
 using BridgeTemperature.Common;
-
+using BridgeTemperature.Sections;
+using BridgeTemperature.DistributionOperations;
 namespace BridgeTemperature.ViewModel
 {
     /// <summary>
@@ -19,21 +20,49 @@ namespace BridgeTemperature.ViewModel
     /// </summary>
     public class MainViewModel : ViewModelBase
     {
-
+        public MainPanelViewModel MainPanelVM { get; private set; }
 
         public MainViewModel()
         {
-            this.OpenCustomWindow = new RelayCommand(this.openCustomWindow);
+            OpenCustomWindow = new RelayCommand(this.openCustomWindow);
+            Run = new RelayCommand(this.run);
+            MainPanelVM = new MainPanelViewModel();
+            
         }
 
+        public RelayCommand OpenPlateGirderWindow { get; private set; }
+        public RelayCommand OpenCompositeGirderSimplifiedWindow { get; private set; }
+        public RelayCommand OpenCompositeGirderNormalWindow { get; private set; }
+        public RelayCommand OpenSlabWindow { get; private set; }
+        public RelayCommand OpenIGirderWindow{get;private set;}
+        public RelayCommand OpenBoxGirderWindow { get; private set; }
+        public RelayCommand OpenRectangularSectionWindow { get; private set; }
         public RelayCommand OpenCustomWindow { get; private set; }
+        public RelayCommand Run { get; private set; }
+
+
+        private void openPlateGirderWindow() {  }
+        private void openCompositeGirderSimplifiedWindow() {  }
+        private void openCompositeGirderNormalWindow() {  }
+        private void openSlabWindow() {  }
+        private void openIGirderWindow() {  }
+        private void openBoxGirderWindow() {  }
+        private void openRectangularSectionWindow() {  }
         private void openCustomWindow()
         {
-            //var customWindowViewModel = SimpleIoc.Default.GetInstance<CustomWindowViewModel>();
             var customWindow = new CustomWindow();
-            //customWindow.DataContext = customWindowViewModel;
-            customWindow.ShowDialog();
+            var vm = new CustomWindowViewModel();
+            customWindow.DataContext = vm;
+            customWindow.Show();
         }
+
+        private void run()
+        {
+            var compositeSection = new CompositeSection(MainPanelVM.Sections);
+            var calculator = new DistributionCalculations(compositeSection);
+            calculator.CalculateDistributions();
+        }
+        
 
     }
 }

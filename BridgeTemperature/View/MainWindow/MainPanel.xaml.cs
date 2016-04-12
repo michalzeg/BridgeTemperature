@@ -24,8 +24,6 @@ namespace BridgeTemperature.View
         public MainPanel()
         {
             InitializeComponent();
-            var viewModel = new MainPanelViewModel();
-            DataContext = viewModel;
         }
     }
 }

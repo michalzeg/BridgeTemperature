@@ -50,6 +50,8 @@ namespace BridgeTemperature.Drawing
             //this.perimeters = new List<IList<PointD>>();
             this.CanvasActualHeight = actualHeight;
             this.CanvasActualWidth = actualWidth;
+            this.Centre = new PointD(0, 0);
+
         }
 
         public void UpdateProperties(IList<IList<PointD>> perimeters)
