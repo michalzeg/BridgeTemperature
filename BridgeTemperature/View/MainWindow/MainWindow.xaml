@@ -43,8 +43,8 @@
                                   Command="{Binding Run}"/>
                 </RibbonGroup>
                 <RibbonGroup Header="Result Type">
-                    <RibbonButton Label="Stress"/>
-                    <RibbonButton Label="Temperature"/>
+                    <RibbonButton Label="Stress" LargeImageSource="/Images/Ribbon/Stress.png"/>
+                    <RibbonButton Label="Temperature" LargeImageSource="/Images/Ribbon/Temperature.png"/>
                 </RibbonGroup>
             </RibbonTab>
 

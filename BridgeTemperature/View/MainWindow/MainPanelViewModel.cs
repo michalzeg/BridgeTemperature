@@ -21,6 +21,10 @@ namespace BridgeTemperature.ViewModel
         {
             SectionDrawing = new List<SectionDrawingData>();
             ExternalDistributionDrawing = new List<DistributionDrawingData>();
+            UniformDistributionDrawing = new List<DistributionDrawingData>();
+            BendingDistributionDrawing = new List<DistributionDrawingData>();
+            SelfEqulibratingDistributionDrawing = new List<DistributionDrawingData>();
+
             Sections = new List<ISection>();
 
             Messenger.Default.Register<ISection>(this, updateSections);
@@ -60,7 +64,7 @@ namespace BridgeTemperature.ViewModel
         private void updateSections(ISection section)
         {
             this.Sections.Add(section);
-
+            
             var sections = new List<SectionDrawingData>(SectionDrawing);
             sections.Add(new SectionDrawingData()
             {

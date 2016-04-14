@@ -386,7 +386,9 @@ namespace BridgeTemperature.Drawing
 
         protected Brush fillBrush()
         {
+
             return new LinearGradientBrush(Brushes.LightGray.Color, Brushes.Gray.Color, 90);
+
         } 
         protected Brush voidBrush()
         {

@@ -61,6 +61,14 @@ namespace BridgeTemperature.ViewModel
             var compositeSection = new CompositeSection(MainPanelVM.Sections);
             var calculator = new DistributionCalculations(compositeSection);
             calculator.CalculateDistributions();
+
+            foreach (var section in compositeSection.Sections)
+            {
+                MainPanelVM.UpdateDistribution(section.ExternalTemperature.Distribution, section, () => MainPanelVM.ExternalDistributionDrawing);
+                MainPanelVM.UpdateDistribution(section.UniformTemperature.Distribution, section, () => MainPanelVM.UniformDistributionDrawing);
+                MainPanelVM.UpdateDistribution(section.BendingTemperature.Distribution, section, () => MainPanelVM.BendingDistributionDrawing);
+                MainPanelVM.UpdateDistribution(section.SelfEquilibratedTemperature.Distribution, section, () => MainPanelVM.SelfEqulibratingDistributionDrawing);
+            }
         }
         
 
