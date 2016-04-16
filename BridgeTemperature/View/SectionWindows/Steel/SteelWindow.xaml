@@ -1,0 +1,132 @@
+﻿<Window x:Class="BridgeTemperature.Common.SteelWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BridgeTemperature.Common"
+        xmlns:drawing="clr-namespace:BridgeTemperature.Drawing"
+        mc:Ignorable="d"
+        Title="SteelWindow" Height="600" Width="600" WindowStartupLocation="CenterOwner">
+    
+    <Grid 
+        Margin="{StaticResource MarginValue}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <GroupBox Header="Dimensions">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Column="0" Grid.Row="0"
+                           Text="tf1 [mm]"/>
+                <TextBlock Grid.Column="0" Grid.Row="1"
+                           Text="hw [mm]"/>
+                <TextBlock Grid.Column="0" Grid.Row="2"
+                           Text="tf2 [mm]"/>
+                <TextBlock Grid.Column="0" Grid.Row="3"
+                           Text="tw [mm]"/>
+                <TextBlock Grid.Column="0" Grid.Row="4"
+                           Text="bf [mm]"/>
+                <TextBox Grid.Column="1" Grid.Row="0"
+                           Text="{Binding Tf1}"/>
+                <TextBox Grid.Column="1" Grid.Row="1"
+                           Text="{Binding Hw}"/>
+                <TextBox Grid.Column="1" Grid.Row="2"
+                           Text="{Binding Tf2}"/>
+                <TextBox Grid.Column="1" Grid.Row="3"
+                           Text="{Binding Tw}"/>
+                <TextBox Grid.Column="1" Grid.Row="4"
+                           Text="{Binding Bf}"/>
+            </Grid>
+        </GroupBox>
+        <GroupBox Header="Temperature"  Grid.Column="0" Grid.Row="1">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Column="0" Grid.Row="0"
+                           Text="&#x0394;T1 [&#x00B0;C]"/>
+                <TextBlock Grid.Column="0" Grid.Row="1"
+                           Text="h1 [mm]"/>
+                <TextBox Grid.Column="1" Grid.Row="0"
+                           Text="{Binding DT1}"/>
+                <TextBox Grid.Column="1" Grid.Row="1"
+                           Text="{Binding H1}"/>
+            </Grid>
+        </GroupBox>
+        <Image 
+            Grid.Column="1"
+            Grid.Row="0"
+            Margin="{StaticResource MarginValue}" 
+            Stretch="Fill"
+            RenderOptions.BitmapScalingMode="HighQuality"
+            Source="/Images/Window/CustomSectionWindow.png"
+            />
+        <DockPanel Grid.Column="0" Grid.Row="2" LastChildFill="False">
+            <GroupBox DockPanel.Dock="Top" Header="Steel">
+                <ContentControl 
+                Content="{Binding SectionPropertiesVM}"
+                ContentTemplate="{StaticResource sectionPropertiesPanel}"/>
+            </GroupBox>
+        </DockPanel>
+        <Grid Grid.Column="1" Grid.Row="1" Grid.RowSpan="2"
+              Background="{StaticResource BackgroundBrush}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="0"
+                  Margin="{StaticResource MarginValue}">
+                <drawing:SectionCanvas
+                x:Name="sectionCanvas"
+                Sections="{Binding Section,Mode=TwoWay}"
+                />
+            </Grid>
+            <Grid Grid.Column="1"
+                  Margin="{StaticResource MarginValue}">
+                <drawing:DistributionDrawing 
+
+                x:Name="distributionDrawing"
+                DistributionData="{Binding Distribution,Mode=TwoWay}" 
+                SectionCanvasHeight="{Binding ActualHeight, ElementName=sectionCanvas, Mode=OneWay}" 
+                SectionCanvasWidth="{Binding ActualWidth, ElementName=sectionCanvas, Mode=OneWay}"
+                />
+            </Grid>
+        </Grid>
+        <Button
+            Content="Apply"
+            Command="{Binding Apply}"
+            Style="{StaticResource ApplyButton}"
+            Grid.Column="0"
+            Grid.Row="3" Click="Button_Click"
+            />
+        <Button
+            Content="Close"
+            Click="Button_Click"
+            Style="{StaticResource CloseButton}"
+            Grid.Column="1"
+            Grid.Row="3"/>
+    </Grid>
+</Window>

@@ -19,9 +19,6 @@ namespace BridgeTemperature.ViewModel
 {
     public class CustomWindowViewModel : ViewModelBase
     {
-
-
-      
         public SectionPropertiesViewModel SectionPropertiesVM { get; set; }
         public RelayCommand Apply { get; private set; }
         public RelayCommand PointsUpdated { get; private set; }
@@ -31,7 +28,7 @@ namespace BridgeTemperature.ViewModel
         public CustomWindowViewModel()
         {
             SectionPropertiesVM = new SectionPropertiesViewModel();
-            SectionPropertiesVM.Update += this.pointUpdated;
+            //SectionPropertiesVM.Update += this.pointUpdated;
 
             PointsUpdated = new RelayCommand(pointUpdated);
             TemperatureUpdated = new RelayCommand(distributionUpdated);
@@ -50,10 +47,28 @@ namespace BridgeTemperature.ViewModel
         public IList<SectionDrawingData> Section { get; set; }
         public IList<DistributionDrawingData> Distribution { get; set; }
 
+        private SectionType type;
+        public SectionType Type
+        {
+            get
+            {
+                return type;
+            }
+            set
+            {
+                if (value != type)
+                {
+                    type = value;
+                    pointUpdated();
+                    RaisePropertyChanged(() => this.Type);
+                    
+                }
+            }
+        }
 
         private void apply()
         {
-            var section = new Section(Points, SectionPropertiesVM.Type,
+            var section = new Section(Points, Type,
                 SectionPropertiesVM.ModulusOfElasticity, SectionPropertiesVM.ThermalCoefficient,
                 Temperature);
             Messenger.Default.Send<ISection>(section);
@@ -63,7 +78,7 @@ namespace BridgeTemperature.ViewModel
         private void pointUpdated()
         {
             var section = new List<SectionDrawingData>()
-            { new SectionDrawingData(){ Coordinates = Points, Type = SectionPropertiesVM.Type } };
+            { new SectionDrawingData(){ Coordinates = Points, Type = Type } };
             Section = section;
             RaisePropertyChanged(() => Section);
             RaisePropertyChanged(() => Distribution);

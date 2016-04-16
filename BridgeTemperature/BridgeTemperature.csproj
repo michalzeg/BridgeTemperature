@@ -102,6 +102,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\SectionWindows\Steel\SteelWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="View\StylesDictionary.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -130,6 +134,10 @@
       <DependentUpon>CustomWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\SectionWindows\Custom\CustomWindowViewModel.cs" />
+    <Compile Include="View\SectionWindows\Steel\SteelWindow.xaml.cs">
+      <DependentUpon>SteelWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\SectionWindows\Steel\SteelWindowViewModel.cs" />
     <Compile Include="View\ViewClasses\Drawing.cs" />
     <Compile Include="View\ViewClasses\MessangerTokens.cs" />
     <Compile Include="View\ViewModelLocator.cs" />
@@ -198,7 +206,6 @@
   <ItemGroup>
     <Folder Include="View\SectionWindows\Composite\" />
     <Folder Include="View\SectionWindows\Concrete\" />
-    <Folder Include="View\SectionWindows\Steel\" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\Window\CustomSectionWindow.PNG" />

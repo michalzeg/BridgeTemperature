@@ -14,21 +14,21 @@
         <converter:MultiplyValueConverter x:Key="MultiplyValueConverter"/>
     </UserControl.Resources>
     <DockPanel>
-        <GroupBox Header="Properties" DockPanel.Dock="Top">
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="auto"/>
-                    <ColumnDefinition Width="auto"/>
-                    <ColumnDefinition Width="auto"/>
-                    
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
-                <ComboBox 
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
+
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <ComboBox 
                     Name="comboMaterials"
                     Grid.Column="0"
                     Grid.Row="0"
@@ -36,32 +36,20 @@
                     DisplayMemberPath="Grade"
                     
                     ></ComboBox>
-                <Label 
+            <Label 
                    Grid.Column="0" Grid.Row="1"
                     Content="Modulus of elasticity [GPa]"/>
-                <TextBox
+            <TextBox
                     Grid.Column="1" Grid.Row="1"
                     Text="{Binding ModulusOfElasticity,Converter={StaticResource MultiplyValueConverter},ConverterParameter=0.000001}"/>
-                <Label
+            <Label
                     Grid.Column="0" Grid.Row="2"
                     Content="Thermal coefficient [1/°C]">
-                </Label>
-                <TextBox
+            </Label>
+            <TextBox
                     Grid.Column="1"
                     Grid.Row="2"
                     Text="{Binding ThermalCoefficient}"/>
-                
-            </Grid>
-        </GroupBox>
-        <GroupBox Header="Type" DockPanel.Dock="Bottom">
-            <StackPanel Orientation="Horizontal">
-                <RadioButton 
-                    Content="Fill"
-                    IsChecked="{Binding Path=Type,Converter={StaticResource SectionTypeToBoolConverter},ConverterParameter={x:Static helpers:SectionType.Fill}}"/>
-                <RadioButton 
-                    Content="Void"
-                    IsChecked="{Binding Path=Type,Converter={StaticResource SectionTypeToBoolConverter},ConverterParameter={x:Static helpers:SectionType.Void}}"/>
-            </StackPanel>
-        </GroupBox>
+        </Grid>
     </DockPanel>
 </UserControl>
