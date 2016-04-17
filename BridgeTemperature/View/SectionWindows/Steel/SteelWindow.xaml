@@ -4,11 +4,14 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:converters="clr-namespace:BridgeTemperature.Converters"
         xmlns:local="clr-namespace:BridgeTemperature.Common"
         xmlns:drawing="clr-namespace:BridgeTemperature.Drawing"
         mc:Ignorable="d"
         Title="SteelWindow" Height="600" Width="600" WindowStartupLocation="CenterOwner">
-    
+    <Window.Resources>
+        <converters:MultiplyValueConverter x:Key="MultiplyValueConverter"/>
+    </Window.Resources>
     <Grid 
         Margin="{StaticResource MarginValue}">
         <Grid.ColumnDefinitions>
@@ -45,15 +48,15 @@
                 <TextBlock Grid.Column="0" Grid.Row="4"
                            Text="bf [mm]"/>
                 <TextBox Grid.Column="1" Grid.Row="0"
-                           Text="{Binding Tf1}"/>
+                           Text="{Binding Tf1,Converter={StaticResource MultiplyValueConverter},ConverterParameter=1000}"/>
                 <TextBox Grid.Column="1" Grid.Row="1"
-                           Text="{Binding Hw}"/>
+                           Text="{Binding Hw,Converter={StaticResource MultiplyValueConverter},ConverterParameter=1000}"/>
                 <TextBox Grid.Column="1" Grid.Row="2"
-                           Text="{Binding Tf2}"/>
+                           Text="{Binding Tf2,Converter={StaticResource MultiplyValueConverter},ConverterParameter=1000}"/>
                 <TextBox Grid.Column="1" Grid.Row="3"
-                           Text="{Binding Tw}"/>
+                           Text="{Binding Tw,Converter={StaticResource MultiplyValueConverter},ConverterParameter=1000}"/>
                 <TextBox Grid.Column="1" Grid.Row="4"
-                           Text="{Binding Bf}"/>
+                           Text="{Binding Bf,Converter={StaticResource MultiplyValueConverter},ConverterParameter=1000}"/>
             </Grid>
         </GroupBox>
         <GroupBox Header="Temperature"  Grid.Column="0" Grid.Row="1">
@@ -73,7 +76,7 @@
                 <TextBox Grid.Column="1" Grid.Row="0"
                            Text="{Binding DT1}"/>
                 <TextBox Grid.Column="1" Grid.Row="1"
-                           Text="{Binding H1}"/>
+                           Text="{Binding H1,Converter={StaticResource MultiplyValueConverter},ConverterParameter=1000}"/>
             </Grid>
         </GroupBox>
         <Image 
@@ -110,7 +113,7 @@
                 <drawing:DistributionDrawing 
 
                 x:Name="distributionDrawing"
-                DistributionData="{Binding Distribution,Mode=TwoWay}" 
+                DistributionData="{Binding TempDistribution,Mode=TwoWay}" 
                 SectionCanvasHeight="{Binding ActualHeight, ElementName=sectionCanvas, Mode=OneWay}" 
                 SectionCanvasWidth="{Binding ActualWidth, ElementName=sectionCanvas, Mode=OneWay}"
                 />

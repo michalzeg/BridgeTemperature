@@ -56,6 +56,7 @@ namespace BridgeTemperature.ViewModel
             var steelWindow = new SteelWindow();
             var vm = new SteelWindowViewModel();
             steelWindow.DataContext = vm;
+            //vm.updateDrawings();
             steelWindow.Show();
         }
         private void openCompositeGirderSimplifiedWindow() {  }

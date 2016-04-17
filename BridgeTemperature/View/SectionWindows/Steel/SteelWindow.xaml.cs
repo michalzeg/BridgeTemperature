@@ -34,6 +34,8 @@ namespace BridgeTemperature.Common
 
             this.sectionCanvas.SizeChanged += (a, e) => this.sectionCanvas.RefreshDrawing();
             this.distributionDrawing.SizeChanged += (a, e) => this.distributionDrawing.RefreshDrawing();
+
+            this.Activated += (a, e) => this.distributionDrawing.RefreshDrawing();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

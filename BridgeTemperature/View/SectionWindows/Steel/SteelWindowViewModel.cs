@@ -1,7 +1,10 @@
 ﻿using BridgeTemperature.Drawing;
 using BridgeTemperature.Helpers;
+using BridgeTemperature.Sections;
 using BridgeTemperature.View.ViewClasses;
 using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Command;
+using GalaSoft.MvvmLight.Messaging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,47 +16,59 @@ namespace BridgeTemperature.ViewModel
     public class SteelWindowViewModel:ViewModelBase
     {
         public SectionPropertiesViewModel SectionPropertiesVM { get; private set; }
-
+        public RelayCommand Apply { get; private set; }
         public SteelWindowViewModel()
         {
             SectionPropertiesVM = new SectionPropertiesViewModel();
             SectionPropertiesVM.Materials = MaterialProperties.MaterialOperations.GetSteelMaterials().ToList();
             Section = new List<SectionDrawingData>();
-            Distribution = new List<DistributionDrawingData>();
+            TempDistribution = new List<DistributionDrawingData>();
+            Apply = new RelayCommand(apply);
 
             tf2 = 0.02;
             hw = 1;
             tf1 = 0.02;
             bf = 0.3;
+            tw = 0.02;
             h1 = 0.2;
             dt1 = 20;
 
             steelPlateGirder = new SteelPlateGirder(Tf1, Hw, Tf2, Bf, Tw, H1, DT1);
-
+            UpdateDrawings();
         }
 
         public IList<SectionDrawingData> Section { get; set; }
-        public IList<DistributionDrawingData> Distribution { get; set; }
+        public IList<DistributionDrawingData> TempDistribution { get; set; }
+
+        private void apply()
+        {
+            var section = new Section(steelPlateGirder.GetCoordinates(), SectionType.Fill,
+                SectionPropertiesVM.ModulusOfElasticity, SectionPropertiesVM.ThermalCoefficient,
+                steelPlateGirder.GetDistribution());
+            Messenger.Default.Send<ISection>(section);
 
 
+        }
         private SteelPlateGirder steelPlateGirder;
-        private void updateDrawings()
+        private void UpdateDrawings()
         {
             var sectionCoordinates = steelPlateGirder.GetCoordinates();
             var section = new List<SectionDrawingData>()
             { new SectionDrawingData(){ Coordinates = sectionCoordinates, Type = SectionType.Fill } };
             Section = section;
-
-            var distribution = new DistributionDrawingData();
-            distribution.Distribution = steelPlateGirder.GetDistribution();
-            distribution.SectionMaxY = sectionCoordinates.Max(e => e.Y);
-            distribution.SectionMinY = sectionCoordinates.Min(e => e.Y);
-            distribution.SectionMaxX = sectionCoordinates.Max(e => e.X);
-            distribution.SectionMinX = sectionCoordinates.Min(e => e.X);
-            Distribution = new List<DistributionDrawingData>() { distribution };
-
             RaisePropertyChanged(() => Section);
-            RaisePropertyChanged(() => Distribution);
+
+            var distributionData = new DistributionDrawingData();
+            distributionData.Distribution = steelPlateGirder.GetDistribution();
+            distributionData.SectionMaxY = sectionCoordinates.Max(e => e.Y);
+            distributionData.SectionMinY = sectionCoordinates.Min(e => e.Y);
+            distributionData.SectionMaxX = sectionCoordinates.Max(e => e.X);
+            distributionData.SectionMinX = sectionCoordinates.Min(e => e.X);
+            var distribution = new List<DistributionDrawingData>() { distributionData }; 
+            TempDistribution = distribution;
+
+            
+            RaisePropertyChanged(() => TempDistribution);
 
         }
         private double tf1;
@@ -65,7 +80,8 @@ namespace BridgeTemperature.ViewModel
                 if (value!=tf1)
                 {
                     tf1 = value;
-                    updateDrawings();
+                    steelPlateGirder.Tf1 = value;
+                    UpdateDrawings();
                 }
             }
         }
@@ -78,7 +94,8 @@ namespace BridgeTemperature.ViewModel
                 if (value != hw)
                 {
                     hw = value;
-                    updateDrawings();
+                    steelPlateGirder.Hw = value;
+                    UpdateDrawings();
                 }
             }
         }
@@ -91,7 +108,8 @@ namespace BridgeTemperature.ViewModel
                 if (value != tf2)
                 {
                     tf2 = value;
-                    updateDrawings();
+                    steelPlateGirder.Tf2 = value;
+                    UpdateDrawings();
                 }
             }
         }
@@ -104,7 +122,8 @@ namespace BridgeTemperature.ViewModel
                 if (value != tw)
                 {
                     tw = value;
-                    updateDrawings();
+                    steelPlateGirder.Tw = value;
+                    UpdateDrawings();
                 }
             }
         }
@@ -117,7 +136,8 @@ namespace BridgeTemperature.ViewModel
                 if (value != bf)
                 {
                     bf = value;
-                    updateDrawings();
+                    steelPlateGirder.Bf = value;
+                    UpdateDrawings();
                 }
             }
         }
@@ -130,7 +150,8 @@ namespace BridgeTemperature.ViewModel
                 if (value != dt1)
                 {
                     dt1 = value;
-                    updateDrawings();
+                    steelPlateGirder.DT1 = value;
+                    UpdateDrawings();
                 }
             }
         }
@@ -143,7 +164,8 @@ namespace BridgeTemperature.ViewModel
                 if (value != h1)
                 {
                     h1 = value;
-                    updateDrawings();
+                    steelPlateGirder.H1 = value;
+                    UpdateDrawings();
                 }
             }
         }
