@@ -73,12 +73,19 @@ namespace BridgeTemperature.ViewModel
             customWindow.Show();
         }
 
+
+
+        private ICompositeSection compositeSection;
         private void run()
         {
-            var compositeSection = new CompositeSection(MainPanelVM.Sections);
+            compositeSection = new CompositeSection(MainPanelVM.Sections);
             var calculator = new DistributionCalculations(compositeSection);
             calculator.CalculateDistributions();
-
+            updateTemperature(); 
+        }
+        
+        private void updateTemperature()
+        {
             foreach (var section in compositeSection.Sections)
             {
                 MainPanelVM.UpdateDistribution(section.ExternalTemperature.Distribution, section, () => MainPanelVM.ExternalDistributionDrawing);
@@ -86,8 +93,15 @@ namespace BridgeTemperature.ViewModel
                 MainPanelVM.UpdateDistribution(section.BendingTemperature.Distribution, section, () => MainPanelVM.BendingDistributionDrawing);
                 MainPanelVM.UpdateDistribution(section.SelfEquilibratedTemperature.Distribution, section, () => MainPanelVM.SelfEqulibratingDistributionDrawing);
             }
+            MainPanelVM.BendingDistributionLabel = "Bending Temperature";
+            MainPanelVM.ExternalDistributionLabel = "External Temperature";
+            MainPanelVM.UniformDistributionLabel = "Uniform Temperature";
+            MainPanelVM.SelfDistributionLabel = "Selfequilibrating temperature";
         }
-        
+        private void updateStress()
+        {
+
+        }
 
     }
 }

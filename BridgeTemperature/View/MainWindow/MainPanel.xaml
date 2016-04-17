@@ -25,11 +25,11 @@
         <TextBlock Grid.Column="1" Grid.Row="0"
                    Text="{Binding ExternalDistributionLabel}" FontWeight="Bold" HorizontalAlignment="Center" TextWrapping="Wrap"/>
         <TextBlock Grid.Column="2" Grid.Row="0"
-                   Text="{Binding UniformDistributionLabel}" FontWeight="Bold" HorizontalAlignment="Center"/>
+                   Text="{Binding UniformDistributionLabel}" FontWeight="Bold" HorizontalAlignment="Center" TextWrapping="Wrap"/>
         <TextBlock Grid.Column="3" Grid.Row="0"
-                   Text="{Binding BendingDistributionLabel}" FontWeight="Bold" HorizontalAlignment="Center"/>
+                   Text="{Binding BendingDistributionLabel}" FontWeight="Bold" HorizontalAlignment="Center" TextWrapping="Wrap"/>
         <TextBlock Grid.Column="4" Grid.Row="0"
-                   Text="{Binding SelfDistributionLabel}" FontWeight="Bold" HorizontalAlignment="Center"/>
+                   Text="{Binding SelfDistributionLabel}" FontWeight="Bold" HorizontalAlignment="Center" TextWrapping="Wrap"/>
         <Grid Grid.Column="0" Grid.Row="1">
             <drawing:SectionCanvas
                 x:Name="sectionCanvas"

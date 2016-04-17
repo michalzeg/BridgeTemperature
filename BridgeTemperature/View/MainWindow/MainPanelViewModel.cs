@@ -114,7 +114,7 @@ namespace BridgeTemperature.ViewModel
                 if (value != uniformDistributionLabel)
                 {
                     uniformDistributionLabel = value;
-                    RaisePropertyChanged(() => uniformDistributionLabel);
+                    RaisePropertyChanged(() => UniformDistributionLabel);
                 }
             }
         }
@@ -127,7 +127,7 @@ namespace BridgeTemperature.ViewModel
                 if (value != bendingDistributionLabel)
                 {
                     bendingDistributionLabel = value;
-                    RaisePropertyChanged(() => bendingDistributionLabel);
+                    RaisePropertyChanged(() => BendingDistributionLabel);
                 }
             }
         }
@@ -140,7 +140,7 @@ namespace BridgeTemperature.ViewModel
                 if (value != selfDistributionLabel)
                 {
                     selfDistributionLabel = value;
-                    RaisePropertyChanged(() => selfDistributionLabel);
+                    RaisePropertyChanged(() => SelfDistributionLabel);
                 }
             }
         }

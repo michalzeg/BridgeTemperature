@@ -89,8 +89,6 @@ namespace BridgeTemperature.DistributionOperations
 
     }
 
-
-
     public abstract class BaseDistribution
     {
         private enum operationType { Addition, Subtraction };
@@ -274,34 +272,41 @@ namespace BridgeTemperature.DistributionOperations
             this.compositeSection = compositeSection;
             
         }
-
-        public void CalculateDistributions()
+        private double calculateNormalForce()
         {
             Integration integration = new Integration();
-
-            foreach(var section in compositeSection.Sections)
-            {
-                integration.Integrate(section,compositeSection.CentreOfGravity, section.ExternalStress.GetValue);
-            }
             foreach (var section in compositeSection.Sections)
             {
-                StressDistribution uniformDistribution = StressDistribution.AxialStress(section.Coordinates, integration.NormalForce, compositeSection.Area, compositeSection.BaseModulusOfElasticity, section.ModulusOfElasticity);
-                section.UniformStress = uniformDistribution;
-                section.UniformStress.MultiplyDistribution(-1);   
+                integration.Integrate(section, compositeSection.CentreOfGravity, section.ExternalStress.GetValue);
             }
-
-            integration.Reset();
+            return integration.NormalForce;
+        }
+        private void calculateNormalStress(double normalForce)
+        {
+            foreach (var section in compositeSection.Sections)
+            {
+                StressDistribution uniformDistribution = StressDistribution.AxialStress(section.Coordinates, normalForce, compositeSection.Area, compositeSection.BaseModulusOfElasticity, section.ModulusOfElasticity);
+                section.UniformStress = uniformDistribution;
+                section.UniformStress.MultiplyDistribution(-1);
+            }
+        }
+        private double calculateBendingMoment()
+        {
+            var integration = new Integration();
             foreach (var section in compositeSection.Sections)
             {
                 var uniformPlusSelfEquilibratingStress = new StressDistribution(section.ExternalStress.Distribution);
                 uniformPlusSelfEquilibratingStress.SubtractDistribution(section.UniformStress.Distribution);
-                integration.Integrate(section,compositeSection.CentreOfGravity, uniformPlusSelfEquilibratingStress.GetValue);
+                integration.Integrate(section, compositeSection.CentreOfGravity, uniformPlusSelfEquilibratingStress.GetValue);
             }
-
+            return integration.Moment;
+        }
+        private void calculateBendingAndSelfStresses(double moment)
+        {
             foreach (var section in compositeSection.Sections)
             {
-                
-                StressDistribution bendingDistribution = StressDistribution.BendingStress(section.Coordinates, integration.Moment, compositeSection.CentreOfGravity.Y, compositeSection.MomentOfIntertia, compositeSection.BaseModulusOfElasticity, section.ModulusOfElasticity);
+
+                StressDistribution bendingDistribution = StressDistribution.BendingStress(section.Coordinates, moment, compositeSection.CentreOfGravity.Y, compositeSection.MomentOfIntertia, compositeSection.BaseModulusOfElasticity, section.ModulusOfElasticity);
                 section.BendingStress = bendingDistribution;
                 section.BendingStress.MultiplyDistribution(-1);
 
@@ -311,42 +316,30 @@ namespace BridgeTemperature.DistributionOperations
                 section.SelfEquilibratedStress = selfEquilibratingStress;
                 section.SelfEquilibratedStress.MultiplyDistribution(-1);
 
-                //converting to Temperature
+
+                //section.UniformTemperature = section.UniformStress.ConvertToTemperatureDistribution(section.Coordinates, section.ModulusOfElasticity, section.ThermalCooeficient);
+                //section.BendingTemperature = section.BendingStress.ConvertToTemperatureDistribution(section.Coordinates, section.ModulusOfElasticity, section.ThermalCooeficient);
+                //section.SelfEquilibratedTemperature = section.SelfEquilibratedStress.ConvertToTemperatureDistribution(section.Coordinates, section.ModulusOfElasticity, section.ThermalCooeficient);
+            }
+        }
+        private void convertStressToTemperature()
+        {
+            foreach (var section in compositeSection.Sections)
+            {
                 section.UniformTemperature = section.UniformStress.ConvertToTemperatureDistribution(section.Coordinates, section.ModulusOfElasticity, section.ThermalCooeficient);
                 section.BendingTemperature = section.BendingStress.ConvertToTemperatureDistribution(section.Coordinates, section.ModulusOfElasticity, section.ThermalCooeficient);
                 section.SelfEquilibratedTemperature = section.SelfEquilibratedStress.ConvertToTemperatureDistribution(section.Coordinates, section.ModulusOfElasticity, section.ThermalCooeficient);
             }
         }
-        /*public void CalculateDistributions()
+        public void CalculateDistributions()
         {
-
-            foreach (var section in compositeSection.Sections)
-            {
-                Integration integration = new Integration();
-                integration.Integrate(section, section.ExternalStress.GetValue);
-                StressDistribution uniformDistribution = StressDistribution.AxialStress(section.Coordinates, integration.NormalForce, compositeSection.Area, compositeSection.BaseModulusOfElasticity, section.ModulusOfElasticity);
-                section.UniformStress = uniformDistribution;
-                section.UniformStress.MultiplyDistribution(-1);
-
-                var uniformPlusSelfEquilibratingStress = new StressDistribution(section.ExternalStress.Distribution);
-                uniformPlusSelfEquilibratingStress.SubtractDistribution(section.UniformStress.Distribution);
-                integration.Integrate(section, uniformPlusSelfEquilibratingStress.GetValue);
-                StressDistribution bendingDistribution = StressDistribution.BendingStress(section.Coordinates, integration.Moment, compositeSection.CentreOfGravity.Y, compositeSection.MomentOfIntertia, compositeSection.BaseModulusOfElasticity, section.ModulusOfElasticity);
-                section.BendingStress = bendingDistribution;
-                section.BendingStress.MultiplyDistribution(-1);
-
-                var selfEquilibratingStress = new StressDistribution(section.ExternalStress.Distribution);
-                selfEquilibratingStress.AddDistribution(section.UniformStress.Distribution);
-                selfEquilibratingStress.AddDistribution(section.BendingStress.Distribution);
-                section.SelfEquilibratedStress = selfEquilibratingStress;
-                section.SelfEquilibratedStress.MultiplyDistribution(-1);
-
-                //converting to Temperature
-                section.UniformTemperature = section.UniformStress.ConvertToTemperatureDistribution(section.Coordinates, section.ModulusOfElasticity, section.ThermalCooeficient);
-                section.BendingTemperature = section.BendingStress.ConvertToTemperatureDistribution(section.Coordinates, section.ModulusOfElasticity, section.ThermalCooeficient);
-                section.SelfEquilibratedTemperature = section.SelfEquilibratedStress.ConvertToTemperatureDistribution(section.Coordinates, section.ModulusOfElasticity, section.ThermalCooeficient);
-            }
-        }*/
+            var normalForce = calculateNormalForce();
+            calculateNormalStress(normalForce);
+            var moment = calculateBendingMoment();
+            calculateBendingAndSelfStresses(moment);
+            convertStressToTemperature();
+        }
+   
 
         public IEnumerable<IEnumerable<Distribution>> GetResult(ResultType resultType)
         {
