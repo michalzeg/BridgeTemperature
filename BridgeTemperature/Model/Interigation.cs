@@ -44,13 +44,13 @@ namespace BridgeTemperature.IntegrationFunctions
 		{
 		}
 
-        public void Reset()
-        {
-            Moment = 0;
-            NormalForce = 0;
-        }
+		public void Reset()
+		{
+			Moment = 0;
+			NormalForce = 0;
+		}
 
-		public void Integrate(IIntegrable section, Func<double, double> distributionFunction)
+		public void Integrate(IIntegrable section,PointD integrationPoint, Func<double, double> distributionFunction)
 		{
 			double resultantMoment = 0;
 			double resultantNormalForce = 0;
@@ -67,8 +67,8 @@ namespace BridgeTemperature.IntegrationFunctions
 					currentY = currentY + deltaY;
 					double value = distributionFunction(slice.CentreOfGravityY);
 					double normalForce = value * slice.Area * sectionTypeMultiplier;
-					double leverArm = Math.Abs(section.CentreOfGravity.Y - slice.CentreOfGravityY);
-					double moment = ((slice.CentreOfGravityY < section.CentreOfGravity.Y) ? leverArm * value * slice.Area : -leverArm * value * slice.Area) * sectionTypeMultiplier;
+					double leverArm = Math.Abs(integrationPoint.Y - slice.CentreOfGravityY);
+					double moment = ((slice.CentreOfGravityY < integrationPoint.Y) ? leverArm * value * slice.Area : -leverArm * value * slice.Area) * sectionTypeMultiplier;
 
 					resultantMoment = resultantMoment + moment;
 					resultantNormalForce = resultantNormalForce + normalForce;

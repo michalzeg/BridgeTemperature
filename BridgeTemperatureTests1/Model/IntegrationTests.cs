@@ -45,7 +45,7 @@ namespace BridgeTemperature.IntegrationFunctions.Tests
             //compositeSection.Sections.Returns(new List<ISection>() { section });
 
             Integration interigation = new Integration();
-            interigation.Integrate(section, (e) => 1);
+            interigation.Integrate(section,section.CentreOfGravity, (e) => 1);
 
 
             Assert.AreEqual(100, interigation.NormalForce, 0.00000001);
@@ -79,7 +79,7 @@ namespace BridgeTemperature.IntegrationFunctions.Tests
             //compositeSection.Sections.Returns(new List<ISection>() { section });
 
             Integration interigation = new Integration();
-            interigation.Integrate(section, (e) => 2);
+            interigation.Integrate(section,section.CentreOfGravity, (e) => 2);
 
 
             Assert.AreEqual(2 * 40.5, interigation.NormalForce, 0.00000001);
@@ -116,7 +116,7 @@ namespace BridgeTemperature.IntegrationFunctions.Tests
 
             var integrationFunction = LinearSpline.InterpolateSorted(new double[] { 0, 10 }, new double[] { 6, -6 });
             Integration interigation = new Integration();
-            interigation.Integrate(section, integrationFunction.Interpolate);
+            interigation.Integrate(section,section.CentreOfGravity, integrationFunction.Interpolate);
 
 
             Assert.AreEqual(0, interigation.NormalForce, 0.00000001);
@@ -155,7 +155,7 @@ namespace BridgeTemperature.IntegrationFunctions.Tests
 
             var integrationFunction = LinearSpline.InterpolateSorted(new double[] { 0, 10 }, new double[] { -3, -6 });
             Integration interigation = new Integration();
-            interigation.Integrate(section, integrationFunction.Interpolate);
+            interigation.Integrate(section,section.CentreOfGravity, integrationFunction.Interpolate);
 
 
             Assert.AreEqual(-450, interigation.NormalForce, 0.001);

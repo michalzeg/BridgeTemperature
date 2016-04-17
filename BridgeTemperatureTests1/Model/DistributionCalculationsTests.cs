@@ -137,8 +137,8 @@ namespace BridgeTemperature.DistributionOperations.Tests
             coordinates1.Add(new PointD(0, 1.5));
 
             List<Distribution> distribution1 = new List<Distribution>();
-            distribution1.Add(new Distribution() { Y = 0, Value = 0 });
-            distribution1.Add(new Distribution() { Y = 0, Value = 0 });
+            //distribution1.Add(new Distribution() { Y = 0, Value = 0 });
+            //distribution1.Add(new Distribution() { Y = 0, Value = 0 });
             ISection section1 = new Section(coordinates1, SectionType.Fill, modulusOfElasticity, thermalCoefficient, distribution1);
 
             List<PointD> coordinates2 = new List<PointD>();
@@ -148,8 +148,8 @@ namespace BridgeTemperature.DistributionOperations.Tests
             coordinates2.Add(new PointD(0, 3));
 
             List<Distribution> distribution2 = new List<Distribution>();
-            distribution1.Add(new Distribution() { Y = 1.5, Value = 10 });
-            distribution1.Add(new Distribution() { Y = 3, Value = 10 });
+            distribution2.Add(new Distribution() { Y = 1.5, Value = 10 });
+            distribution2.Add(new Distribution() { Y = 3, Value = 10 });
             ISection section2 = new Section(coordinates2, SectionType.Fill, modulusOfElasticity, thermalCoefficient, distribution2);
 
 

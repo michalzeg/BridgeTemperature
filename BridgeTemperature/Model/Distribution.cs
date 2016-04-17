@@ -281,7 +281,7 @@ namespace BridgeTemperature.DistributionOperations
 
             foreach(var section in compositeSection.Sections)
             {
-                integration.Integrate(section, section.ExternalStress.GetValue);
+                integration.Integrate(section,compositeSection.CentreOfGravity, section.ExternalStress.GetValue);
             }
             foreach (var section in compositeSection.Sections)
             {
@@ -295,7 +295,7 @@ namespace BridgeTemperature.DistributionOperations
             {
                 var uniformPlusSelfEquilibratingStress = new StressDistribution(section.ExternalStress.Distribution);
                 uniformPlusSelfEquilibratingStress.SubtractDistribution(section.UniformStress.Distribution);
-                integration.Integrate(section, uniformPlusSelfEquilibratingStress.GetValue);
+                integration.Integrate(section,compositeSection.CentreOfGravity, uniformPlusSelfEquilibratingStress.GetValue);
             }
 
             foreach (var section in compositeSection.Sections)
