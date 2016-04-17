@@ -44,6 +44,12 @@ namespace BridgeTemperature.IntegrationFunctions
 		{
 		}
 
+        public void Reset()
+        {
+            Moment = 0;
+            NormalForce = 0;
+        }
+
 		public void Integrate(IIntegrable section, Func<double, double> distributionFunction)
 		{
 			double resultantMoment = 0;
@@ -70,8 +76,8 @@ namespace BridgeTemperature.IntegrationFunctions
 				while (currentY <= section.YMax);
 			
 
-			this.NormalForce = resultantNormalForce;
-			this.Moment = resultantMoment;
+			this.NormalForce = this.NormalForce+ resultantNormalForce;
+			this.Moment = this.Moment + resultantMoment;
 		}
 	}
 

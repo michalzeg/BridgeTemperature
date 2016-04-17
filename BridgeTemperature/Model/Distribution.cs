@@ -277,19 +277,30 @@ namespace BridgeTemperature.DistributionOperations
 
         public void CalculateDistributions()
         {
+            Integration integration = new Integration();
 
-
+            foreach(var section in compositeSection.Sections)
+            {
+                integration.Integrate(section, section.ExternalStress.GetValue);
+            }
             foreach (var section in compositeSection.Sections)
             {
-                Integration integration = new Integration();
-                integration.Integrate(section, section.ExternalStress.GetValue);
                 StressDistribution uniformDistribution = StressDistribution.AxialStress(section.Coordinates, integration.NormalForce, compositeSection.Area, compositeSection.BaseModulusOfElasticity, section.ModulusOfElasticity);
                 section.UniformStress = uniformDistribution;
-                section.UniformStress.MultiplyDistribution(-1);
+                section.UniformStress.MultiplyDistribution(-1);   
+            }
 
+            integration.Reset();
+            foreach (var section in compositeSection.Sections)
+            {
                 var uniformPlusSelfEquilibratingStress = new StressDistribution(section.ExternalStress.Distribution);
                 uniformPlusSelfEquilibratingStress.SubtractDistribution(section.UniformStress.Distribution);
                 integration.Integrate(section, uniformPlusSelfEquilibratingStress.GetValue);
+            }
+
+            foreach (var section in compositeSection.Sections)
+            {
+                
                 StressDistribution bendingDistribution = StressDistribution.BendingStress(section.Coordinates, integration.Moment, compositeSection.CentreOfGravity.Y, compositeSection.MomentOfIntertia, compositeSection.BaseModulusOfElasticity, section.ModulusOfElasticity);
                 section.BendingStress = bendingDistribution;
                 section.BendingStress.MultiplyDistribution(-1);
