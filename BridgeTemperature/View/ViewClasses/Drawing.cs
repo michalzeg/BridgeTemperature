@@ -294,7 +294,10 @@ namespace BridgeTemperature.Drawing
         }
         private void setPolygonProperties(Polygon polygon)
         {
-            var brush = new LinearGradientBrush(Brushes.Crimson.Color, Brushes.Red.Color, 90);
+            var color1 = Color.FromRgb(158, 241, 14);
+            var color2 = Color.FromRgb(21, 157, 24);
+            var brush = new LinearGradientBrush(color1, color2, 90);
+            //var brush = new LinearGradientBrush(Brushes.Crimson.Color, Brushes.Red.Color, 90);
             //polygon.Stroke = Brushes.DarkRed;
             //polygon.StrokeThickness = 2;
             polygon.Fill = brush;

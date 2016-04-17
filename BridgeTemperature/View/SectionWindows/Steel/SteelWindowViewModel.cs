@@ -1,4 +1,7 @@
-﻿using GalaSoft.MvvmLight;
+﻿using BridgeTemperature.Drawing;
+using BridgeTemperature.Helpers;
+using BridgeTemperature.View.ViewClasses;
+using GalaSoft.MvvmLight;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,14 +12,50 @@ namespace BridgeTemperature.ViewModel
 {
     public class SteelWindowViewModel:ViewModelBase
     {
+        public SectionPropertiesViewModel SectionPropertiesVM { get; private set; }
+
         public SteelWindowViewModel()
         {
+            SectionPropertiesVM = new SectionPropertiesViewModel();
+            SectionPropertiesVM.Materials = MaterialProperties.MaterialOperations.GetSteelMaterials().ToList();
+            Section = new List<SectionDrawingData>();
+            Distribution = new List<DistributionDrawingData>();
+
+            tf2 = 0.02;
+            hw = 1;
+            tf1 = 0.02;
+            bf = 0.3;
+            h1 = 0.2;
+            dt1 = 20;
+
+            steelPlateGirder = new SteelPlateGirder(Tf1, Hw, Tf2, Bf, Tw, H1, DT1);
 
         }
 
-        private void updateDrawings()
-        { }
+        public IList<SectionDrawingData> Section { get; set; }
+        public IList<DistributionDrawingData> Distribution { get; set; }
 
+
+        private SteelPlateGirder steelPlateGirder;
+        private void updateDrawings()
+        {
+            var sectionCoordinates = steelPlateGirder.GetCoordinates();
+            var section = new List<SectionDrawingData>()
+            { new SectionDrawingData(){ Coordinates = sectionCoordinates, Type = SectionType.Fill } };
+            Section = section;
+
+            var distribution = new DistributionDrawingData();
+            distribution.Distribution = steelPlateGirder.GetDistribution();
+            distribution.SectionMaxY = sectionCoordinates.Max(e => e.Y);
+            distribution.SectionMinY = sectionCoordinates.Min(e => e.Y);
+            distribution.SectionMaxX = sectionCoordinates.Max(e => e.X);
+            distribution.SectionMinX = sectionCoordinates.Min(e => e.X);
+            Distribution = new List<DistributionDrawingData>() { distribution };
+
+            RaisePropertyChanged(() => Section);
+            RaisePropertyChanged(() => Distribution);
+
+        }
         private double tf1;
         public double Tf1
         {

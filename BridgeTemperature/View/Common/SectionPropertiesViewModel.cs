@@ -1,5 +1,5 @@
 ﻿using BridgeTemperature.Helpers;
-using BridgeTemperature.Materials;
+using BridgeTemperature.MaterialProperties;
 using BridgeTemperature.Sections;
 using GalaSoft.MvvmLight;
 using System;
@@ -15,10 +15,12 @@ namespace BridgeTemperature.ViewModel
     {
         //public delegate void UpdateEventHandler();
         //public event UpdateEventHandler Update;
+        public IList<Material> Materials { get; set; }
 
         public SectionPropertiesViewModel()
         {
-
+            Materials = MaterialOperations.GetAllMaterials().ToList();
+            RaisePropertyChanged(() => Materials);
         }
 
         private Material selectedMaterial;

@@ -27,6 +27,8 @@ namespace BridgeTemperature.ViewModel
 
             Sections = new List<ISection>();
 
+            ExternalDistributionLabel = "External temperature";
+
             Messenger.Default.Register<ISection>(this, updateSections);
             Messenger.Default.Register<MessengerTokens>(this, MessengerTokens.ClearDrawings, clearDrawings);
         }
@@ -90,5 +92,57 @@ namespace BridgeTemperature.ViewModel
             //RaisePropertyChanged(() => ExternalDistribution);
         }
 
+        private string externalDistributionLabel;
+        public string ExternalDistributionLabel
+        {
+            get { return externalDistributionLabel; }
+            set
+            {
+                if (value != externalDistributionLabel)
+                {
+                    externalDistributionLabel = value;
+                    RaisePropertyChanged(() => ExternalDistributionLabel);
+                }
+            }
+        }
+        private string uniformDistributionLabel;
+        public string UniformDistributionLabel
+        {
+            get { return uniformDistributionLabel; }
+            set
+            {
+                if (value != uniformDistributionLabel)
+                {
+                    uniformDistributionLabel = value;
+                    RaisePropertyChanged(() => uniformDistributionLabel);
+                }
+            }
+        }
+        private string bendingDistributionLabel;
+        public string BendingDistributionLabel
+        {
+            get { return bendingDistributionLabel; }
+            set
+            {
+                if (value != bendingDistributionLabel)
+                {
+                    bendingDistributionLabel = value;
+                    RaisePropertyChanged(() => bendingDistributionLabel);
+                }
+            }
+        }
+        private string selfDistributionLabel;
+        public string SelfDistributionLabel
+        {
+            get { return selfDistributionLabel; }
+            set
+            {
+                if (value != selfDistributionLabel)
+                {
+                    selfDistributionLabel = value;
+                    RaisePropertyChanged(() => selfDistributionLabel);
+                }
+            }
+        }
     }
 }

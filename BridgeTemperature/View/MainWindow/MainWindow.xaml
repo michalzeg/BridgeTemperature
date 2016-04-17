@@ -19,7 +19,8 @@
             <RibbonTab Header="Section">
                 <RibbonGroup Header="Steel">
                     <Grid>
-                        <RibbonButton Grid.Column="2" Label="Plate Girder" LargeImageSource="/Images/Ribbon/SteelGirder.png"/>
+                        <RibbonButton Grid.Column="2" Label="Plate Girder" LargeImageSource="/Images/Ribbon/SteelGirder.png"
+                                      Command="{Binding OpenPlateGirderWindow}"/>
                     </Grid>
                 </RibbonGroup>
                 <RibbonGroup Header="Composite">

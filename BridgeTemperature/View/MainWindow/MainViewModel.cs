@@ -24,8 +24,18 @@ namespace BridgeTemperature.ViewModel
 
         public MainViewModel()
         {
+            OpenPlateGirderWindow = new RelayCommand(this.openPlateGirderWindow);
+            OpenCompositeGirderSimplifiedWindow = new RelayCommand(this.openCompositeGirderSimplifiedWindow);
+            OpenCompositeGirderNormalWindow = new RelayCommand(this.openCompositeGirderNormalWindow);
+            OpenSlabWindow = new RelayCommand(this.openSlabWindow);
+            OpenIGirderWindow = new RelayCommand(this.openIGirderWindow);
+            OpenBoxGirderWindow = new RelayCommand(this.openBoxGirderWindow);
+            OpenRectangularSectionWindow = new RelayCommand(this.openRectangularSectionWindow);
             OpenCustomWindow = new RelayCommand(this.openCustomWindow);
+
             Run = new RelayCommand(this.run);
+
+
             MainPanelVM = new MainPanelViewModel();
             
         }
@@ -41,7 +51,13 @@ namespace BridgeTemperature.ViewModel
         public RelayCommand Run { get; private set; }
 
 
-        private void openPlateGirderWindow() {  }
+        private void openPlateGirderWindow()
+        {
+            var steelWindow = new SteelWindow();
+            var vm = new SteelWindowViewModel();
+            steelWindow.DataContext = vm;
+            steelWindow.Show();
+        }
         private void openCompositeGirderSimplifiedWindow() {  }
         private void openCompositeGirderNormalWindow() {  }
         private void openSlabWindow() {  }

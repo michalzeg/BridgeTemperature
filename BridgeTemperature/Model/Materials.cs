@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Xml.Serialization;
 
-namespace BridgeTemperature.Materials
+namespace BridgeTemperature.MaterialProperties
 {
     /*public class MaterialList
     {
@@ -61,7 +61,7 @@ namespace BridgeTemperature.Materials
 
     public class MaterialOperations
     {
-        public static IEnumerable<Material> GetMaterials()
+        public static IEnumerable<Material> GetAllMaterials()
         {
             IEnumerable<Material> materials;
 
@@ -74,26 +74,17 @@ namespace BridgeTemperature.Materials
             }
             return materials;
         }
-        public static IEnumerable<string> GetMaterialNames()
+        
+        public static IEnumerable<Material> GetSteelMaterials()
         {
+            var materials = GetAllMaterials();
 
-            var materials = GetMaterials();
-
-            if (materials == null)
-                throw new NullReferenceException("xml file with materials is empty");
-
-            var namesOfMaterials = materials.Select(e => e.Grade);
-            return namesOfMaterials;
+            return materials.Where(e => e.Grade[0] == 'S');
         }
-        public static void GetMaterialProperties(string materialName, out double modulusOfElasticity, out double thermalCoefficient)
+        public static IEnumerable<Material> GetConcreteMaterials()
         {
-            var materials = GetMaterials();
-            var namesOfMaterials = GetMaterialNames();
-            if (!materials.Any(e => e.Grade == materialName))
-                throw new NullReferenceException(string.Format("Xml file does not contain {0} name", materialName));
-
-            thermalCoefficient = materials.First(e => e.Grade == materialName).ThermalCoefficient;
-            modulusOfElasticity = materials.First(e => e.Grade == materialName).E;
+            var materials = GetAllMaterials();
+            return materials.Where(e => e.Grade[0] == 'C');
         }
 
     }

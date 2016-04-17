@@ -7,7 +7,12 @@
              xmlns:drawing="clr-namespace:BridgeTemperature.Drawing"
              mc:Ignorable="d" 
              >
+
     <Grid Background="{StaticResource BackgroundBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="2*"/>
             <ColumnDefinition Width="*"/>
@@ -15,13 +20,23 @@
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <Grid Grid.Column="0">
+        <TextBlock Grid.Column="0" Grid.Row="0"
+                   Text="Section" FontWeight="Bold" HorizontalAlignment="Center"/>
+        <TextBlock Grid.Column="1" Grid.Row="0"
+                   Text="{Binding ExternalDistributionLabel}" FontWeight="Bold" HorizontalAlignment="Center" TextWrapping="Wrap"/>
+        <TextBlock Grid.Column="2" Grid.Row="0"
+                   Text="{Binding UniformDistributionLabel}" FontWeight="Bold" HorizontalAlignment="Center"/>
+        <TextBlock Grid.Column="3" Grid.Row="0"
+                   Text="{Binding BendingDistributionLabel}" FontWeight="Bold" HorizontalAlignment="Center"/>
+        <TextBlock Grid.Column="4" Grid.Row="0"
+                   Text="{Binding SelfDistributionLabel}" FontWeight="Bold" HorizontalAlignment="Center"/>
+        <Grid Grid.Column="0" Grid.Row="1">
             <drawing:SectionCanvas
                 x:Name="sectionCanvas"
                 Sections="{Binding SectionDrawing,Mode=TwoWay}"
                 />
         </Grid>
-        <Grid Grid.Column="1">
+        <Grid Grid.Column="1" Grid.Row="1">
             <drawing:DistributionDrawing 
                 x:Name="externalDistributionDrawing"
                 DistributionData="{Binding ExternalDistributionDrawing,Mode=TwoWay}" 
@@ -29,7 +44,7 @@
                 SectionCanvasWidth="{Binding ActualWidth, ElementName=sectionCanvas, Mode=OneWay}"
                 />
         </Grid>
-        <Grid Grid.Column="2">
+        <Grid Grid.Column="2" Grid.Row="1">
             <drawing:DistributionDrawing 
                 x:Name="uniformDistributionDrawing"
                 DistributionData="{Binding UniformDistributionDrawing,Mode=TwoWay}" 
@@ -37,7 +52,7 @@
                 SectionCanvasWidth="{Binding ActualWidth, ElementName=sectionCanvas, Mode=OneWay}"
                 />
         </Grid>
-        <Grid Grid.Column="3">
+        <Grid Grid.Column="3" Grid.Row="1">
             <drawing:DistributionDrawing 
                 x:Name="bendingDistributionDrawing"
                 DistributionData="{Binding BendingDistributionDrawing,Mode=TwoWay}" 
@@ -45,7 +60,7 @@
                 SectionCanvasWidth="{Binding ActualWidth, ElementName=sectionCanvas, Mode=OneWay}"
                 />
         </Grid>
-        <Grid Grid.Column="4">
+        <Grid Grid.Column="4" Grid.Row="1">
             <drawing:DistributionDrawing 
                 x:Name="selfEqulibratingDistributionDrawing"
                 DistributionData="{Binding SelfEqulibratingDistributionDrawing,Mode=TwoWay}" 

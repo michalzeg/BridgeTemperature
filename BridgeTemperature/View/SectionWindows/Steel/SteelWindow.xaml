@@ -12,12 +12,12 @@
     <Grid 
         Margin="{StaticResource MarginValue}">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="3*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="3*"/>
-            <RowDefinition Height="3*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="*"/>
             <RowDefinition Height="3*"/>
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
@@ -79,10 +79,11 @@
         <Image 
             Grid.Column="1"
             Grid.Row="0"
+            Grid.RowSpan="2"
             Margin="{StaticResource MarginValue}" 
-            Stretch="Fill"
+            Stretch="Uniform"
             RenderOptions.BitmapScalingMode="HighQuality"
-            Source="/Images/Window/CustomSectionWindow.png"
+            Source="/Images/Window/SteelSectionDimensions.png"
             />
         <DockPanel Grid.Column="0" Grid.Row="2" LastChildFill="False">
             <GroupBox DockPanel.Dock="Top" Header="Steel">
@@ -91,7 +92,7 @@
                 ContentTemplate="{StaticResource sectionPropertiesPanel}"/>
             </GroupBox>
         </DockPanel>
-        <Grid Grid.Column="1" Grid.Row="1" Grid.RowSpan="2"
+        <Grid Grid.Column="1" Grid.Row="2" Grid.RowSpan="1"
               Background="{StaticResource BackgroundBrush}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="2*"/>

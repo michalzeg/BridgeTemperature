@@ -98,7 +98,7 @@ namespace BridgeTemperature.Sections
             this.XMin = properties.XMin;
             this.Height = properties.YMax - properties.YMin;
 
-            this.ExternalTemperature = new TemperatureDistribution(externalTemperatureDistribution);
+            this.ExternalTemperature = new TemperatureDistribution(externalTemperatureDistribution.OrderBy(e=>e.Y));
             this.ExternalStress = this.ExternalTemperature.ConvertToStressDistribution(coordinates, modulusOfElasticity, thermalCooefficient);
         }
         private void checkLastElement()
@@ -163,7 +163,6 @@ namespace BridgeTemperature.Sections
         }
     }
 
-
-
+    
 
 }

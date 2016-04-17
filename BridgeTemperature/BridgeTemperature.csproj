@@ -140,6 +140,7 @@
     <Compile Include="View\SectionWindows\Steel\SteelWindowViewModel.cs" />
     <Compile Include="View\ViewClasses\Drawing.cs" />
     <Compile Include="View\ViewClasses\MessangerTokens.cs" />
+    <Compile Include="View\ViewClasses\TypicalSectionsConverters.cs" />
     <Compile Include="View\ViewModelLocator.cs" />
     <Compile Include="View\MainWindow\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -208,7 +209,7 @@
     <Folder Include="View\SectionWindows\Concrete\" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\Window\CustomSectionWindow.PNG" />
+    <Resource Include="Images\Window\CustomSectionDimensions.PNG" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\Buttons\CloseIcon.png" />
@@ -225,6 +226,9 @@
   <ItemGroup>
     <Resource Include="Images\Ribbon\Stress.png" />
     <Resource Include="Images\Ribbon\Temperature.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Window\SteelSectionDimensions.PNG" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

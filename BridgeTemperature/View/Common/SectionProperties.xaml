@@ -32,6 +32,7 @@
                     Name="comboMaterials"
                     Grid.Column="0"
                     Grid.Row="0"
+                ItemsSource="{Binding Materials,Mode=TwoWay}"
                     SelectedItem="{Binding SelectedMaterial, Mode=OneWayToSource}"
                     DisplayMemberPath="Grade"
                     
