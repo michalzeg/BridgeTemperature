@@ -42,7 +42,7 @@ namespace BridgeTemperature.ViewModel
 
         private void apply()
         {
-            var section = new Section(steelPlateGirder.GetCoordinates(), SectionType.Fill,
+            var section = new Section(steelPlateGirder.GetCoordinates(), SectionType.Steel,
                 SectionPropertiesVM.ModulusOfElasticity, SectionPropertiesVM.ThermalCoefficient,
                 steelPlateGirder.GetDistribution());
             Messenger.Default.Send<ISection>(section);
@@ -54,7 +54,7 @@ namespace BridgeTemperature.ViewModel
         {
             var sectionCoordinates = steelPlateGirder.GetCoordinates();
             var section = new List<SectionDrawingData>()
-            { new SectionDrawingData(){ Coordinates = sectionCoordinates, Type = SectionType.Fill } };
+            { new SectionDrawingData(){ Coordinates = sectionCoordinates, Type = SectionType.Steel } };
             Section = section;
             RaisePropertyChanged(() => Section);
 

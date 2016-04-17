@@ -33,7 +33,7 @@ namespace BridgeTemperature.IntegrationFunctions.Tests
             section.Coordinates.Returns(coordinates);
             //section.ModulusOfElasticity.Returns(200000000);
             //section.ThermalCooeficient.Returns(0.00001);
-            section.Type.Returns(SectionType.Fill);
+            section.Type.Returns(SectionType.Steel);
             section.YMax.Returns(10);
             section.YMin.Returns(0);
 
@@ -67,7 +67,7 @@ namespace BridgeTemperature.IntegrationFunctions.Tests
             section.Coordinates.Returns(coordinates);
             //section.ModulusOfElasticity.Returns(200000000);
             //section.ThermalCooeficient.Returns(0.00001);
-            section.Type.Returns(SectionType.Fill);
+            section.Type.Returns(SectionType.Steel);
             section.YMax.Returns(9);
             section.YMin.Returns(0);
 
@@ -103,7 +103,7 @@ namespace BridgeTemperature.IntegrationFunctions.Tests
             section.Coordinates.Returns(coordinates);
             //section.ModulusOfElasticity.Returns(200000000);
             //section.ThermalCooeficient.Returns(0.00001);
-            section.Type.Returns(SectionType.Fill);
+            section.Type.Returns(SectionType.Steel);
             section.YMax.Returns(10);
             section.YMin.Returns(0);
 
@@ -142,7 +142,7 @@ namespace BridgeTemperature.IntegrationFunctions.Tests
             section.Coordinates.Returns(coordinates);
             //section.ModulusOfElasticity.Returns(200000000);
             ///section.ThermalCooeficient.Returns(0.00001);
-            section.Type.Returns(SectionType.Fill);
+            section.Type.Returns(SectionType.Steel);
             section.YMax.Returns(10);
             section.YMin.Returns(0);
 

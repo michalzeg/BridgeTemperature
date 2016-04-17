@@ -26,7 +26,7 @@ namespace BridgeTemperature.Sections.Tests
             distribution.Add(new Distribution() { Y = 0, Value = 10 });
             distribution.Add(new Distribution() { Y = 10, Value = 10 });
 
-            ISection section = new Section(coordinates, SectionType.Fill, 200000000, 0.00001,distribution);
+            ISection section = new Section(coordinates, SectionType.Steel, 200000000, 0.00001,distribution);
 
             Assert.AreEqual(12d, section.Area);
             Assert.AreEqual(1d, section.MomentOfInertia);

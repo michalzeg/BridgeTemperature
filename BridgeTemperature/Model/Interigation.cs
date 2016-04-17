@@ -56,7 +56,7 @@ namespace BridgeTemperature.IntegrationFunctions
 			double resultantNormalForce = 0;
 			Slicing slicing = new Slicing();
 
-				double sectionTypeMultiplier = (section.Type == SectionType.Fill) ? 1 : -1;
+				double sectionTypeMultiplier = (section.Type == SectionType.Void) ? -1 : 1;
 
 				double currentY = section.YMin;
 				double deltaY = (section.YMax - section.YMin) / this.numberOfSlices;

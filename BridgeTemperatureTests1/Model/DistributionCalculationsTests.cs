@@ -33,7 +33,7 @@ namespace BridgeTemperature.DistributionOperations.Tests
             distribution.Add(new Distribution() { Y = 1, Value = 10.8 });
 
 
-            ISection section = new Section(coordinates, SectionType.Fill, modulusOfElasticity, thermalCoefficient, distribution);
+            ISection section = new Section(coordinates, SectionType.Steel, modulusOfElasticity, thermalCoefficient, distribution);
             ICompositeSection compositeSection = new CompositeSection(new List<ISection>() { section });
 
             DistributionCalculations calculations = new DistributionCalculations(compositeSection);
@@ -92,7 +92,7 @@ namespace BridgeTemperature.DistributionOperations.Tests
 
 
 
-            ISection section = new Section(coordinates, SectionType.Fill, modulusOfElasticity, thermalCoefficient, distribution);
+            ISection section = new Section(coordinates, SectionType.Steel, modulusOfElasticity, thermalCoefficient, distribution);
             ICompositeSection compositeSection = new CompositeSection(new List<ISection>() { section });
 
             DistributionCalculations calculations = new DistributionCalculations(compositeSection);
@@ -139,7 +139,7 @@ namespace BridgeTemperature.DistributionOperations.Tests
             List<Distribution> distribution1 = new List<Distribution>();
             //distribution1.Add(new Distribution() { Y = 0, Value = 0 });
             //distribution1.Add(new Distribution() { Y = 0, Value = 0 });
-            ISection section1 = new Section(coordinates1, SectionType.Fill, modulusOfElasticity, thermalCoefficient, distribution1);
+            ISection section1 = new Section(coordinates1, SectionType.Steel, modulusOfElasticity, thermalCoefficient, distribution1);
 
             List<PointD> coordinates2 = new List<PointD>();
             coordinates2.Add(new PointD(0, 1.5));
@@ -150,7 +150,7 @@ namespace BridgeTemperature.DistributionOperations.Tests
             List<Distribution> distribution2 = new List<Distribution>();
             distribution2.Add(new Distribution() { Y = 1.5, Value = 10 });
             distribution2.Add(new Distribution() { Y = 3, Value = 10 });
-            ISection section2 = new Section(coordinates2, SectionType.Fill, modulusOfElasticity, thermalCoefficient, distribution2);
+            ISection section2 = new Section(coordinates2, SectionType.Steel, modulusOfElasticity, thermalCoefficient, distribution2);
 
 
             ICompositeSection compositeSection = new CompositeSection(new List<ISection>() { section1, section2 });

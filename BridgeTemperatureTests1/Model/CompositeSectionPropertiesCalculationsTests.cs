@@ -20,14 +20,14 @@ namespace BridgeTemperature.SectionProperties.Tests
         {
             var section1 = Substitute.For<ICompositePropertiesCalculations>();
             section1.Area.Returns(24);
-            section1.Type.Returns(SectionType.Fill);
+            section1.Type.Returns(SectionType.Steel);
             section1.ModulusOfElasticity.Returns(200000000);
             section1.CentreOfGravity.Returns(new PointD(0, 10));
             section1.MomentOfInertia.Returns(8);
 
             var section2 = Substitute.For<ICompositePropertiesCalculations>();
             section2.Area.Returns(24);
-            section2.Type.Returns(SectionType.Fill);
+            section2.Type.Returns(SectionType.Steel);
             section2.ModulusOfElasticity.Returns(200000000);
             section2.CentreOfGravity.Returns(new PointD(0, 5));
             section2.MomentOfInertia.Returns(8);
@@ -48,14 +48,14 @@ namespace BridgeTemperature.SectionProperties.Tests
         {
             var section1 = Substitute.For<ICompositePropertiesCalculations>();
             section1.Area.Returns(24);
-            section1.Type.Returns(SectionType.Fill);
+            section1.Type.Returns(SectionType.Steel);
             section1.ModulusOfElasticity.Returns(10000000);
             section1.CentreOfGravity.Returns(new PointD(0, 10));
             section1.MomentOfInertia.Returns(8);
 
             var section2 = Substitute.For<ICompositePropertiesCalculations>();
             section2.Area.Returns(24);
-            section2.Type.Returns(SectionType.Fill);
+            section2.Type.Returns(SectionType.Steel);
             section2.ModulusOfElasticity.Returns(210000000);
             section2.CentreOfGravity.Returns(new PointD(0, 5));
             section2.MomentOfInertia.Returns(8);
@@ -76,7 +76,7 @@ namespace BridgeTemperature.SectionProperties.Tests
         {
             var section1 = Substitute.For<ICompositePropertiesCalculations>();
             section1.Area.Returns(100);
-            section1.Type.Returns(SectionType.Fill);
+            section1.Type.Returns(SectionType.Steel);
             section1.ModulusOfElasticity.Returns(200000000);
             section1.CentreOfGravity.Returns(new PointD(5, 5));
             section1.MomentOfInertia.Returns(833.333333);

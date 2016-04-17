@@ -8,7 +8,9 @@ namespace BridgeTemperature.Helpers
 {
     public enum SectionType
     {
-        Fill,
+        Custom,
+        Steel,
+        Concrete,
         Void
     }
 
