@@ -10,7 +10,13 @@
         mc:Ignorable="d"
         Title="SteelWindow" Height="600" Width="600" WindowStartupLocation="CenterOwner">
     <Window.Resources>
-        <converters:MultiplyValueConverter x:Key="MultiplyValueConverter"/>
+
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/BridgeTemperature;component/View/StylesDictionary.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+            <converters:MultiplyValueConverter x:Key="MultiplyValueConverter"/>
+        </ResourceDictionary>
     </Window.Resources>
     <Grid 
         Margin="{StaticResource MarginValue}">

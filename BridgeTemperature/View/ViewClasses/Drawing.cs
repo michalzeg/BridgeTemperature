@@ -365,7 +365,7 @@ namespace BridgeTemperature.Drawing
         }
         public void RefreshDrawing()
         {
-
+            if (Sections == null || Sections.Count == 0) return;
             PolygonDrawing drawing = new PolygonDrawing(scaleCalculator);
             this.scaleCalculator.UpdateProperties(Sections.Select(e => e.Coordinates).ToList());
             this.Children.Clear();

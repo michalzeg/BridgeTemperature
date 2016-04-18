@@ -12,7 +12,6 @@
             <vm:ViewModelLocator x:Key="Locator" d:IsDataSource="True" xmlns:vm="clr-namespace:BridgeTemperature.ViewModel" />
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="View/ViewSettings.xaml"/>
-                <ResourceDictionary Source="View/StylesDictionary.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
   </Application.Resources>

@@ -34,7 +34,8 @@ namespace BridgeTemperature.ViewModel
             OpenCustomWindow = new RelayCommand(this.openCustomWindow);
 
             Run = new RelayCommand(this.run);
-
+            Stress = new RelayCommand(this.updateStress);
+            Temperature = new RelayCommand(this.updateTemperature);
 
             MainPanelVM = new MainPanelViewModel();
             
@@ -49,6 +50,8 @@ namespace BridgeTemperature.ViewModel
         public RelayCommand OpenRectangularSectionWindow { get; private set; }
         public RelayCommand OpenCustomWindow { get; private set; }
         public RelayCommand Run { get; private set; }
+        public RelayCommand Stress { get; private set; }
+        public RelayCommand Temperature { get; private set; }
 
 
         private void openPlateGirderWindow()
@@ -100,7 +103,17 @@ namespace BridgeTemperature.ViewModel
         }
         private void updateStress()
         {
-
+            foreach (var section in compositeSection.Sections)
+            {
+                MainPanelVM.UpdateDistribution(section.ExternalStress.Distribution, section, () => MainPanelVM.ExternalDistributionDrawing);
+                MainPanelVM.UpdateDistribution(section.UniformStress.Distribution, section, () => MainPanelVM.UniformDistributionDrawing);
+                MainPanelVM.UpdateDistribution(section.BendingStress.Distribution, section, () => MainPanelVM.BendingDistributionDrawing);
+                MainPanelVM.UpdateDistribution(section.SelfEquilibratedStress.Distribution, section, () => MainPanelVM.SelfEqulibratingDistributionDrawing);
+            }
+            MainPanelVM.BendingDistributionLabel = "Bending Stress";
+            MainPanelVM.ExternalDistributionLabel = "External Stress";
+            MainPanelVM.UniformDistributionLabel = "Uniform Stress";
+            MainPanelVM.SelfDistributionLabel = "Selfequilibrating Stress";
         }
 
     }

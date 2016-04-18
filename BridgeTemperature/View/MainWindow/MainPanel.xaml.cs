@@ -24,6 +24,11 @@ namespace BridgeTemperature.View
         public MainPanel()
         {
             InitializeComponent();
+            this.sectionCanvas.SizeChanged += (a, e) => this.sectionCanvas.RefreshDrawing();
+            this.bendingDistributionDrawing.SizeChanged += (a, e) => this.bendingDistributionDrawing.RefreshDrawing();
+            this.externalDistributionDrawing.SizeChanged += (a, e) => this.externalDistributionDrawing.RefreshDrawing();
+            this.uniformDistributionDrawing.SizeChanged += (a, e) => this.uniformDistributionDrawing.RefreshDrawing();
+            this.selfEqulibratingDistributionDrawing.SizeChanged += (a, e) => this.selfEqulibratingDistributionDrawing.RefreshDrawing();
         }
     }
 }

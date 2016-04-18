@@ -10,8 +10,13 @@
              >
 
     <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/BridgeTemperature;component/View/StylesDictionary.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
         <converter:SectionTypeToBoolConverter x:Key="SectionTypeToBoolConverter"/>
         <converter:MultiplyValueConverter x:Key="MultiplyValueConverter"/>
+        </ResourceDictionary>
     </UserControl.Resources>
     <DockPanel>
 

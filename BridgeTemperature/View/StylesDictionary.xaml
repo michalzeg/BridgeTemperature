@@ -2,7 +2,7 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="clr-namespace:BridgeTemperature.View">
     <Thickness x:Key="MarginValue" Bottom="5" Top="5" Left="5" Right="5"/>
-    <Thickness x:Key="PaddingValue" Bottom="3" Top="3" Left="3" Right="3"/>
+    <Thickness x:Key="PaddingValue" Bottom="1" Top="1" Left="1" Right="1"/>
     <VisualBrush x:Key="BackgroundBrush" TileMode="Tile" Viewport="0,0,15,15" ViewportUnits="Absolute" Viewbox="0,0,15,15" ViewboxUnits="Absolute">
         <VisualBrush.Visual>
             <Grid>
@@ -43,6 +43,57 @@
                 </DataTemplate>
             </Setter.Value>
         </Setter>
+    </Style>
+
+
+    <Style TargetType="TextBox">
+        <Setter Property="Margin" Value="{StaticResource MarginValue}"/>
+        <Setter Property="Padding" Value="{StaticResource PaddingValue}"/>
+        <Setter Property="MinWidth" Value="50"/>
+        <Setter Property="TextAlignment" Value="Center"/>
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+        <Setter Property="Validation.ErrorTemplate">
+            <Setter.Value>
+                <ControlTemplate>
+                    <DockPanel LastChildFill="True">
+                        <Border 
+                            Background="Red" DockPanel.Dock="Right"
+                            Margin="5,0,0,0" Width="20" Height="20" CornerRadius="10"
+                            ToolTip="{Binding ElementName=customAdorner,Path=AdornedElement.(Validation.Errors)[0].ErrorContent}">
+                            <TextBlock Text="!" VerticalAlignment="Center" HorizontalAlignment="Center"
+                                   FontWeight="Bold" Foreground="White"/>
+                        </Border>
+                        <AdornedElementPlaceholder Name="customAdorner" VerticalAlignment="Center">
+                            <Border BorderBrush="Red" BorderThickness="1"/>
+                        </AdornedElementPlaceholder>
+                    </DockPanel>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style TargetType="TextBlock">
+        <Setter Property="Margin" Value="{StaticResource MarginValue}"/>
+        <Setter Property="Padding" Value="{StaticResource PaddingValue}"/>
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+    </Style>
+
+
+    <Style TargetType="CheckBox">
+        <Setter Property="Margin" Value="{StaticResource MarginValue}"/>
+        <Setter Property="Padding" Value="{StaticResource PaddingValue}"/>
+    </Style>
+    <Style TargetType="RadioButton">
+        <Setter Property="Margin" Value="{StaticResource MarginValue}"/>
+        <Setter Property="Padding" Value="{StaticResource PaddingValue}"/>
+    </Style>
+    <Style TargetType="ComboBox">
+        <Setter Property="Margin" Value="{StaticResource MarginValue}"/>
+        <Setter Property="Padding" Value="5,5,5,5"/>
+    </Style>
+
+    <Style TargetType="DataGrid">
+        <Setter Property="CanUserReorderColumns" Value="False"/>
+        <Setter Property="CanUserSortColumns" Value="False"/>
     </Style>
 
 </ResourceDictionary>

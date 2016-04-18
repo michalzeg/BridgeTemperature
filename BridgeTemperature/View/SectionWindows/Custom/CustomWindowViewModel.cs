@@ -77,6 +77,8 @@ namespace BridgeTemperature.ViewModel
         }
         private void pointUpdated()
         {
+            if (Points == null || Points.Count == 0) return;
+
             var section = new List<SectionDrawingData>()
             { new SectionDrawingData(){ Coordinates = Points, Type = Type } };
             Section = section;
