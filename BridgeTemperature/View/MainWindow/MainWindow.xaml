@@ -24,8 +24,10 @@
                     </Grid>
                 </RibbonGroup>
                 <RibbonGroup Header="Composite">
-                    <RibbonButton Label="Plate Girder (Simplified)" LargeImageSource="/Images/Ribbon/CompositeGirder.png"/>
-                    <RibbonButton Label="Plate Girder (Normal)" LargeImageSource="/Images/Ribbon/CompositeGirder.png"/>
+                    <RibbonButton Label="Plate Girder (Simplified)" LargeImageSource="/Images/Ribbon/CompositeGirder.png"
+                                  Command="{Binding OpenCompositeGirderSimplifiedWindow}"/>
+                    <RibbonButton Label="Plate Girder (Normal)" LargeImageSource="/Images/Ribbon/CompositeGirder.png"
+                                  Command="{Binding OpenCompositeGirderNormalWindow}"/>
                 </RibbonGroup>
                 <RibbonGroup Header="Concrete">
                     <RibbonButton Label="Slab" LargeImageSource="/Images/Ribbon/Slab.png"/>

@@ -1,0 +1,269 @@
+﻿using BridgeTemperature.DistributionOperations;
+using BridgeTemperature.Drawing;
+using BridgeTemperature.Helpers;
+using BridgeTemperature.Sections;
+using BridgeTemperature.View.ViewClasses;
+using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Command;
+using GalaSoft.MvvmLight.Messaging;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace BridgeTemperature.ViewModel
+{
+    public class NormalCompositeWindowViewModel:ViewModelBase
+    {
+        public SectionPropertiesViewModel SteelPropertiesVM { get; private set; }
+        public SectionPropertiesViewModel ConcretePropertiesVM { get; private set; }
+        public RelayCommand Apply { get; private set; }
+
+        public NormalCompositeWindowViewModel()
+        {
+            SteelPropertiesVM = new SectionPropertiesViewModel();
+            SteelPropertiesVM.Materials = MaterialProperties.MaterialOperations.GetSteelMaterials().ToList();
+            ConcretePropertiesVM = new SectionPropertiesViewModel();
+            ConcretePropertiesVM.Materials = MaterialProperties.MaterialOperations.GetConcreteMaterials().ToList();
+
+            Section = new List<SectionDrawingData>();
+            TempDistribution = new List<DistributionDrawingData>();
+            Apply = new RelayCommand(apply);
+
+            tf2 = 0.02;
+            hw = 1;
+            tf1 = 0.02;
+            bf1 = 0.3;
+            bf2 = 0.2;
+            bp = 1;
+            hp = 0.3;
+            tw = 0.02;
+            dt1 = 50;
+            dt2 = 10;
+            h1 = 0.2;
+            h2 = 0.5;
+
+            compositeGirder = new NormalCompositeGirder(Tf1, Hw, Tf2, Tw, Bf1, Bf2, Bp, Hp, DT1, DT2, H1, H2);
+            updateDrawings();
+        }
+
+        public IList<SectionDrawingData> Section { get; set; }
+        public IList<DistributionDrawingData> TempDistribution { get; set; }
+
+        private void apply()
+        {
+            var steelSection = new Section(compositeGirder.GetPlateGirderCoordinates(), SectionType.Steel,
+                SteelPropertiesVM.ModulusOfElasticity, SteelPropertiesVM.ThermalCoefficient,
+                compositeGirder.GetPlateGirderTemperature());
+            Messenger.Default.Send<ISection>(steelSection);
+
+            var concreteSection = new Section(compositeGirder.GetSlabCoordinates(), SectionType.Concrete,
+                ConcretePropertiesVM.ModulusOfElasticity, ConcretePropertiesVM.ThermalCoefficient,
+                compositeGirder.GetSlabTemperature());
+
+            Messenger.Default.Send<ISection>(concreteSection);
+
+        }
+
+        private NormalCompositeGirder compositeGirder;
+        private void updateDrawings()
+        {
+            var steelSection = compositeGirder.GetPlateGirderCoordinates();
+            var concreteSection = compositeGirder.GetSlabCoordinates();
+            var section = new List<SectionDrawingData>()
+            { new SectionDrawingData(){ Coordinates = steelSection, Type = SectionType.Steel },
+            new SectionDrawingData() {Coordinates =concreteSection,Type=SectionType.Concrete } };
+            Section = section;
+            RaisePropertyChanged(() => Section);
+
+            var distributionDataSlab = new DistributionDrawingData();
+            distributionDataSlab.Distribution = compositeGirder.GetSlabTemperature();
+            distributionDataSlab.SectionMaxY = compositeGirder.MaxY;
+            distributionDataSlab.SectionMinY = compositeGirder.MinY;
+            distributionDataSlab.SectionMaxX = compositeGirder.MaxX;
+            distributionDataSlab.SectionMinX = compositeGirder.MinX;
+            var distributionDataGirder = new DistributionDrawingData();
+            distributionDataGirder.Distribution = compositeGirder.GetPlateGirderTemperature();
+            distributionDataGirder.SectionMaxY = compositeGirder.MaxY;
+            distributionDataGirder.SectionMinY = compositeGirder.MinY;
+            distributionDataGirder.SectionMaxX = compositeGirder.MaxX;
+            distributionDataGirder.SectionMinX = compositeGirder.MinX;
+
+            var distribution = new List<DistributionDrawingData>() { distributionDataSlab,distributionDataGirder }; 
+            TempDistribution = distribution;
+
+            
+            RaisePropertyChanged(() => TempDistribution);
+
+        }
+        private double tf1;
+        public double Tf1
+        {
+            get { return tf1; }
+            set
+            {
+                if (value!=tf1)
+                {
+                    tf1 = value;
+                    compositeGirder.Tf1 = value;
+                    updateDrawings();
+                }
+            }
+        }
+        private double hw;
+        public double Hw
+        {
+            get { return hw; }
+            set
+            {
+                if (value != hw)
+                {
+                    hw = value;
+                    compositeGirder.Hw = value;
+                    updateDrawings();
+                }
+            }
+        }
+        private double tf2;
+        public double Tf2
+        {
+            get { return tf2; }
+            set
+            {
+                if (value != tf2)
+                {
+                    tf2 = value;
+                    compositeGirder.Tf2 = value;
+                    updateDrawings();
+                }
+            }
+        }
+        private double tw;
+        public double Tw
+        {
+            get { return tw; }
+            set
+            {
+                if (value != tw)
+                {
+                    tw = value;
+                    compositeGirder.Tw = value;
+                    updateDrawings();
+                }
+            }
+        }
+        private double bf1;
+        public double Bf1
+        {
+            get { return bf1; }
+            set
+            {
+                if (value != bf1)
+                {
+                    bf1 = value;
+                    compositeGirder.Bf1 = value;
+                    updateDrawings();
+                }
+            }
+        }
+        private double bf2;
+        public double Bf2
+        {
+            get { return bf2; }
+            set
+            {
+                if (value != bf2)
+                {
+                    bf2 = value;
+                    compositeGirder.Bf2 = value;
+                    updateDrawings();
+                }
+            }
+        }
+        private double bp;
+        public double Bp
+        {
+            get { return bp; }
+            set
+            {
+                if (value != bp)
+                {
+                    bp = value;
+                    compositeGirder.Bp = value;
+                    updateDrawings();
+                }
+            }
+        }
+        private double hp;
+        public double Hp
+        {
+            get { return hp; }
+            set
+            {
+                if (value != hp)
+                {
+                    hp = value;
+                    compositeGirder.Hp = value;
+                    updateDrawings();
+                }
+            }
+        }
+        private double dt1;
+        public double DT1
+        {
+            get { return dt1; }
+            set
+            {
+                if (value != dt1)
+                {
+                    dt1 = value;
+                    compositeGirder.DT1 = value;
+                    updateDrawings();
+                }
+            }
+        }
+        private double dt2;
+        public double DT2
+        {
+            get { return dt2; }
+            set
+            {
+                if (value != dt2)
+                {
+                    dt2 = value;
+                    compositeGirder.DT2 = value;
+                    updateDrawings();
+                }
+            }
+        }
+        private double h1;
+        public double H1
+        {
+            get { return h1; }
+            set
+            {
+                if (value != h1)
+                {
+                    h1 = value;
+                    compositeGirder.H1 = value;
+                    updateDrawings();
+                }
+            }
+        }
+        private double h2;
+        public double H2
+        {
+            get { return h2; }
+            set
+            {
+                if (value != h2)
+                {
+                    h2 = value;
+                    compositeGirder.H2 = value;
+                    updateDrawings();
+                }
+            }
+        }
+    }
+}

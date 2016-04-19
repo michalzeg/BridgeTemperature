@@ -54,12 +54,167 @@ namespace BridgeTemperature.View.ViewClasses
             return coordinates;
         }
 
-        public IList<Distribution> GetDistribution()
+        public IList<Distribution> GetTemperature()
         {
             var distributionList = new List<Distribution>();
             distributionList.Add(new Distribution(Tf2 + Hw + Tf1 - H1, 0));
             distributionList.Add(new Distribution(Tf2 + Hw + Tf1, DT1));
             return distributionList;
+        }
+    }
+
+    public class SimplifiedCompositeGirder
+    {
+        public double Tf1 { get; set; }
+        public double Hw { get; set; }
+        public double Tf2 { get; set; }
+        public double Bf1 { get; set; }
+        public double Bf2 { get; set; }
+        public double Tw { get; set; }
+        public double Hp { get; set; }
+        public double Bp { get; set; }
+        public double DT1 { get; set; }
+
+        public double MaxX
+        {
+            get
+            {
+                return Math.Max(GetPlateGirderCoordinates().Max(e => e.X), GetSlabCoordinates().Max(e => e.X));
+            }
+        }
+        public double MinX
+        {
+            get
+            {
+                return Math.Min(GetPlateGirderCoordinates().Min(e => e.X), GetSlabCoordinates().Min(e => e.X));
+            }
+        }
+        public double MaxY
+        {
+            get
+            {
+                return Math.Max(GetPlateGirderCoordinates().Max(e => e.Y), GetSlabCoordinates().Max(e => e.Y));
+            }
+        }
+        public double MinY
+        {
+            get
+            {
+                return Math.Min(GetPlateGirderCoordinates().Min(e => e.Y), GetSlabCoordinates().Min(e => e.Y));
+            }
+        }
+
+        public SimplifiedCompositeGirder(double tf1,double hw,double tf2,double bf1,
+            double bf2,double tw,double hp,double bp,double dt1)
+        {
+            Tf1 = tf1;
+            Hw = hw;
+            Tf2 = tf2;
+            Bf1 = bf1;
+            Bf2 = bf2;
+            Tw = tw;
+            Hp = hp;
+            Bp = bp;
+            DT1 = dt1;
+        }
+
+        public IList<PointD> GetPlateGirderCoordinates()
+        {
+            var coordinates = new List<PointD>();
+            coordinates.Add(new PointD(0, 0));
+            coordinates.Add(new PointD(Bf2, 0));
+            coordinates.Add(new PointD(Bf2, Tf2));
+            coordinates.Add(new PointD(Bf2 / 2 + Tw / 2, Tf2));
+            coordinates.Add(new PointD(Bf2 / 2 + Tw / 2, Tf2 + Hw));
+            coordinates.Add(new PointD(Bf2 / 2 + Bf1 / 2, Tf2 + Hw));
+            coordinates.Add(new PointD(Bf2 / 2 + Bf1 / 2, Tf2 + Hw + Tf1));
+            coordinates.Add(new PointD(Bf2 / 2 - Bf1 / 2, Tf2 + Hw + Tf1));
+            coordinates.Add(new PointD(Bf2 / 2 - Bf1 / 2, Tf2 + Hw));
+            coordinates.Add(new PointD(Bf2 / 2 - Tw / 2, Tf2 + Hw));
+            coordinates.Add(new PointD(Bf2 / 2 - Tw / 2, Tf2));
+            coordinates.Add(new PointD(0, Tf2));
+            coordinates.Add(new PointD(0, 0));
+            return coordinates;
+        }
+        public IList<PointD> GetSlabCoordinates()
+        {
+            var coordinates = new List<PointD>();
+            coordinates.Add(new PointD(Bf2 / 2 - Bp / 2, Tf2 + Hw + Tf1));
+            coordinates.Add(new PointD(Bf2 / 2 + Bp / 2, Tf2 + Hw + Tf1));
+            coordinates.Add(new PointD(Bf2 / 2 + Bp / 2, Tf2 + Hw + Tf1 + Hp));
+            coordinates.Add(new PointD(Bf2 / 2 - Bp / 2, Tf2 + Hw + Tf1 + Hp));
+            return coordinates;
+        }
+        public virtual IList<Distribution> GetPlateGirderTemperature()
+        {
+            var distribution = new List<Distribution>();
+            distribution.Add(new Distribution(0, 0));
+            distribution.Add(new Distribution(Tf2 + Hw + Tf1, 0));
+            return distribution;
+
+        }
+        public virtual IList<Distribution> GetSlabTemperature()
+        {
+            var distribution = new List<Distribution>();
+            distribution.Add(new Distribution(Tf2 + Hw + Tf1, DT1));
+            distribution.Add(new Distribution(Tf2 + Hw + Tf1+Hp, DT1));
+            return distribution;
+
+        }
+
+
+    }
+
+    public class NormalCompositeGirder : SimplifiedCompositeGirder
+    {
+        public double DT2 { get; set;}
+        public double H1 { get; set; }
+        public double H2 { get; set; }
+
+        public NormalCompositeGirder(double tf1,double hw,double tf2,double tw,
+            double bf1,double bf2, double bp,double hp,double dt1,double dt2,
+            double h1,double h2):base(tf1,hw,tf2,bf1,bf2,tw,hp,bp,dt1)
+        {
+            DT2 = dt2;
+            H1 = h1;
+            H2 = h2;
+        }
+
+        public override IList<Distribution> GetSlabTemperature()
+        {
+            var distribution = new List<Distribution>();
+            distribution.Add(new Distribution(Tf1 + Hw + Tf2 + Hp, DT1));
+            if (H1<Hp)
+            {
+                distribution.Add(new Distribution(Tf2 + Hw + Tf1 + Hp - H1, DT2));
+                double t = DT2 * (H1 + H2 - Hp) / H2;
+                distribution.Add(new Distribution(Tf2 + Hw + Tf1, t));
+            }
+            else
+            {
+                double t = (DT1 - DT2) * (H1- Hp) / (H1) + DT2;
+                distribution.Add(new Distribution(Tf2 + Hw + Tf1, t));
+            }
+            return distribution.OrderBy(e => e.Y).ToList();
+        }
+
+        public override IList<Distribution> GetPlateGirderTemperature()
+        {
+            var distribution = new List<Distribution>();
+            if (H1< Hp)
+            {
+                double t = DT2 * (H1 + H2 - Hp) / H2;
+                distribution.Add(new Distribution(Tf2 + Hw + Tf1, t));
+            }
+            else
+            {
+                double t1 = (DT1 - DT2) * (H1 - Hp)/H1 + DT2;
+                distribution.Add(new Distribution(Tf2 + Hw + Tf1, t1));
+                distribution.Add(new Distribution(Tf2 + Hw + Tf1 + Hp - H1, DT2));
+
+            }
+            distribution.Add(new Distribution(Tf2 + Hw + Tf1 + Hp - H1 - H2, 0));
+            return distribution;
         }
     }
 }

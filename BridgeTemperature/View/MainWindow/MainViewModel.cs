@@ -2,6 +2,7 @@ using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Ioc;
 using BridgeTemperature.Common;
+using BridgeTemperature.View;
 using BridgeTemperature.Sections;
 using BridgeTemperature.DistributionOperations;
 namespace BridgeTemperature.ViewModel
@@ -62,8 +63,20 @@ namespace BridgeTemperature.ViewModel
             //vm.updateDrawings();
             steelWindow.Show();
         }
-        private void openCompositeGirderSimplifiedWindow() {  }
-        private void openCompositeGirderNormalWindow() {  }
+        private void openCompositeGirderSimplifiedWindow()
+        {
+            var composteWindow = new SimplifiedCompositeWindow();
+            var vm = new SimplifiedCompositeWindowViewModel();
+            composteWindow.DataContext = vm;
+            composteWindow.Show();
+        }
+        private void openCompositeGirderNormalWindow()
+        {
+            var composteWindow = new NormalCompositeWindow();
+            var vm = new NormalCompositeWindowViewModel();
+            composteWindow.DataContext = vm;
+            composteWindow.Show();
+        }
         private void openSlabWindow() {  }
         private void openIGirderWindow() {  }
         private void openBoxGirderWindow() {  }

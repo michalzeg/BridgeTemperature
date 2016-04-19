@@ -98,6 +98,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\SectionWindows\Composite\Normal\NormalCompositeWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\SectionWindows\Composite\Simplified\SimplifiedCompositeWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="View\SectionWindows\Custom\CustomWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -130,6 +138,14 @@
     </Compile>
     <Compile Include="View\MainWindow\MainPanelViewModel.cs" />
     <Compile Include="View\MainWindow\MainViewModel.cs" />
+    <Compile Include="View\SectionWindows\Composite\Normal\NormalCompositeWindow.xaml.cs">
+      <DependentUpon>NormalCompositeWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\SectionWindows\Composite\Normal\NormalCompositeWindowViewModel.cs" />
+    <Compile Include="View\SectionWindows\Composite\Simplified\SimplifiedCompositeWindow.xaml.cs">
+      <DependentUpon>SimplifiedCompositeWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\SectionWindows\Composite\Simplified\SimplifiedCompositeWindowViewModel.cs" />
     <Compile Include="View\SectionWindows\Custom\CustomWindow.xaml.cs">
       <DependentUpon>CustomWindow.xaml</DependentUpon>
     </Compile>
@@ -205,7 +221,6 @@
     <Resource Include="Images\Ribbon\SteelGirder.PNG" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="View\SectionWindows\Composite\" />
     <Folder Include="View\SectionWindows\Concrete\" />
   </ItemGroup>
   <ItemGroup>
@@ -229,6 +244,12 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\Window\SteelSectionDimensions.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Window\SimplifiedCompositeDimensions.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Window\NormalCompositeDimensions.PNG" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
