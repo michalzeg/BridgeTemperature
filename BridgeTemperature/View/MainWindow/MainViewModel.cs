@@ -78,7 +78,13 @@ namespace BridgeTemperature.ViewModel
             composteWindow.Show();
         }
         private void openSlabWindow() {  }
-        private void openIGirderWindow() {  }
+        private void openIGirderWindow()
+        {
+            var cconcreteIGirderWindow = new ConcreteIGirderWindow();
+            var vm = new ConcreteIGriderWindowViewModel();
+            cconcreteIGirderWindow.DataContext = vm;
+            cconcreteIGirderWindow.Show();
+        }
         private void openBoxGirderWindow() {  }
         private void openRectangularSectionWindow() {  }
         private void openCustomWindow()
@@ -102,6 +108,7 @@ namespace BridgeTemperature.ViewModel
         
         private void updateTemperature()
         {
+            MainPanelVM.ClearDistributions();
             foreach (var section in compositeSection.Sections)
             {
                 MainPanelVM.UpdateDistribution(section.ExternalTemperature.Distribution, section, () => MainPanelVM.ExternalDistributionDrawing);
@@ -116,6 +123,7 @@ namespace BridgeTemperature.ViewModel
         }
         private void updateStress()
         {
+            MainPanelVM.ClearDistributions();
             foreach (var section in compositeSection.Sections)
             {
                 MainPanelVM.UpdateDistribution(section.ExternalStress.Distribution, section, () => MainPanelVM.ExternalDistributionDrawing);

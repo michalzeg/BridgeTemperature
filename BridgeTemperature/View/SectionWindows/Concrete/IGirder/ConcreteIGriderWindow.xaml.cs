@@ -23,10 +23,10 @@ namespace BridgeTemperature.View
     /// <summary>
     /// Interaction logic for CustomWindow.xaml
     /// </summary>
-    public partial class NormalCompositeWindow : Window
+    public partial class ConcreteIGirderWindow : Window
     {
 
-        public NormalCompositeWindow()
+        public ConcreteIGirderWindow()
         {
             InitializeComponent();
             //var viewModel = new CustomWindowViewModel();

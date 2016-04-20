@@ -30,8 +30,8 @@
                                   Command="{Binding OpenCompositeGirderNormalWindow}"/>
                 </RibbonGroup>
                 <RibbonGroup Header="Concrete">
-                    <RibbonButton Label="Slab" LargeImageSource="/Images/Ribbon/Slab.png"/>
-                    <RibbonButton Label="I-Girder" LargeImageSource="/Images/Ribbon/IGirder.png"/>
+                    <RibbonButton Label="I-Girder" LargeImageSource="/Images/Ribbon/IGirder.png"
+                                  Command="{Binding OpenIGirderWindow}"/>
                     <RibbonButton Label="Box" LargeImageSource="/Images/Ribbon/BoxSection.png"/>
                 </RibbonGroup>
                 <RibbonGroup Header="Non-typical">

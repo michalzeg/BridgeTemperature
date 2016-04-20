@@ -106,6 +106,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="View\SectionWindows\Concrete\IGirder\ConcreteIGriderWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="View\SectionWindows\Custom\CustomWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -146,6 +150,10 @@
       <DependentUpon>SimplifiedCompositeWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\SectionWindows\Composite\Simplified\SimplifiedCompositeWindowViewModel.cs" />
+    <Compile Include="View\SectionWindows\Concrete\IGirder\ConcreteIGriderWindow.xaml.cs">
+      <DependentUpon>ConcreteIGriderWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\SectionWindows\Concrete\IGirder\ConcreteIGriderWindowViewModel.cs" />
     <Compile Include="View\SectionWindows\Custom\CustomWindow.xaml.cs">
       <DependentUpon>CustomWindow.xaml</DependentUpon>
     </Compile>
@@ -221,7 +229,7 @@
     <Resource Include="Images\Ribbon\SteelGirder.PNG" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="View\SectionWindows\Concrete\" />
+    <Folder Include="View\SectionWindows\Concrete\Box\" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\Window\CustomSectionDimensions.PNG" />
@@ -250,6 +258,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\Window\NormalCompositeDimensions.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Window\ConcreteIGirderDimensions.PNG" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

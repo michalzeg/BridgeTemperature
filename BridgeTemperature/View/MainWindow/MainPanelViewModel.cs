@@ -45,6 +45,19 @@ namespace BridgeTemperature.ViewModel
 
         }
 
+        public void ClearDistributions()
+        {
+            //SectionDrawing.Clear();
+            ExternalDistributionDrawing.Clear();
+            UniformDistributionDrawing.Clear();
+            BendingDistributionDrawing.Clear();
+            SelfEqulibratingDistributionDrawing.Clear();
+        }
+        public void ClearSections()
+        {
+            SectionDrawing.Clear();
+        }
+
         public void UpdateDistribution(IEnumerable<Distribution> distribution,ISection section, Expression<Func<IList<DistributionDrawingData>>> property)
         {
             var expression = (MemberExpression)property.Body;
@@ -75,21 +88,11 @@ namespace BridgeTemperature.ViewModel
             });
             SectionDrawing = sections;
 
-            /*var distributions = new List<DistributionDrawingData>(ExternalDistribution);
-            distributions.Add(new DistributionDrawingData()
-            {
-                Distribution = section.ExternalTemperature.Distribution.ToList(),
-                SectionMaxX = section.XMax,
-                SectionMinX = section.XMin,
-                SectionMaxY = section.YMax,
-                SectionMinY = section.YMin,
-            });
-            ExternalDistribution = distributions;*/
+            
             UpdateDistribution(section.ExternalTemperature.Distribution,section, () => this.ExternalDistributionDrawing);
 
 
             RaisePropertyChanged(() => SectionDrawing);
-            //RaisePropertyChanged(() => ExternalDistribution);
         }
 
         private string externalDistributionLabel;

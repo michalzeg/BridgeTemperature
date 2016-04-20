@@ -45,10 +45,10 @@
                 <ColumnDefinition Width="3*"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="auto"/>
-                <RowDefinition Height="auto"/>
-                <RowDefinition Height="auto"/>
-                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="0.3*"/>
+                <RowDefinition Height="*"/>
+                
 
             </Grid.RowDefinitions>
             <GroupBox Header="Dimensions">

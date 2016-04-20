@@ -1,4 +1,4 @@
-﻿<Window x:Class="BridgeTemperature.View.NormalCompositeWindow"
+﻿<Window x:Class="BridgeTemperature.View.ConcreteIGirderWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -8,7 +8,7 @@
         xmlns:local="clr-namespace:BridgeTemperature.Common"
         xmlns:drawing="clr-namespace:BridgeTemperature.Drawing"
         mc:Ignorable="d"
-        Title="Composite Section" Height="760" Width="600" WindowStartupLocation="CenterOwner">
+        Title="Composite Section" Height="780" Width="600" WindowStartupLocation="CenterOwner">
     <Window.Resources>
 
         <ResourceDictionary>
@@ -46,8 +46,8 @@
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="2*"/>
-                <RowDefinition Height="1.1*"/>
                 <RowDefinition Height="2*"/>
+                <RowDefinition Height="1*"/>
                 
 
             </Grid.RowDefinitions>
@@ -99,6 +99,7 @@
                            Text="{Binding Bp,Converter={StaticResource MultiplyValueConverter},ConverterParameter=1000}"/>
                     <TextBox Grid.Column="1" Grid.Row="7"
                            Text="{Binding Hp,Converter={StaticResource MultiplyValueConverter},ConverterParameter=1000}"/>
+                
                 </Grid>
             </GroupBox>
             <GroupBox Header="Temperature"  Grid.Column="0" Grid.Row="1">
@@ -108,6 +109,10 @@
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
                         <RowDefinition Height="auto"/>
                         <RowDefinition Height="auto"/>
                         <RowDefinition Height="auto"/>
@@ -129,6 +134,22 @@
                            Text="h2 [mm]"/>
                     <TextBox Grid.Column="1" Grid.Row="3"
                            Text="{Binding H2,Converter={StaticResource MultiplyValueConverter},ConverterParameter=1000}"/>
+                    <TextBlock Grid.Column="0" Grid.Row="4"
+                           Text="&#x0394;T3 [&#x00B0;C]"/>
+                    <TextBox Grid.Column="1" Grid.Row="4"
+                           Text="{Binding DT3}"/>
+                    <TextBlock Grid.Column="0" Grid.Row="5"
+                           Text="h3 [mm]"/>
+                    <TextBox Grid.Column="1" Grid.Row="5"
+                           Text="{Binding H3,Converter={StaticResource MultiplyValueConverter},ConverterParameter=1000}"/>
+                    <TextBlock Grid.Column="0" Grid.Row="6"
+                           Text="&#x0394;T4 [&#x00B0;C]"/>
+                    <TextBox Grid.Column="1" Grid.Row="6"
+                           Text="{Binding DT4}"/>
+                    <TextBlock Grid.Column="0" Grid.Row="7"
+                           Text="h4 [mm]"/>
+                    <TextBox Grid.Column="1" Grid.Row="7"
+                           Text="{Binding H4,Converter={StaticResource MultiplyValueConverter},ConverterParameter=1000}"/>
                 </Grid>
             </GroupBox>
             <Image 
@@ -138,14 +159,9 @@
             Margin="{StaticResource MarginValue}" 
             Stretch="Uniform"
             RenderOptions.BitmapScalingMode="HighQuality"
-            Source="/Images/Window/NormalCompositeDimensions.png"
+            Source="/Images/Window/ConcreteIGirderDimensions.png"
             />
             <DockPanel Grid.Column="0" Grid.Row="2" LastChildFill="False">
-                <GroupBox DockPanel.Dock="Top" Header="Steel">
-                    <ContentControl 
-                Content="{Binding SteelPropertiesVM}"
-                ContentTemplate="{StaticResource sectionPropertiesPanel}"/>
-                </GroupBox>
                 <GroupBox DockPanel.Dock="Top" Header="Concrete">
                     <ContentControl 
                 Content="{Binding ConcretePropertiesVM}"

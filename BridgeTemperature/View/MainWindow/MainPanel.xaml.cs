@@ -29,6 +29,8 @@ namespace BridgeTemperature.View
             this.externalDistributionDrawing.SizeChanged += (a, e) => this.externalDistributionDrawing.RefreshDrawing();
             this.uniformDistributionDrawing.SizeChanged += (a, e) => this.uniformDistributionDrawing.RefreshDrawing();
             this.selfEqulibratingDistributionDrawing.SizeChanged += (a, e) => this.selfEqulibratingDistributionDrawing.RefreshDrawing();
+
+            this.SizeChanged += (a, e) => sectionCanvas.RefreshDrawing();
         }
     }
 }
