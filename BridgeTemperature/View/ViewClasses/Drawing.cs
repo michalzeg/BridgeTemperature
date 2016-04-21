@@ -226,10 +226,12 @@ namespace BridgeTemperature.Drawing
         }
         public void RefreshDrawing()
         {
-            if (DistributionData == null || DistributionData.Count == 0) 
-                return;
-
             Children.Clear();
+            if (DistributionData == null || DistributionData.Count == 0)
+            {
+                
+                return;
+            }
             var sectionCoordinates = new List<IList<PointD>>();
             sectionCoordinates.Add(sectionBoxCoordinates());
             sectionScaleCalculator.UpdateProperties(sectionCoordinates);
@@ -365,7 +367,11 @@ namespace BridgeTemperature.Drawing
         }
         public void RefreshDrawing()
         {
-            if (Sections == null || Sections.Count == 0) return;
+            if (Sections == null || Sections.Count == 0)
+            {
+                Children.Clear();
+                return;
+            }    
             PolygonDrawing drawing = new PolygonDrawing(scaleCalculator);
             this.scaleCalculator.UpdateProperties(Sections.Select(e => e.Coordinates).ToList());
             this.Children.Clear();

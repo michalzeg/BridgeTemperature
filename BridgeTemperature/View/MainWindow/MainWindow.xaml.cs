@@ -24,8 +24,20 @@ namespace BridgeTemperature.View
         public MainWindow()
         {
             InitializeComponent();
-            var mainViewModel = SimpleIoc.Default.GetInstance<MainViewModel>();
+            var mainViewModel =  new MainViewModel();
             DataContext = mainViewModel;
+        }
+
+
+
+        private void New_Click(object sender, RoutedEventArgs e)
+        {
+            
+        }
+
+        private void Close_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }

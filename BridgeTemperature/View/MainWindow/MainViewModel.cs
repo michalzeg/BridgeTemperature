@@ -5,6 +5,7 @@ using BridgeTemperature.Common;
 using BridgeTemperature.View;
 using BridgeTemperature.Sections;
 using BridgeTemperature.DistributionOperations;
+using Xceed.Wpf.Toolkit;
 namespace BridgeTemperature.ViewModel
 {
     /// <summary>
@@ -25,6 +26,7 @@ namespace BridgeTemperature.ViewModel
 
         public MainViewModel()
         {
+            New = new RelayCommand(@new);
             OpenPlateGirderWindow = new RelayCommand(this.openPlateGirderWindow);
             OpenCompositeGirderSimplifiedWindow = new RelayCommand(this.openCompositeGirderSimplifiedWindow);
             OpenCompositeGirderNormalWindow = new RelayCommand(this.openCompositeGirderNormalWindow);
@@ -41,7 +43,7 @@ namespace BridgeTemperature.ViewModel
             MainPanelVM = new MainPanelViewModel();
             
         }
-
+        public RelayCommand New { get; private set; }
         public RelayCommand OpenPlateGirderWindow { get; private set; }
         public RelayCommand OpenCompositeGirderSimplifiedWindow { get; private set; }
         public RelayCommand OpenCompositeGirderNormalWindow { get; private set; }
@@ -54,6 +56,10 @@ namespace BridgeTemperature.ViewModel
         public RelayCommand Stress { get; private set; }
         public RelayCommand Temperature { get; private set; }
 
+        private void @new()
+        {
+            MainPanelVM.ClearCanvas();
+        }
 
         private void openPlateGirderWindow()
         {
@@ -96,45 +102,62 @@ namespace BridgeTemperature.ViewModel
         }
 
 
-
+        
         private ICompositeSection compositeSection;
         private void run()
         {
-            compositeSection = new CompositeSection(MainPanelVM.Sections);
-            var calculator = new DistributionCalculations(compositeSection);
-            calculator.CalculateDistributions();
-            updateTemperature(); 
+            if (MainPanelVM.Sections == null || MainPanelVM.Sections.Count == 0)
+                MessageBox.Show("Wrong section data", "Error", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Error);
+            else
+            {
+                compositeSection = new CompositeSection(MainPanelVM.Sections);
+                var calculator = new DistributionCalculations(compositeSection);
+                calculator.CalculateDistributions();
+                MainPanelVM.ResultsActual = true;
+                updateTemperature();
+                
+            }
         }
         
         private void updateTemperature()
         {
-            MainPanelVM.ClearDistributions();
-            foreach (var section in compositeSection.Sections)
+            if (!MainPanelVM.ResultsActual)
+                MessageBox.Show("No data", "Error", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Error);
+            else
             {
-                MainPanelVM.UpdateDistribution(section.ExternalTemperature.Distribution, section, () => MainPanelVM.ExternalDistributionDrawing);
-                MainPanelVM.UpdateDistribution(section.UniformTemperature.Distribution, section, () => MainPanelVM.UniformDistributionDrawing);
-                MainPanelVM.UpdateDistribution(section.BendingTemperature.Distribution, section, () => MainPanelVM.BendingDistributionDrawing);
-                MainPanelVM.UpdateDistribution(section.SelfEquilibratedTemperature.Distribution, section, () => MainPanelVM.SelfEqulibratingDistributionDrawing);
+                MainPanelVM.ClearDistributions();
+                foreach (var section in compositeSection.Sections)
+                {
+                    MainPanelVM.UpdateDistribution(section.ExternalTemperature.Distribution, section, () => MainPanelVM.ExternalDistributionDrawing);
+                    MainPanelVM.UpdateDistribution(section.UniformTemperature.Distribution, section, () => MainPanelVM.UniformDistributionDrawing);
+                    MainPanelVM.UpdateDistribution(section.BendingTemperature.Distribution, section, () => MainPanelVM.BendingDistributionDrawing);
+                    MainPanelVM.UpdateDistribution(section.SelfEquilibratedTemperature.Distribution, section, () => MainPanelVM.SelfEqulibratingDistributionDrawing);
+                }
+                MainPanelVM.BendingDistributionLabel = "Bending Temperature";
+                MainPanelVM.ExternalDistributionLabel = "External Temperature";
+                MainPanelVM.UniformDistributionLabel = "Uniform Temperature";
+                MainPanelVM.SelfDistributionLabel = "Selfequilibrating temperature";
             }
-            MainPanelVM.BendingDistributionLabel = "Bending Temperature";
-            MainPanelVM.ExternalDistributionLabel = "External Temperature";
-            MainPanelVM.UniformDistributionLabel = "Uniform Temperature";
-            MainPanelVM.SelfDistributionLabel = "Selfequilibrating temperature";
         }
         private void updateStress()
         {
-            MainPanelVM.ClearDistributions();
-            foreach (var section in compositeSection.Sections)
+            if (!MainPanelVM.ResultsActual)
+                MessageBox.Show("No data", "Error", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Error);
+            else
             {
-                MainPanelVM.UpdateDistribution(section.ExternalStress.Distribution, section, () => MainPanelVM.ExternalDistributionDrawing);
-                MainPanelVM.UpdateDistribution(section.UniformStress.Distribution, section, () => MainPanelVM.UniformDistributionDrawing);
-                MainPanelVM.UpdateDistribution(section.BendingStress.Distribution, section, () => MainPanelVM.BendingDistributionDrawing);
-                MainPanelVM.UpdateDistribution(section.SelfEquilibratedStress.Distribution, section, () => MainPanelVM.SelfEqulibratingDistributionDrawing);
+                MainPanelVM.ClearDistributions();
+                foreach (var section in compositeSection.Sections)
+                {
+                    MainPanelVM.UpdateDistribution(section.ExternalStress.Distribution, section, () => MainPanelVM.ExternalDistributionDrawing);
+                    MainPanelVM.UpdateDistribution(section.UniformStress.Distribution, section, () => MainPanelVM.UniformDistributionDrawing);
+                    MainPanelVM.UpdateDistribution(section.BendingStress.Distribution, section, () => MainPanelVM.BendingDistributionDrawing);
+                    MainPanelVM.UpdateDistribution(section.SelfEquilibratedStress.Distribution, section, () => MainPanelVM.SelfEqulibratingDistributionDrawing);
+                }
+                MainPanelVM.BendingDistributionLabel = "Bending Stress";
+                MainPanelVM.ExternalDistributionLabel = "External Stress";
+                MainPanelVM.UniformDistributionLabel = "Uniform Stress";
+                MainPanelVM.SelfDistributionLabel = "Selfequilibrating Stress";
             }
-            MainPanelVM.BendingDistributionLabel = "Bending Stress";
-            MainPanelVM.ExternalDistributionLabel = "External Stress";
-            MainPanelVM.UniformDistributionLabel = "Uniform Stress";
-            MainPanelVM.SelfDistributionLabel = "Selfequilibrating Stress";
         }
 
     }
