@@ -15,7 +15,7 @@
         </ResourceDictionary>
     </UserControl.Resources>
     <Grid Background="{StaticResource BackgroundBrush}">
-        <DockPanel>
+        <DockPanel Margin="50,50,50,50">
             <Grid DockPanel.Dock="Top">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="2*"/>

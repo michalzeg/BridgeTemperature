@@ -36,6 +36,9 @@
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>1461713481_bridge.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="FluentValidation, Version=6.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\FluentValidation.6.0.0.0\lib\Net45\FluentValidation.dll</HintPath>
@@ -115,11 +118,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="View\SectionWindows\Concrete\Box\BoxGriderWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="View\SectionWindows\Concrete\IGirder\ConcreteIGriderWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="View\SectionWindows\Custom\CustomWindow.xaml">
+    <Page Include="View\SectionWindows\Non-Typical\CustomWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -159,14 +166,18 @@
       <DependentUpon>SimplifiedCompositeWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\SectionWindows\Composite\Simplified\SimplifiedCompositeWindowViewModel.cs" />
+    <Compile Include="View\SectionWindows\Concrete\Box\BoxGriderWindow.xaml.cs">
+      <DependentUpon>BoxGriderWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\SectionWindows\Concrete\Box\BoxGriderWindowViewModel.cs" />
     <Compile Include="View\SectionWindows\Concrete\IGirder\ConcreteIGriderWindow.xaml.cs">
       <DependentUpon>ConcreteIGriderWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\SectionWindows\Concrete\IGirder\ConcreteIGriderWindowViewModel.cs" />
-    <Compile Include="View\SectionWindows\Custom\CustomWindow.xaml.cs">
+    <Compile Include="View\SectionWindows\Non-Typical\CustomWindow.xaml.cs">
       <DependentUpon>CustomWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\SectionWindows\Custom\CustomWindowViewModel.cs" />
+    <Compile Include="View\SectionWindows\Non-Typical\CustomWindowViewModel.cs" />
     <Compile Include="View\SectionWindows\Steel\SteelWindow.xaml.cs">
       <DependentUpon>SteelWindow.xaml</DependentUpon>
     </Compile>
@@ -237,9 +248,7 @@
     <Resource Include="Images\Ribbon\RectangularSection.PNG" />
     <Resource Include="Images\Ribbon\SteelGirder.PNG" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="View\SectionWindows\Concrete\Box\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Resource Include="Images\Window\CustomSectionDimensions.PNG" />
   </ItemGroup>
@@ -270,6 +279,12 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\Window\ConcreteIGirderDimensions.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="1461713481_bridge.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Window\BoxGirderDimensions.PNG" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

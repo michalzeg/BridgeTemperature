@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BridgeTemperature.View"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="600"
-        DataContext="{Binding Source={StaticResource Locator}, Path=Main}">
+        Title="Bridge Temperature" Height="350" Width="600"
+        DataContext="{Binding Source={StaticResource Locator}, Path=Main}" Icon="/BridgeTemperature;component/Images/Ribbon/Temperature.png" WindowState="Maximized">
     
     <DockPanel>
         <Ribbon DockPanel.Dock="Top">
@@ -32,7 +32,8 @@
                 <RibbonGroup Header="Concrete">
                     <RibbonButton Label="I-Girder" LargeImageSource="/Images/Ribbon/IGirder.png"
                                   Command="{Binding OpenIGirderWindow}"/>
-                    <RibbonButton Label="Box" LargeImageSource="/Images/Ribbon/BoxSection.png"/>
+                    <RibbonButton Label="Box" LargeImageSource="/Images/Ribbon/BoxSection.png"
+                                  Command="{Binding OpenBoxGirderWindow}"/>
                 </RibbonGroup>
                 <RibbonGroup Header="Non-typical">
                     <RibbonButton Label="Rectangular" LargeImageSource="/Images/Ribbon/RectangularSection.png" />
