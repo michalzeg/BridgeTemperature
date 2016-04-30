@@ -98,7 +98,13 @@ namespace BridgeTemperature.ViewModel
             boxGirderWindow.DataContext = vm;
             boxGirderWindow.Show();
         }
-        private void openRectangularSectionWindow() {  }
+        private void openRectangularSectionWindow()
+        {
+            var rectangularWindow = new RectangularWindow();
+            var vm = new RectangularWindowViewModel();
+            rectangularWindow.DataContext = vm;
+            rectangularWindow.Show();
+        }
         private void openCustomWindow()
         {
             var customWindow = new CustomWindow();

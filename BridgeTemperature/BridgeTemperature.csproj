@@ -130,6 +130,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\SectionWindows\Non-Typical\RectangularWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="View\SectionWindows\Steel\SteelWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -178,6 +182,10 @@
       <DependentUpon>CustomWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\SectionWindows\Non-Typical\CustomWindowViewModel.cs" />
+    <Compile Include="View\SectionWindows\Non-Typical\RectangularWindow.xaml.cs">
+      <DependentUpon>RectangularWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\SectionWindows\Non-Typical\RectangularWindowViewModel.cs" />
     <Compile Include="View\SectionWindows\Steel\SteelWindow.xaml.cs">
       <DependentUpon>SteelWindow.xaml</DependentUpon>
     </Compile>
@@ -248,7 +256,9 @@
     <Resource Include="Images\Ribbon\RectangularSection.PNG" />
     <Resource Include="Images\Ribbon\SteelGirder.PNG" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Images\Window\RectangularSectionDimensions.PNG" />
+  </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\Window\CustomSectionDimensions.PNG" />
   </ItemGroup>

@@ -36,7 +36,8 @@
                                   Command="{Binding OpenBoxGirderWindow}"/>
                 </RibbonGroup>
                 <RibbonGroup Header="Non-typical">
-                    <RibbonButton Label="Rectangular" LargeImageSource="/Images/Ribbon/RectangularSection.png" />
+                    <RibbonButton Label="Rectangular" LargeImageSource="/Images/Ribbon/RectangularSection.png" 
+                                  Command="{Binding OpenRectangularSectionWindow}"/>
                     <RibbonButton Label="Custom Section" Command="{Binding OpenCustomWindow}" LargeImageSource="/Images/Ribbon/CustomSection.png" />
                 </RibbonGroup>
             </RibbonTab>
