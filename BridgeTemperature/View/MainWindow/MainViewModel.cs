@@ -66,7 +66,6 @@ namespace BridgeTemperature.ViewModel
             var steelWindow = new SteelWindow();
             var vm = new SteelWindowViewModel();
             steelWindow.DataContext = vm;
-            //vm.updateDrawings();
             steelWindow.Show();
         }
         private void openCompositeGirderSimplifiedWindow()
@@ -112,8 +111,6 @@ namespace BridgeTemperature.ViewModel
             customWindow.DataContext = vm;
             customWindow.Show();
         }
-
-
         
         private ICompositeSection compositeSection;
         private void run()
@@ -122,7 +119,7 @@ namespace BridgeTemperature.ViewModel
                 MessageBox.Show("Wrong section data", "Error", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Error);
             else
             {
-                compositeSection = new CompositeSection(MainPanelVM.Sections);
+                compositeSection = new TypicalCompositeSection(MainPanelVM.Sections);
                 var calculator = new DistributionCalculations(compositeSection);
                 calculator.CalculateDistributions();
                 MainPanelVM.ResultsActual = true;

@@ -79,8 +79,6 @@ namespace BridgeTemperature.ViewModel
             distributionData.SectionMinX = sectionCoordinates.Min(e => e.X);
             var distribution = new List<DistributionDrawingData>() { distributionData };
             TempDistribution = distribution;
-
-
             RaisePropertyChanged(() => TempDistribution);
 
         }

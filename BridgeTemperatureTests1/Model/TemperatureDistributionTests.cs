@@ -12,8 +12,6 @@ namespace BridgeTemperature.DistributionOperations.Tests
     [TestFixture()]
     public class TemperatureDistributionTests
     {
-        
-
         [Test()]
         public void ConvertToStressDistribution_Passed()
         {
@@ -36,8 +34,6 @@ namespace BridgeTemperature.DistributionOperations.Tests
             expectedStressDitribution.Add(new Distribution() { Y = 10, Value = 0 });
 
             var actualStressDistribution = temperatureDistribution.ConvertToStressDistribution(coordinates, 200000000, 0.00012);
-
-
             Assert.AreEqual(expectedStressDitribution, actualStressDistribution.Distribution);
         }
     }

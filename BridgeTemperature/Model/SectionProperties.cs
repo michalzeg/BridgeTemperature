@@ -9,8 +9,6 @@ using BridgeTemperature.IntegrationFunctions;
 
 namespace BridgeTemperature.SectionProperties
 {
-
-
     public interface ICompositePropertiesCalculations : IIntegrable
     {
         double ModulusOfElasticity { get; }
@@ -19,8 +17,6 @@ namespace BridgeTemperature.SectionProperties
         PointD CentreOfGravity { get; }
         SectionType Type { get; }
     }
-
-
     public enum SectionCharacteristic
     {
         A,
@@ -54,12 +50,10 @@ namespace BridgeTemperature.SectionProperties
     };
     public class CompositeSectionPropertiesCalculations
     {
-        public double BaseModulusOfElasticity { get; private set; } //the max modulus of elasticity
+        public double BaseModulusOfElasticity { get; private set; } 
         public PointD CentreOfGravity { get; private set; }
         public double Area { get; private set; }
         public double SecondMomentOfArea { get; private set; }
-
-
         private IEnumerable<ICompositePropertiesCalculations> sections;
         public CompositeSectionPropertiesCalculations(IEnumerable<ICompositePropertiesCalculations> sections)
         {
@@ -73,8 +67,6 @@ namespace BridgeTemperature.SectionProperties
             this.BaseModulusOfElasticity = this.sections.Max(e => e.ModulusOfElasticity);
 
         }
-
-        
         private void calculateSectionProperties()
         {
 
@@ -86,15 +78,13 @@ namespace BridgeTemperature.SectionProperties
             {
                 double multiplier = section.Type == SectionType.Void ? -1 : 1;
 
-                double alfa = this.BaseModulusOfElasticity / section.ModulusOfElasticity; //a = Ea/Eb
+                double alfa = this.BaseModulusOfElasticity / section.ModulusOfElasticity; 
                 area = area + multiplier * section.Area / alfa;
                 firstMomentOfAreaX = firstMomentOfAreaX + multiplier * section.Area / alfa * section.CentreOfGravity.Y;
                 firstMomentOfAreaY = firstMomentOfAreaY + multiplier * section.Area / alfa * section.CentreOfGravity.X;
                 secondMomentOfAreaGlobalX = secondMomentOfAreaGlobalX + multiplier * (section.MomentOfInertia / alfa + section.Area / alfa * section.CentreOfGravity.Y * section.CentreOfGravity.Y);
             }
             this.Area = area;
-
-
             double y0 = firstMomentOfAreaX / area;
             double x0 = firstMomentOfAreaY / area;
 
@@ -434,7 +424,7 @@ namespace BridgeTemperature.SectionProperties
         }
         private void calculateBasicProperties()
         {
-            //calculates basic properties as area, first moment of area and second moment od area
+            
             double a = 0;
             double sx = 0;
             double sy = 0;
@@ -456,7 +446,7 @@ namespace BridgeTemperature.SectionProperties
                 iy = iy + (y2 - y1) * (x1 * x1 * x1 + x1 * x1 * x2 + x1 * x2 * x2 + x2 * x2 * x2);
                 ixy = ixy + (x1 - x2) * (x1 * (3 * y1 * y1 + y2 * y2 + 2 * y1 * y2) + x2 * (3 * y2 * y2 + y1 * y1 + 2 * y1 * y2));
             }
-            //applying mulipliers
+            
             a = a / 2;
             sx = sx / 6;
             sy = sy / 6;
@@ -513,8 +503,6 @@ namespace BridgeTemperature.SectionProperties
                 this.calculatePrincipalProperties();
             double cos = Math.Cos(_Alfa);
             double sin = Math.Sin(_Alfa);
-
-            //coordinate of teh centre of gravity in rotated coordinate system
             double xo = _X0 * cos - _Y0 * sin;
             double yo = _X0 * sin + _Y0 * cos;
 
@@ -541,7 +529,7 @@ namespace BridgeTemperature.SectionProperties
         [Obsolete]
         private void CalculateProperties()
         {
-            //calculations of outer primeter
+            
             double F = 0;
             double Sx = 0;
             double Sy = 0;
@@ -563,56 +551,34 @@ namespace BridgeTemperature.SectionProperties
                 Iy = Iy + (y2 - y1) * (x1 * x1 * x1 + x1 * x1 * x2 + x1 * x2 * x2 + x2 * x2 * x2);
                 Ixy = Ixy + (x1 - x2) * (x1 * (3 * y1 * y1 + y2 * y2 + 2 * y1 * y2) + x2 * (3 * y2 * y2 + y1 * y1 + 2 * y1 * y2));
             }
-
-
-
-            //applying mulipliers
             F = F / 2;
             Sx = Sx / 6;
             Sy = Sy / 6;
             Ix = Ix / 12;
             Iy = Iy / 12;
             Ixy = Ixy / 24;
-
-
             double x0 = Sy / F;
             double y0 = Sx / F;
-            //this.CoordinatesOfCentreOfGravity = new PointD(x0, y0);
-            //this.Area = F;
-            //this.MomentOfInertia = Ix;
-            //in central coordinate system
             double Ix0 = Ix - F * y0 * y0;
             double Iy0 = Iy - F * x0 * x0;
             double Ixy0 = Ixy - F * x0 * y0;
-
-            //principal properties
             double I1 = (Ix0 + Iy0) / 2 + 0.5 * Math.Sqrt(Math.Pow(Iy0 - Ix0, 2) + 4 * Ixy0 * Ixy0);
             double I2 = (Ix0 + Iy0) / 2 - 0.5 * Math.Sqrt(Math.Pow(Iy0 - Ix0, 2) + 4 * Ixy0 * Ixy0);
-
-            //rectangle
             double h = Math.Sqrt(12 * Ix0 / F);
             double b = F / h;
-
-            //alfa
             double alfa = Math.Atan(Ixy0 / (Iy0 - I1));
             if (double.IsNaN(alfa))
                 alfa = Math.PI / 2;
-            //extreme coordinates
+            
             ExtremeDistances extremeCoordinates = new ExtremeDistances(new PointD(x0, y0));
-
-
             double x0_max, x0_min, y0_max, y0_min;
             double xI_max, xI_min, yI_max, yI_min;
             double xmax, xmin, ymax, ymin;
             extremeCoordinates.maxDistancesCentralCoordinateSystem(coordinates, out x0_max, out x0_min, out y0_max, out y0_min);
             extremeCoordinates.maxDistancesPrincipalCoordinateSystem(coordinates, alfa, out xI_max, out xI_min, out yI_max, out yI_min);
             extremeCoordinates.extremeCoordinates(coordinates, out xmax, out xmin, out ymax, out ymin);
-
-            //this.YMax = ymax;
-            //this.YMin = ymin;
-
-            //creating dictionary with results
-            /*this.SectionProperties = new Dictionary<SectionCharacteristic, double>(); //dictionary with results
+            
+            /*this.SectionProperties = new Dictionary<SectionCharacteristic, double>(); 
             this.SectionProperties.Add(SectionCharacteristic.Alfa, alfa);
             this.SectionProperties.Add(SectionCharacteristic.B, b);
             this.SectionProperties.Add(SectionCharacteristic.A, F);
@@ -646,7 +612,7 @@ namespace BridgeTemperature.SectionProperties
         public Dictionary<SectionCharacteristic, double> GetAllProperties()
         {
             var allProperties = new Dictionary<SectionCharacteristic, double>();
-            allProperties = new Dictionary<SectionCharacteristic, double>(); //dictionary with results
+            allProperties = new Dictionary<SectionCharacteristic, double>(); 
             allProperties.Add(SectionCharacteristic.Alfa, Alfa);
             allProperties.Add(SectionCharacteristic.B, B);
             allProperties.Add(SectionCharacteristic.A, A);
@@ -684,34 +650,24 @@ namespace BridgeTemperature.SectionProperties
     [Obsolete]
     public class ExtremeDistances
     {
-        /// <summary>
-        /// Class finds max coordinates of the section
-        /// </summary>
-        /// the Tuple arguments are
-        /// x0_max,x0_min,y0_max,y0_min
-        /// <returns></returns>
-        /// 
-        private PointD centreOfGravity;//coordinates of the centre of gravity
+        
+        private PointD centreOfGravity;
         public ExtremeDistances(PointD centreOfGravity)
         {
             this.centreOfGravity = centreOfGravity;
         }
-        public void maxDistancesCentralCoordinateSystem(IList<PointD> coordinates, out double x0_max, out double x0_min, out double y0_max, out double y0_min) //przekształcenia wspołrzędnych i obliczenie maksymalncyh odleglosci
+        public void maxDistancesCentralCoordinateSystem(IList<PointD> coordinates, out double x0_max, out double x0_min, out double y0_max, out double y0_min) 
         {
-            //Tuple=> x0_max,x0_min,y0_max,y0_min
-
             x0_max = coordinates.Max(point => point.X) - this.centreOfGravity.X;
             x0_min = coordinates.Min(point => point.X) - this.centreOfGravity.X;
             y0_max = coordinates.Max(point => point.Y) - this.centreOfGravity.Y;
             y0_min = coordinates.Min(point => point.Y) - this.centreOfGravity.Y;
 
         }
-        public void maxDistancesPrincipalCoordinateSystem(IList<PointD> coordinates, double alfa, out double x_max, out double x_min, out double y_max, out double y_min) //przekształcenia wspołrzędnych i obliczenie maksymalncyh odleglosci
+        public void maxDistancesPrincipalCoordinateSystem(IList<PointD> coordinates, double alfa, out double x_max, out double x_min, out double y_max, out double y_min) 
         {
             double cos = Math.Cos(alfa);
             double sin = Math.Sin(alfa);
-
-            //coordinate of teh centre of gravity in rotated coordinate system
             double xo = this.centreOfGravity.X * cos - this.centreOfGravity.Y * sin;
             double yo = this.centreOfGravity.X * sin + this.centreOfGravity.Y * cos;
 

@@ -27,27 +27,15 @@ namespace BridgeTemperature.IntegrationFunctions.Tests
             coordinates.Add(new PointD(0, 0));
 
             var section = Substitute.For<IIntegrable>();
-            //section.Area.Returns(100);
+            
             section.CentreOfGravity.Returns(new PointD(5, 5));
-            //section.MomentOfInertia.Returns(10 * 10 * 10 * 10 / 12);
+            
             section.Coordinates.Returns(coordinates);
-            //section.ModulusOfElasticity.Returns(200000000);
-            //section.ThermalCooeficient.Returns(0.00001);
             section.Type.Returns(SectionType.Steel);
             section.YMax.Returns(10);
             section.YMin.Returns(0);
-
-
-            //var compositeSection = Substitute.For<IIntegrable>();
-            //compositeSection.CentreOfGravity.Returns(new PointD(5, 5));
-            //compositeSection.Height.Returns(10);
-            //compositeSection.MomentOfIntertia.Returns(10 * 10 * 10 * 10 / 12);
-            //compositeSection.Sections.Returns(new List<ISection>() { section });
-
             Integration interigation = new Integration();
             interigation.Integrate(section,section.CentreOfGravity, (e) => 1);
-
-
             Assert.AreEqual(100, interigation.NormalForce, 0.00000001);
             Assert.AreEqual(0, interigation.Moment, 0.0000000001);
         }
@@ -61,27 +49,15 @@ namespace BridgeTemperature.IntegrationFunctions.Tests
             coordinates.Add(new PointD(0, 0));
 
             var section = Substitute.For<IIntegrable>();
-            //section.Area.Returns(9 * 9 / 2);
+            
             section.CentreOfGravity.Returns(new PointD(5, 9 / 3));
-            //section.MomentOfInertia.Returns(9 * 9 * 9 * 9 / 36);
+            
             section.Coordinates.Returns(coordinates);
-            //section.ModulusOfElasticity.Returns(200000000);
-            //section.ThermalCooeficient.Returns(0.00001);
             section.Type.Returns(SectionType.Steel);
             section.YMax.Returns(9);
             section.YMin.Returns(0);
-
-
-            //var compositeSection = Substitute.For<ICompositeSection>();
-            //compositeSection.CentreOfGravity.Returns(new PointD(0, 3));
-            //compositeSection.Height.Returns(9);
-            //compositeSection.MomentOfIntertia.Returns(9 * 9 * 9 * 9 / 36);
-            //compositeSection.Sections.Returns(new List<ISection>() { section });
-
             Integration interigation = new Integration();
             interigation.Integrate(section,section.CentreOfGravity, (e) => 2);
-
-
             Assert.AreEqual(2 * 40.5, interigation.NormalForce, 0.00000001);
             Assert.AreEqual(0, interigation.Moment, 0.0000000001);
         }
@@ -97,32 +73,18 @@ namespace BridgeTemperature.IntegrationFunctions.Tests
             coordinates.Add(new PointD(0, 0));
 
             var section = Substitute.For<IIntegrable>();
-            //section.Area.Returns(100);
+            
             section.CentreOfGravity.Returns(new PointD(5, 5));
-            //section.MomentOfInertia.Returns(10 * 10 * 10 * 10 / 12);
+            
             section.Coordinates.Returns(coordinates);
-            //section.ModulusOfElasticity.Returns(200000000);
-            //section.ThermalCooeficient.Returns(0.00001);
             section.Type.Returns(SectionType.Steel);
             section.YMax.Returns(10);
             section.YMin.Returns(0);
-
-
-            //var compositeSection = Substitute.For<IIntegrable>();
-            //compositeSection.CentreOfGravity.Returns(new PointD(5, 5));
-            //compositeSection.Height.Returns(10);
-            //compositeSection.MomentOfIntertia.Returns(10 * 10 * 10 * 10 / 12);
-            //compositeSection.Sections.Returns(new List<ISection>() { section });
-
             var integrationFunction = LinearSpline.InterpolateSorted(new double[] { 0, 10 }, new double[] { 6, -6 });
             Integration interigation = new Integration();
             interigation.Integrate(section,section.CentreOfGravity, integrationFunction.Interpolate);
-
-
             Assert.AreEqual(0, interigation.NormalForce, 0.00000001);
             Assert.AreEqual(1000, interigation.Moment, 0.001);
-
-            
 
         }
         [Test()]
@@ -136,32 +98,18 @@ namespace BridgeTemperature.IntegrationFunctions.Tests
             coordinates.Add(new PointD(0, 0));
 
             var section = Substitute.For<IIntegrable>();
-            //section.Area.Returns(100);
+            
             section.CentreOfGravity.Returns(new PointD(5, 5));
-            //section.MomentOfInertia.Returns(10 * 10 * 10 * 10 / 12);
+            
             section.Coordinates.Returns(coordinates);
-            //section.ModulusOfElasticity.Returns(200000000);
-            ///section.ThermalCooeficient.Returns(0.00001);
             section.Type.Returns(SectionType.Steel);
             section.YMax.Returns(10);
             section.YMin.Returns(0);
-
-
-            //var compositeSection = Substitute.For<IIntegrable>();
-            //compositeSection.CentreOfGravity.Returns(new PointD(5, 5));
-            //compositeSection.Height.Returns(10);
-            //compositeSection.MomentOfIntertia.Returns(10 * 10 * 10 * 10 / 12);
-            //compositeSection.Sections.Returns(new List<ISection>() { section });
-
             var integrationFunction = LinearSpline.InterpolateSorted(new double[] { 0, 10 }, new double[] { -3, -6 });
             Integration interigation = new Integration();
             interigation.Integrate(section,section.CentreOfGravity, integrationFunction.Interpolate);
-
-
             Assert.AreEqual(-450, interigation.NormalForce, 0.001);
             Assert.AreEqual(250, interigation.Moment, 0.001);
-
-
 
         }
         /*[Test()]
@@ -202,18 +150,12 @@ namespace BridgeTemperature.IntegrationFunctions.Tests
             sectionVoid.Type.Returns(SectionType.Void);
             sectionVoid.YMax.Returns(7.5);
             sectionVoid.YMin.Returns(2.5);
-
-
             var compositeSection = Substitute.For<IIntegrable>();
             compositeSection.CentreOfGravity.Returns(new PointD(5, 5));
-            //compositeSection.Height.Returns(10);
-            //compositeSection.MomentOfIntertia.Returns(10 * 10 * 10 * 10 / 12 - 5 * 5 * 5 * 5 / 12);
             compositeSection.Sections.Returns(new List<ISection>() { sectionFill,sectionVoid });
 
             Integration interigation = new Integration(compositeSection, (e) => 1);
             interigation.Integrate();
-
-
             Assert.AreEqual(75, interigation.NormalForce, 0.00000001);
             Assert.AreEqual(0, interigation.Moment, 0.0000000001);
             
@@ -234,12 +176,10 @@ namespace BridgeTemperature.IntegrationFunctions.Tests
             coordinatesFill.Add(new PointD(0, 0));
 
             var sectionFill = Substitute.For<ISection>();
-            //sectionFill.Area.Returns(100);
+            
             sectionFill.CentreOfGravity.Returns(new PointD(2, 4.7954545454));
-            //sectionFill.MomentOfInertia.Returns(10 * 10 * 10 * 10 / 12);
+            
             sectionFill.Coordinates.Returns(coordinatesFill);
-            //sectionFill.ModulusOfElasticity.Returns(200000000);
-            //sectionFill.ThermalCooeficient.Returns(0.00001);
             sectionFill.Type.Returns(SectionType.Fill);
             sectionFill.YMax.Returns(8);
             sectionFill.YMin.Returns(0);
@@ -254,19 +194,13 @@ namespace BridgeTemperature.IntegrationFunctions.Tests
             var sectionVoid = Substitute.For<ISection>();
             sectionVoid.Area.Returns(25);
             sectionVoid.CentreOfGravity.Returns(new PointD(5, 5));
-            //sectionVoid.MomentOfInertia.Returns(5 * 5 * 5 * 5 / 12);
+            
             sectionVoid.Coordinates.Returns(coordinatesVoid);
-            //sectionVoid.ModulusOfElasticity.Returns(200000000);
-            //sectionVoid.ThermalCooeficient.Returns(0.00001);
             sectionVoid.Type.Returns(SectionType.Void);
             sectionVoid.YMax.Returns(6);
             sectionVoid.YMin.Returns(2);
-
-
             var compositeSection = Substitute.For<IIntegrable>();
             compositeSection.CentreOfGravity.Returns(new PointD(2, 4.875));
-            //compositeSection.Height.Returns(8);
-            //compositeSection.MomentOfIntertia.Returns(10 * 10 * 10 * 10 / 12 - 5 * 5 * 5 * 5 / 12);
             compositeSection.Sections.Returns(new List<ISection>() { sectionFill, sectionVoid });
 
             Integration interigation = new Integration(compositeSection, (e) => 1);
@@ -291,12 +225,10 @@ namespace BridgeTemperature.IntegrationFunctions.Tests
             coordinatesFill.Add(new PointD(0, 0));
 
             var sectionFill = Substitute.For<ISection>();
-            //sectionFill.Area.Returns(100);
+            
             sectionFill.CentreOfGravity.Returns(new PointD(2, 4.7954545454));
-            //sectionFill.MomentOfInertia.Returns(10 * 10 * 10 * 10 / 12);
+            
             sectionFill.Coordinates.Returns(coordinatesFill);
-            //sectionFill.ModulusOfElasticity.Returns(200000000);
-            //sectionFill.ThermalCooeficient.Returns(0.00001);
             sectionFill.Type.Returns(SectionType.Fill);
             sectionFill.YMax.Returns(8);
             sectionFill.YMin.Returns(0);
@@ -311,19 +243,13 @@ namespace BridgeTemperature.IntegrationFunctions.Tests
             var sectionVoid = Substitute.For<ISection>();
             sectionVoid.Area.Returns(25);
             sectionVoid.CentreOfGravity.Returns(new PointD(5, 5));
-            //sectionVoid.MomentOfInertia.Returns(5 * 5 * 5 * 5 / 12);
+            
             sectionVoid.Coordinates.Returns(coordinatesVoid);
-            //sectionVoid.ModulusOfElasticity.Returns(200000000);
-            //sectionVoid.ThermalCooeficient.Returns(0.00001);
             sectionVoid.Type.Returns(SectionType.Void);
             sectionVoid.YMax.Returns(6);
             sectionVoid.YMin.Returns(2);
-
-
             var compositeSection = Substitute.For<IIntegrable>();
             compositeSection.CentreOfGravity.Returns(new PointD(2, 4.875));
-            //compositeSection.Height.Returns(8);
-            //compositeSection.MomentOfIntertia.Returns(10 * 10 * 10 * 10 / 12 - 5 * 5 * 5 * 5 / 12);
             compositeSection.Sections.Returns(new List<ISection>() { sectionFill, sectionVoid });
 
             var integrationFunction = LinearSpline.InterpolateSorted(new double[] { 0, 8 }, new double[] { 0.301324503*1000, 0.627356088*1000 });

@@ -40,12 +40,10 @@ namespace BridgeTemperature.ViewModel
         public IList<DistributionDrawingData> UniformDistributionDrawing { get; set; }
         public IList<DistributionDrawingData> BendingDistributionDrawing { get; set; }
         public IList<DistributionDrawingData> SelfEqulibratingDistributionDrawing { get; set; }
-
-
         public void ClearCanvas()
         {
             Sections.Clear();
-            SectionDrawing.Clear(); //= null;
+            SectionDrawing.Clear(); 
             ClearDistributions();
 
             RaisePropertyChanged(() => SectionDrawing);
@@ -62,7 +60,7 @@ namespace BridgeTemperature.ViewModel
 
         public void ClearDistributions()
         {
-            //SectionDrawing.Clear();
+            
             ExternalDistributionDrawing.Clear();
             UniformDistributionDrawing.Clear();
             BendingDistributionDrawing.Clear();
@@ -103,11 +101,7 @@ namespace BridgeTemperature.ViewModel
                 Type = section.Type
             });
             SectionDrawing = sections;
-
-            
             UpdateDistribution(section.ExternalTemperature.Distribution,section, () => this.ExternalDistributionDrawing);
-
-
             RaisePropertyChanged(() => SectionDrawing);
         }
 

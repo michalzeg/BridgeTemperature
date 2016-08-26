@@ -23,17 +23,11 @@ namespace BridgeTemperature.ViewModel
         public RelayCommand Apply { get; private set; }
         public RelayCommand PointsUpdated { get; private set; }
         public RelayCommand TemperatureUpdated { get; private set; }
-
-
         public CustomWindowViewModel()
         {
             SectionPropertiesVM = new SectionPropertiesViewModel();
-            //SectionPropertiesVM.Update += this.pointUpdated;
-
             PointsUpdated = new RelayCommand(pointUpdated);
             TemperatureUpdated = new RelayCommand(distributionUpdated);
-
-
             this.Points = new ObservableCollection<PointD>();
             this.Temperature = new ObservableCollection<Distribution>();
 
@@ -72,8 +66,6 @@ namespace BridgeTemperature.ViewModel
                 SectionPropertiesVM.ModulusOfElasticity, SectionPropertiesVM.ThermalCoefficient,
                 Temperature);
             Messenger.Default.Send<ISection>(section);
-            
-
         }
         private void pointUpdated()
         {

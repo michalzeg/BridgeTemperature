@@ -46,8 +46,6 @@ namespace BridgeTemperature.ViewModel
                 SectionPropertiesVM.ModulusOfElasticity, SectionPropertiesVM.ThermalCoefficient,
                 steelPlateGirder.GetTemperature());
             Messenger.Default.Send<ISection>(section);
-
-
         }
         private SteelPlateGirder steelPlateGirder;
         private void UpdateDrawings()
@@ -66,8 +64,6 @@ namespace BridgeTemperature.ViewModel
             distributionData.SectionMinX = sectionCoordinates.Min(e => e.X);
             var distribution = new List<DistributionDrawingData>() { distributionData }; 
             TempDistribution = distribution;
-
-            
             RaisePropertyChanged(() => TempDistribution);
 
         }

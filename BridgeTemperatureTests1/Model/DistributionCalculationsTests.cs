@@ -31,15 +31,11 @@ namespace BridgeTemperature.DistributionOperations.Tests
             distribution.Add(new Distribution() { Y = 0.6, Value = 0 });
             distribution.Add(new Distribution() { Y = 0.85, Value = 2.4 });
             distribution.Add(new Distribution() { Y = 1, Value = 10.8 });
-
-
             ISection section = new Section(coordinates, SectionType.Steel, modulusOfElasticity, thermalCoefficient, distribution);
-            ICompositeSection compositeSection = new CompositeSection(new List<ISection>() { section });
+            ICompositeSection compositeSection = new TypicalCompositeSection(new List<ISection>() { section });
 
             DistributionCalculations calculations = new DistributionCalculations(compositeSection);
             calculations.CalculateDistributions();
-
-
             List<List<Distribution>> expectedSelfEquilibratedStress = new List<List<Distribution>>();
             expectedSelfEquilibratedStress.Add(new List<Distribution>()
             { new Distribution { Y=0,Value=-1300},
@@ -61,9 +57,6 @@ namespace BridgeTemperature.DistributionOperations.Tests
                     Assert.AreEqual(expected[j].Value, actual[j].Value, 0.1);
                     Assert.AreEqual(expected[j].Y, actual[j].Y, 0.1);
                 }
-
-                //Assert.AreEqual(expected,actual);
-
             }
         }
 
@@ -90,15 +83,11 @@ namespace BridgeTemperature.DistributionOperations.Tests
             distribution.Add(new Distribution() { Y = 1.5, Value = 0 });
             distribution.Add(new Distribution() { Y = 3, Value = 10 });
 
-
-
             ISection section = new Section(coordinates, SectionType.Steel, modulusOfElasticity, thermalCoefficient, distribution);
-            ICompositeSection compositeSection = new CompositeSection(new List<ISection>() { section });
+            ICompositeSection compositeSection = new TypicalCompositeSection(new List<ISection>() { section });
 
             DistributionCalculations calculations = new DistributionCalculations(compositeSection);
             calculations.CalculateDistributions();
-
-
             List<List<Distribution>> expectedSelfEquilibratedStress = new List<List<Distribution>>();
             expectedSelfEquilibratedStress.Add(new List<Distribution>()
             { new Distribution { Y=0,Value=-6150},
@@ -117,11 +106,7 @@ namespace BridgeTemperature.DistributionOperations.Tests
                     Assert.AreEqual(expected[j].Value, actual[j].Value, 0.1);
                     Assert.AreEqual(expected[j].Y, actual[j].Y, 0.1);
                 }
-
-                 //Assert.AreEqual(expected,actual);
             }
-
-            
         }
         [Test()]
         public void CalculateDistributions_OwnExampleTwoSections_Passed()
@@ -137,8 +122,6 @@ namespace BridgeTemperature.DistributionOperations.Tests
             coordinates1.Add(new PointD(0, 1.5));
 
             List<Distribution> distribution1 = new List<Distribution>();
-            //distribution1.Add(new Distribution() { Y = 0, Value = 0 });
-            //distribution1.Add(new Distribution() { Y = 0, Value = 0 });
             ISection section1 = new Section(coordinates1, SectionType.Steel, modulusOfElasticity, thermalCoefficient, distribution1);
 
             List<PointD> coordinates2 = new List<PointD>();
@@ -151,14 +134,10 @@ namespace BridgeTemperature.DistributionOperations.Tests
             distribution2.Add(new Distribution() { Y = 1.5, Value = 10 });
             distribution2.Add(new Distribution() { Y = 3, Value = 10 });
             ISection section2 = new Section(coordinates2, SectionType.Steel, modulusOfElasticity, thermalCoefficient, distribution2);
-
-
-            ICompositeSection compositeSection = new CompositeSection(new List<ISection>() { section1, section2 });
+            ICompositeSection compositeSection = new TypicalCompositeSection(new List<ISection>() { section1, section2 });
 
             DistributionCalculations calculations = new DistributionCalculations(compositeSection);
             calculations.CalculateDistributions();
-
-
             List<List<Distribution>> expectedSelfEquilibratedStress = new List<List<Distribution>>();
             expectedSelfEquilibratedStress.Add(new List<Distribution>()
             { new Distribution { Y=0,Value=-6150},
@@ -181,11 +160,7 @@ namespace BridgeTemperature.DistributionOperations.Tests
                     Assert.AreEqual(expected[j].Value, actual[j].Value, 0.1);
                     Assert.AreEqual(expected[j].Y, actual[j].Y, 0.1);
                 }
-
-                //Assert.AreEqual(expected,actual);
             }
-
-
         }
     }
 }

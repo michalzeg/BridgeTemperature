@@ -12,8 +12,6 @@ namespace BridgeTemperature.DistributionOperations.Tests
     [TestFixture()]
     public class StressDistributionTests
     {
-        
-
         [Test()]
         public void ConvertToTemperatureDistribution_RectangleSectionPassed()
         {
@@ -54,8 +52,6 @@ namespace BridgeTemperature.DistributionOperations.Tests
             var momentOfInertia = 1440d;
             var baseModulusOfElasticity = 200000000d;
             var modulusOfElasticity = 20000d;
-            //var area = 120d;
-
             var actualStressDistribution = StressDistribution.BendingStress(coordinates, bendingMoment, 6, momentOfInertia, baseModulusOfElasticity, modulusOfElasticity);
 
             var expectedStressDistribution = new List<Distribution>();
@@ -79,7 +75,6 @@ namespace BridgeTemperature.DistributionOperations.Tests
             var momentOfInertia = 1440d;
             var baseModulusOfElasticity = 200000000d;
             var modulusOfElasticity = 20000d;
-            //var area = 120d;
 
             var actualStressDistribution = StressDistribution.BendingStress(coordinates, bendingMoment, 6, momentOfInertia, baseModulusOfElasticity, modulusOfElasticity);
 

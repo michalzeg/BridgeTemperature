@@ -12,8 +12,6 @@ namespace BridgeTemperature.DistributionOperations.Tests
     [TestFixture()]
     public class DistributionOperationsTests
     {
-
-
         [Test()]
         public void DistributionOperationGetValue_ConstantDistribution_Passed()
         {
@@ -141,8 +139,6 @@ namespace BridgeTemperature.DistributionOperations.Tests
             expectedDistribution.Add(new Distribution() { Y = 10, Value = -3 });
 
             Assert.AreEqual(expectedDistribution, distributionOperations.Distribution);
-
-   
         }
     }
 }

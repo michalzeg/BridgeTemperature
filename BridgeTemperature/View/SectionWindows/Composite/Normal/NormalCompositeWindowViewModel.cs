@@ -92,8 +92,6 @@ namespace BridgeTemperature.ViewModel
 
             var distribution = new List<DistributionDrawingData>() { distributionDataSlab,distributionDataGirder }; 
             TempDistribution = distribution;
-
-            
             RaisePropertyChanged(() => TempDistribution);
 
         }

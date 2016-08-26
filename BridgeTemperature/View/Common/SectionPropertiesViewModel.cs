@@ -13,8 +13,6 @@ namespace BridgeTemperature.ViewModel
 {
     public class SectionPropertiesViewModel : ViewModelBase
     {
-        //public delegate void UpdateEventHandler();
-        //public event UpdateEventHandler Update;
         public IList<Material> Materials { get; set; }
 
         public SectionPropertiesViewModel()
@@ -66,24 +64,5 @@ namespace BridgeTemperature.ViewModel
                 }
             }
         }
-
-        /*private SectionType type;
-        public SectionType Type
-        {
-            get
-            {
-                return type;
-            }
-            set
-            {
-                if (value != type)
-                {
-                    type = value;
-                    RaisePropertyChanged(() => this.Type);
-                    if (Update != null) Update();
-                }
-            }
-        }*/
-
     }
 }

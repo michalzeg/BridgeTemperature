@@ -97,8 +97,6 @@ namespace BridgeTemperature.SectionProperties.Tests
             Assert.AreEqual(5.0.Round(), compositeProperties.CentreOfGravity.Y.Round());
             Assert.AreEqual(75d.Round(), compositeProperties.Area.Round());
             Assert.AreEqual(781.25.Round(), compositeProperties.SecondMomentOfArea.Round());
-
-            
         }
         
     }

@@ -56,8 +56,6 @@ namespace BridgeTemperature.ViewModel
 
         private void apply()
         {
-            
-
             var concreteSection = new Section(concreteGirder.GetIGirderCoordinates(), SectionType.Concrete,
                 ConcretePropertiesVM.ModulusOfElasticity, ConcretePropertiesVM.ThermalCoefficient,
                 concreteGirder.GetIGirderDistribution());
@@ -83,8 +81,6 @@ namespace BridgeTemperature.ViewModel
             distributionData.SectionMinX = sectionCoordinates.Min(e => e.X);
             var distribution = new List<DistributionDrawingData>() { distributionData };
             TempDistribution = distribution;
-
-
             RaisePropertyChanged(() => TempDistribution);
 
         }

@@ -16,9 +16,7 @@ using GalaSoft.MvvmLight.Ioc;
 using BridgeTemperature.ViewModel;
 namespace BridgeTemperature.View
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
+    
     public partial class MainWindow : RibbonWindow
     {
         public MainWindow()
@@ -27,8 +25,6 @@ namespace BridgeTemperature.View
             var mainViewModel =  new MainViewModel();
             DataContext = mainViewModel;
         }
-
-
 
         private void New_Click(object sender, RoutedEventArgs e)
         {

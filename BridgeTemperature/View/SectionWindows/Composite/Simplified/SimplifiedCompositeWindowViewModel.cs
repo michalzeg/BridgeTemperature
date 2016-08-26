@@ -81,8 +81,6 @@ namespace BridgeTemperature.ViewModel
             distributionData.SectionMinX = compositeGirder.MinX;
             var distribution = new List<DistributionDrawingData>() { distributionData }; 
             TempDistribution = distribution;
-
-            
             RaisePropertyChanged(() => TempDistribution);
 
         }

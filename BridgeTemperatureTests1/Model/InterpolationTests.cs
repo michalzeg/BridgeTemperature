@@ -30,7 +30,5 @@ namespace BridgeTemperature.Helpers.Tests
             Assert.AreEqual(expectedValue, actualValue, 0.0000000000000001);
         }
 
-        
-
     }
 }

@@ -32,8 +32,6 @@ namespace BridgeTemperature.View.ViewClasses
             H1 = h1;
             DT1 = dt1;
         }
-
-
         public IList<PointD> GetCoordinates()
         {
             var coordinates = new List<PointD>();
@@ -161,8 +159,6 @@ namespace BridgeTemperature.View.ViewClasses
             return distribution;
 
         }
-
-
     }
 
     public class NormalCompositeGirder : SimplifiedCompositeGirder
@@ -379,8 +375,6 @@ namespace BridgeTemperature.View.ViewClasses
 
         public double DT1 { get; set; }
         public double DT2 { get; set; }
-
-
         public RectangularGirder(double b, double h, double x, double y,
              double dt1, double dt2)
         {
@@ -391,8 +385,6 @@ namespace BridgeTemperature.View.ViewClasses
             DT1 = dt1;
             DT2 = dt2;
         }
-
-
         public IList<PointD> GetCoordinates()
         {
             var coordinates = new List<PointD>();

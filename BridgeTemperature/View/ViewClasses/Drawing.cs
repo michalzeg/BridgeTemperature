@@ -16,8 +16,6 @@ using System.Windows.Documents;
 
 namespace BridgeTemperature.Drawing
 {
-    
-
     public class DistributionDrawingData
     {
         public IList<Distribution> Distribution { get; set; }
@@ -39,16 +37,12 @@ namespace BridgeTemperature.Drawing
         public PointD Centre { get; set; }
         public double MaxY { get; private set; }
         public double MinY { get; private set; }
-
-
-        //private IList<IList<PointD>> perimeters;
+        
         public Func<double> CanvasActualWidth;
         public Func<double> CanvasActualHeight;
-  
-
         public ScaleCalculator(Func<double> actualWidth, Func<double> actualHeight)
         {
-            //this.perimeters = new List<IList<PointD>>();
+            
             this.CanvasActualHeight = actualHeight;
             this.CanvasActualWidth = actualWidth;
             this.Centre = new PointD(0, 0);
@@ -101,8 +95,6 @@ namespace BridgeTemperature.Drawing
             ScaleY = scaleY;
         }
     }
-
-    
     public abstract class DrawingBase
     {
 
@@ -149,16 +141,12 @@ namespace BridgeTemperature.Drawing
         }
         
     }
-
-    
     public class PolygonDrawing:DrawingBase
     {
 
         public PolygonDrawing(ScaleCalculator scaleProperties):base(scaleProperties)
         {
         }
-
-
         public Polygon CreatePolygonDrawing(IList<PointD> section)
         {
             if (section == null || section.Count == 0)
@@ -173,8 +161,6 @@ namespace BridgeTemperature.Drawing
             return polygon;
         }
     }
-
-  
     public class DistributionDrawing:Grid
     {
         static DistributionDrawing()
@@ -215,14 +201,10 @@ namespace BridgeTemperature.Drawing
 
         private ScaleCalculator distributionScaleCalculator;
         private ScaleCalculator sectionScaleCalculator;
-        //private DistributionPopup popup;
-
         public DistributionDrawing()
         {
             distributionScaleCalculator = new DistributionScaleCalculator(() => ActualWidth,()=>ActualHeight);
             sectionScaleCalculator = new ScaleCalculator(() => SectionCanvasWidth, () => SectionCanvasHeight);
-            //popup = new DistributionPopup();
-            
         }
         public void RefreshDrawing()
         {
@@ -235,9 +217,7 @@ namespace BridgeTemperature.Drawing
             var sectionCoordinates = new List<IList<PointD>>();
             sectionCoordinates.Add(sectionBoxCoordinates());
             sectionScaleCalculator.UpdateProperties(sectionCoordinates);
-
-
-            //REFACTOR THAT METHOD LATER
+            
             var distributionCoordinates = new List<IList<PointD>>();
             foreach (var distribution in DistributionData)
             {
@@ -279,12 +259,8 @@ namespace BridgeTemperature.Drawing
             var minX = DistributionData.Min(e => e.SectionMinX);
             var maxY = DistributionData.Max(e => e.SectionMaxY);
             var minY = DistributionData.Min(e => e.SectionMinY);
-
-
             var result = new List<PointD>()
             {
-                //new PointD(distributionData.SectionMaxX,distributionData.SectionMinY),
-                //new PointD(distributionData.SectionMinX,distributionData.SectionMaxY)
                 new PointD(maxX,minY),
                 new PointD(minX,maxY),
             };
@@ -300,9 +276,7 @@ namespace BridgeTemperature.Drawing
             var color1 = Color.FromRgb(158, 241, 14);
             var color2 = Color.FromRgb(21, 157, 24);
             var brush = new LinearGradientBrush(color1, color2, 90);
-            //var brush = new LinearGradientBrush(Brushes.Crimson.Color, Brushes.Red.Color, 90);
-            //polygon.Stroke = Brushes.DarkRed;
-            //polygon.StrokeThickness = 2;
+            
             polygon.Fill = brush;
             polygon.Name = "polygon";
             
@@ -386,8 +360,6 @@ namespace BridgeTemperature.Drawing
         }
         protected void setPolygonProperties(SectionType type, Polygon polygon)
         {
-
-            //var brush = (type == SectionType.Fill) ? fillBrush() : voidBrush();
             Brush brush = customBrush();
             if (type == SectionType.Concrete)
                 brush = concreteBrush();
@@ -399,7 +371,7 @@ namespace BridgeTemperature.Drawing
             polygon.Stroke = brush;
             polygon.StrokeThickness = 2;
 
-            polygon.Fill = brush;//(type == SectionType.Fill) ? Brushes.Gray : Brushes.Green;
+            polygon.Fill = brush;
         }
 
         protected Brush customBrush()

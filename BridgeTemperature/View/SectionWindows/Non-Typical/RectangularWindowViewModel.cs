@@ -24,8 +24,6 @@ namespace BridgeTemperature.ViewModel
             Section = new List<SectionDrawingData>();
             TempDistribution = new List<DistributionDrawingData>();
             Apply = new RelayCommand(apply);
-
-
             h = 0.2;
             b = 1;
             x = 0.5;
@@ -46,8 +44,6 @@ namespace BridgeTemperature.ViewModel
                 SectionPropertiesVM.ModulusOfElasticity, SectionPropertiesVM.ThermalCoefficient,
                 rectangularGirder.GetTemperature());
             Messenger.Default.Send<ISection>(section);
-
-
         }
         private RectangularGirder rectangularGirder;
         private void UpdateDrawings()
@@ -66,8 +62,6 @@ namespace BridgeTemperature.ViewModel
             distributionData.SectionMinX = sectionCoordinates.Min(e => e.X);
             var distribution = new List<DistributionDrawingData>() { distributionData }; 
             TempDistribution = distribution;
-
-            
             RaisePropertyChanged(() => TempDistribution);
 
         }

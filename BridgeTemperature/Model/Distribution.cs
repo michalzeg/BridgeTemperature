@@ -69,8 +69,6 @@ namespace BridgeTemperature.DistributionOperations
 
             //Check whether the compared object references the same data. 
             if (Object.ReferenceEquals(this, other)) return true;
-
-
             //Check whether the products' properties are equal. 
             return Y.IsApproximatelyEqualTo(other.Y) && Value.IsApproximatelyEqualTo(other.Value);
         }
@@ -85,15 +83,11 @@ namespace BridgeTemperature.DistributionOperations
             //Calculate the hash code for the product. 
             return hashY ^ hashValue;
         }
-
-
     }
 
     public abstract class BaseDistribution
     {
         private enum operationType { Addition, Subtraction };
-
-
         protected Interpolation interpolation;
         public IEnumerable<Distribution> Distribution { get; private set; }
 
@@ -217,13 +211,9 @@ namespace BridgeTemperature.DistributionOperations
             }
             return new TemperatureDistribution(temperatureDistribution.Distinct().OrderBy(e => e.Y));
         }
-
-
         public static StressDistribution BendingStress(IEnumerable<PointD> coordinates, double bendingMoment, double centreOfGravity, double momentOfInertia, double baseModulusOfElasticity, double modulusOfElasticity)
         {
             var stressDistribution = new List<Distribution>();
-
-
             foreach (var coordinate in coordinates)
             {
                 double alfa = baseModulusOfElasticity / modulusOfElasticity;
@@ -260,8 +250,6 @@ namespace BridgeTemperature.DistributionOperations
         3) subtract uniform stress from external stress and interigate it to obtain bending stress
         4) subtrack uniform and bending stresses from externat in order to obtain selfequilibrating stresses
         5) convert all stresses to temperature*/
-
-
         //public IEnumerable<IEnumerable<Distribution>> StressResults { get; private set; }
         //public IEnumerable<IEnumerable<Distribution>> TemperatureResults { get; private set; }
 
@@ -315,12 +303,8 @@ namespace BridgeTemperature.DistributionOperations
                 selfEquilibratingStress.AddDistribution(section.BendingStress.Distribution);
                 section.SelfEquilibratedStress = selfEquilibratingStress;
                 section.SelfEquilibratedStress.MultiplyDistribution(-1);
-
-
-                //section.UniformTemperature = section.UniformStress.ConvertToTemperatureDistribution(section.Coordinates, section.ModulusOfElasticity, section.ThermalCooeficient);
-                //section.BendingTemperature = section.BendingStress.ConvertToTemperatureDistribution(section.Coordinates, section.ModulusOfElasticity, section.ThermalCooeficient);
-                //section.SelfEquilibratedTemperature = section.SelfEquilibratedStress.ConvertToTemperatureDistribution(section.Coordinates, section.ModulusOfElasticity, section.ThermalCooeficient);
             }
+
         }
         private void convertStressToTemperature()
         {
@@ -339,8 +323,6 @@ namespace BridgeTemperature.DistributionOperations
             calculateBendingAndSelfStresses(moment);
             convertStressToTemperature();
         }
-   
-
         public IEnumerable<IEnumerable<Distribution>> GetResult(ResultType resultType)
         {
 
@@ -357,9 +339,5 @@ namespace BridgeTemperature.DistributionOperations
             }
             return resultList;
         }
-
-
     }
-
-
 }

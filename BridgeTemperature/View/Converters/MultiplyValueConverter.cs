@@ -15,7 +15,6 @@ namespace BridgeTemperature.Converters
             var a = System.Convert.ToDouble(value);
             var b = System.Convert.ToDouble(parameter);
             return a * b;
-            //return (double)value / (double)parameter;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

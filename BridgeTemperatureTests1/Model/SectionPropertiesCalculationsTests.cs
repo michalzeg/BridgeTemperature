@@ -18,8 +18,8 @@ namespace BridgeTemperature.SectionProperties.Tests
             var expectedResult = new Dictionary<SectionCharacteristic, double>();
             expectedResult.Add(SectionCharacteristic.Alfa, -1.25);
             expectedResult.Add(SectionCharacteristic.A, 400);
-            expectedResult.Add(SectionCharacteristic.B, 22.19);//
-            expectedResult.Add(SectionCharacteristic.H, 18.03);//
+            expectedResult.Add(SectionCharacteristic.B, 22.19);
+            expectedResult.Add(SectionCharacteristic.H, 18.03);
             expectedResult.Add(SectionCharacteristic.I1, 33333.33);
             expectedResult.Add(SectionCharacteristic.I2, 8333.33);
             expectedResult.Add(SectionCharacteristic.Ix, 73333.33);
@@ -28,8 +28,8 @@ namespace BridgeTemperature.SectionProperties.Tests
             expectedResult.Add(SectionCharacteristic.Ixy0, 7500);
             expectedResult.Add(SectionCharacteristic.Iy, 93333.33);
             expectedResult.Add(SectionCharacteristic.Iy0, 30833.33);
-            expectedResult.Add(SectionCharacteristic.Sx, 5000);//
-            expectedResult.Add(SectionCharacteristic.Sy, 5000);//
+            expectedResult.Add(SectionCharacteristic.Sx, 5000);
+            expectedResult.Add(SectionCharacteristic.Sy, 5000);
             expectedResult.Add(SectionCharacteristic.X0, 12.5);
             expectedResult.Add(SectionCharacteristic.Y0, 12.5);
             expectedResult.Add(SectionCharacteristic.X0Max, 17.5);
@@ -53,17 +53,15 @@ namespace BridgeTemperature.SectionProperties.Tests
             perimeter.Add(new PointD(30, 20));
             perimeter.Add(new PointD(0, 20));
             SectionPropertiesCalculations calcs = new SectionPropertiesCalculations(perimeter);
-            //calcs.CalculateProperties(perimeter);
+            
             var actualResult = calcs.GetAllProperties();
-            //rounding the result
+            
             var actualResultRounded = new Dictionary<SectionCharacteristic, double>();
             foreach (KeyValuePair<SectionCharacteristic, double> value in actualResult)
             {
                 double roundedValue = Math.Round(value.Value, 2);
                 actualResultRounded.Add(value.Key, roundedValue);
             }
-
-
             CollectionAssert.AreEquivalent(expectedResult, actualResultRounded);
         }
 

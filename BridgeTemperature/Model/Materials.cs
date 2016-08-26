@@ -22,9 +22,7 @@ namespace BridgeTemperature.MaterialProperties
         public string Type { get; set; } 
 
         [XmlElement()]
-        public string Grade { get; set; } //nazwa klasy betonu
-
-
+        public string Grade { get; set; } 
         [XmlElement()]
         public double E { get; set; }
 
@@ -34,9 +32,9 @@ namespace BridgeTemperature.MaterialProperties
 
     /*public class Concrete :IMaterial
     {
-        //opisuje właściwosci betonu
+        
         [XmlElement()]
-        public string Grade { get; set; } //nazwa klasy betonu
+        public string Grade { get; set; } 
 
         [XmlElement()]
         public double E {get;set;}
@@ -57,8 +55,6 @@ namespace BridgeTemperature.MaterialProperties
         public double ThermalCoefficient {get;set;}
     }*/
 
-    
-
     public class MaterialOperations
     {
         public static IEnumerable<Material> GetAllMaterials()
@@ -66,8 +62,6 @@ namespace BridgeTemperature.MaterialProperties
             IEnumerable<Material> materials;
 
             XmlSerializer serializer = new XmlSerializer(typeof(List<Material>));
-
-
             using (var reader = new StringReader(Properties.Resources.materials)) 
             {
                 materials = serializer.Deserialize(reader) as IEnumerable<Material>;
@@ -88,8 +82,4 @@ namespace BridgeTemperature.MaterialProperties
         }
 
     }
-
-
-
-    
 }
