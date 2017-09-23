@@ -8,7 +8,7 @@
         xmlns:local="clr-namespace:BridgeTemperature.Common"
         xmlns:drawing="clr-namespace:BridgeTemperature.Drawing"
         mc:Ignorable="d"
-        Title="SteelWindow" Height="600" Width="600" WindowStartupLocation="CenterOwner">
+        Title="SteelWindow" Height="600" Width="600" WindowStartupLocation="CenterScreen">
     <Window.Resources>
 
         <ResourceDictionary>

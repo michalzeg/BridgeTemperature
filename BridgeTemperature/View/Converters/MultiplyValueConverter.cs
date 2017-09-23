@@ -13,7 +13,7 @@ namespace BridgeTemperature.Converters
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             var a = System.Convert.ToDouble(value);
-            var b = System.Convert.ToDouble(parameter);
+            var b = System.Convert.ToDouble(parameter,CultureInfo.InvariantCulture);
             return a * b;
         }
 

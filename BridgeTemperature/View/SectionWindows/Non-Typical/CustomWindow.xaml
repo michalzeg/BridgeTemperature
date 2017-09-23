@@ -9,7 +9,7 @@
         xmlns:helpers="clr-namespace:BridgeTemperature.Helpers"
         xmlns:converter="clr-namespace:BridgeTemperature.Converters"
         mc:Ignorable="d"
-        Title="CustomWindow" Height="600" Width="600" WindowStartupLocation="CenterOwner">
+        Title="CustomWindow" Height="600" Width="600" WindowStartupLocation="CenterScreen">
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>

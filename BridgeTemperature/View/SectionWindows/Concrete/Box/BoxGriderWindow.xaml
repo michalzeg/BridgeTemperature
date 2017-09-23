@@ -8,7 +8,7 @@
         xmlns:local="clr-namespace:BridgeTemperature.Common"
         xmlns:drawing="clr-namespace:BridgeTemperature.Drawing"
         mc:Ignorable="d"
-        Title="Box Section" Height="780" Width="600" WindowStartupLocation="CenterOwner" Icon="/BridgeTemperature;component/Images/Ribbon/BoxSection.PNG">
+        Title="Box Section" Height="700" Width="600" WindowStartupLocation="CenterScreen" Icon="/BridgeTemperature;component/Images/Ribbon/BoxSection.PNG">
     <Window.Resources>
 
         <ResourceDictionary>

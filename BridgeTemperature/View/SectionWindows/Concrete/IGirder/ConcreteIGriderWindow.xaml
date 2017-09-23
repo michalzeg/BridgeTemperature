@@ -8,7 +8,7 @@
         xmlns:local="clr-namespace:BridgeTemperature.Common"
         xmlns:drawing="clr-namespace:BridgeTemperature.Drawing"
         mc:Ignorable="d"
-        Title="Composite Section" Height="780" Width="600" WindowStartupLocation="CenterOwner">
+        Title="Composite Section" Height="780" Width="600" WindowStartupLocation="CenterScreen">
     <Window.Resources>
 
         <ResourceDictionary>

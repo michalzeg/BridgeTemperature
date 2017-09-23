@@ -42,7 +42,7 @@ namespace BridgeTemperature.ViewModel
             h2 = 0.2;
             h3 = 0.2;
             h4 = 0.3;
-            dt3 = 20;
+            dt3 = 10;
             dt4 = 40;
 
             concreteGirder = new BoxGirder(Tf1, Hw, Tf2, Tw, Bf1, Bf2, DT1, DT2, DT3, DT4, H1, H2, H3, H4);
