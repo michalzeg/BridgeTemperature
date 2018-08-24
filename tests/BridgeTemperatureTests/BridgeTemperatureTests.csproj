@@ -83,9 +83,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\src\BridgeTemperature\BridgeTemperature.csproj">
+    <ProjectReference Include="..\..\src\BridgeTemperature.App\BridgeTemperature.App.csproj">
       <Project>{2eaba49f-e79e-4d23-96e9-d12d05ad4ca3}</Project>
-      <Name>BridgeTemperature</Name>
+      <Name>BridgeTemperature.App</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
