@@ -58,7 +58,6 @@ namespace BridgeTemperature.DistributionOperations.Tests
             expectedStressDistribution.Add(new Distribution() { Y = 0, Value = 0.4166666666666667 });
             expectedStressDistribution.Add(new Distribution() { Y = 12, Value = -0.4166666666666667 });
             Assert.AreEqual(expectedStressDistribution, actualStressDistribution.Distribution);
-            
         }
 
         [Test()]
@@ -82,7 +81,6 @@ namespace BridgeTemperature.DistributionOperations.Tests
             expectedStressDistribution.Add(new Distribution() { Y = 0, Value = -0.8333333333333334 });
             expectedStressDistribution.Add(new Distribution() { Y = 12, Value = 0.8333333333333334 });
             Assert.AreEqual(expectedStressDistribution, actualStressDistribution.Distribution);
-
         }
 
         [Test()]
@@ -96,12 +94,11 @@ namespace BridgeTemperature.DistributionOperations.Tests
             coordinates.Add(new PointD(0, 0));
 
             var axialForce = 10000000d;
-            var momentOfInertia = 1440d;
             var baseModulusOfElasticity = 200000000d;
             var modulusOfElasticity = 20000d;
             var area = 120d;
 
-            var actualStressDistribution = StressDistribution.AxialStress(coordinates,axialForce,area,baseModulusOfElasticity,modulusOfElasticity);
+            var actualStressDistribution = StressDistribution.AxialStress(coordinates, axialForce, area, baseModulusOfElasticity, modulusOfElasticity);
 
             var expectedStressDistribution = new List<Distribution>();
             expectedStressDistribution.Add(new Distribution() { Y = 0, Value = 8.333333333333333333333333333 });
