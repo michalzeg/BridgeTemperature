@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BridgeTemperature.App", "sr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BridgeTemperatureTests", "tests\BridgeTemperatureTests\BridgeTemperatureTests.csproj", "{2B3E392D-4C4E-40F6-A8C3-3A803CA0CB99}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BridgeTemperature.Common", "src\BridgeTemperature.Common\BridgeTemperature.Common.csproj", "{173D8831-7024-488F-A35C-A667972D5E7E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BridgeTemperature.Calculations", "src\BridgeTemperature.Calculations\BridgeTemperature.Calculations.csproj", "{DB8E2A57-1422-4618-B79B-FE15968419B4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -22,6 +26,14 @@ Global
 		{2B3E392D-4C4E-40F6-A8C3-3A803CA0CB99}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2B3E392D-4C4E-40F6-A8C3-3A803CA0CB99}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2B3E392D-4C4E-40F6-A8C3-3A803CA0CB99}.Release|Any CPU.Build.0 = Release|Any CPU
+		{173D8831-7024-488F-A35C-A667972D5E7E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{173D8831-7024-488F-A35C-A667972D5E7E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{173D8831-7024-488F-A35C-A667972D5E7E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{173D8831-7024-488F-A35C-A667972D5E7E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DB8E2A57-1422-4618-B79B-FE15968419B4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DB8E2A57-1422-4618-B79B-FE15968419B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DB8E2A57-1422-4618-B79B-FE15968419B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DB8E2A57-1422-4618-B79B-FE15968419B4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
