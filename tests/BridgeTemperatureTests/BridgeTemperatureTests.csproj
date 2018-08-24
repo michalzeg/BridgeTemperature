@@ -67,15 +67,15 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Model\CompositeSectionPropertiesCalculationsTests.cs" />
-    <Compile Include="Model\DistributionCalculationsTests.cs" />
-    <Compile Include="Model\DistributionOperationsTests.cs" />
-    <Compile Include="Model\IntegrationTests.cs" />
-    <Compile Include="Model\InterpolationTests.cs" />
-    <Compile Include="Model\SectionPropertiesCalculationsTests.cs" />
-    <Compile Include="Model\SectionTests.cs" />
-    <Compile Include="Model\StressDistributionTests.cs" />
-    <Compile Include="Model\TemperatureDistributionTests.cs" />
+    <Compile Include="Calculations\CompositeSectionPropertiesCalculationsTests.cs" />
+    <Compile Include="Calculations\DistributionCalculationsTests.cs" />
+    <Compile Include="Calculations\DistributionOperationsTests.cs" />
+    <Compile Include="Calculations\IntegrationTests.cs" />
+    <Compile Include="Calculations\InterpolationTests.cs" />
+    <Compile Include="Calculations\SectionPropertiesCalculationsTests.cs" />
+    <Compile Include="Calculations\SectionTests.cs" />
+    <Compile Include="Calculations\StressDistributionTests.cs" />
+    <Compile Include="Calculations\TemperatureDistributionTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

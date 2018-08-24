@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BridgeTemperature.Helpers
 {
-    class PropertyName
+    public class PropertyName
     {
         public static string GetPropertyName<T>(Expression<Func<T>> propertyExpression)
         {

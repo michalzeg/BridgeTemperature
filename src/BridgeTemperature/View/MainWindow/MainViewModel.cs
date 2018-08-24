@@ -122,7 +122,7 @@ namespace BridgeTemperature.ViewModel
                 compositeSection = new TypicalCompositeSection(MainPanelVM.Sections);
                 var calculator = new DistributionCalculations(compositeSection);
                 calculator.CalculateDistributions();
-                MainPanelVM.ResultsActual = true;
+                MainPanelVM.ResultsUpToDate = true;
                 updateTemperature();
                 
             }
@@ -130,7 +130,7 @@ namespace BridgeTemperature.ViewModel
         
         private void updateTemperature()
         {
-            if (!MainPanelVM.ResultsActual)
+            if (!MainPanelVM.ResultsUpToDate)
                 MessageBox.Show("No data", "Error", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Error);
             else
             {
@@ -150,7 +150,7 @@ namespace BridgeTemperature.ViewModel
         }
         private void updateStress()
         {
-            if (!MainPanelVM.ResultsActual)
+            if (!MainPanelVM.ResultsUpToDate)
                 MessageBox.Show("No data", "Error", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Error);
             else
             {

@@ -108,9 +108,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Helpers\Enums.cs" />
+    <Compile Include="Extensions\ObjectExtensions.cs" />
+    <Compile Include="Geometry\PointD.cs" />
+    <Compile Include="Helpers\SectionType.cs" />
     <Compile Include="Helpers\PropertyName.cs" />
-    <Compile Include="Model\Distribution.cs" />
+    <Compile Include="Calculations\Distribution.cs" />
     <Page Include="View\Common\SectionProperties.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -159,7 +161,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Extensions\Extensions.cs" />
+    <Compile Include="Extensions\DoubleExtensions.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -176,6 +178,11 @@
     </Compile>
     <Compile Include="View\MainWindow\MainPanelViewModel.cs" />
     <Compile Include="View\MainWindow\MainViewModel.cs" />
+    <Compile Include="View\SectionConverters\BoxGirder.cs" />
+    <Compile Include="View\SectionConverters\ConcreteIGirder.cs" />
+    <Compile Include="View\SectionConverters\NormalCompositeGirder.cs" />
+    <Compile Include="View\SectionConverters\SimplifiedCompositeGirder.cs" />
+    <Compile Include="View\SectionConverters\SteelPlateGirder.cs" />
     <Compile Include="View\SectionWindows\Composite\Normal\NormalCompositeWindow.xaml.cs">
       <DependentUpon>NormalCompositeWindow.xaml</DependentUpon>
     </Compile>
@@ -204,9 +211,17 @@
       <DependentUpon>SteelWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\SectionWindows\Steel\SteelWindowViewModel.cs" />
-    <Compile Include="View\ViewClasses\Drawing.cs" />
+    <Compile Include="View\ViewClasses\DistributionDrawing.cs" />
+    <Compile Include="View\ViewClasses\DistributionDrawingData.cs" />
+    <Compile Include="View\ViewClasses\DistributionPopup.cs" />
+    <Compile Include="View\ViewClasses\DistributionScaleCalculator.cs" />
+    <Compile Include="View\ViewClasses\DrawingBase.cs" />
     <Compile Include="View\ViewClasses\MessangerTokens.cs" />
-    <Compile Include="View\ViewClasses\TypicalSectionsConverters.cs" />
+    <Compile Include="View\ViewClasses\PolygonDrawing.cs" />
+    <Compile Include="View\ViewClasses\ScaleCalculator.cs" />
+    <Compile Include="View\ViewClasses\SectionCanvas.cs" />
+    <Compile Include="View\ViewClasses\SectionDrawingData.cs" />
+    <Compile Include="View\SectionConverters\RectangularGirder.cs" />
     <Compile Include="View\ViewModelLocator.cs" />
     <Compile Include="View\MainWindow\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -218,11 +233,11 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Model\Interigation.cs" />
-    <Compile Include="Helpers\Helpers.cs" />
-    <Compile Include="Model\Materials.cs" />
-    <Compile Include="Model\SectionProperties.cs" />
-    <Compile Include="Model\Sections.cs" />
+    <Compile Include="Calculations\Interigation.cs" />
+    <Compile Include="Geometry\Interpolation.cs" />
+    <Compile Include="Calculations\Materials.cs" />
+    <Compile Include="Calculations\SectionProperties.cs" />
+    <Compile Include="Calculations\Sections.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>

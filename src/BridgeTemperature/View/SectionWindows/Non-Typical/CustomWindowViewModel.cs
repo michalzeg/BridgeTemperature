@@ -13,7 +13,6 @@ using GalaSoft.MvvmLight.Messaging;
 using GalaSoft.MvvmLight.Command;
 using BridgeTemperature.Drawing;
 using BridgeTemperature.Sections;
-using GalaSoft.MvvmLight.Messaging;
 
 namespace BridgeTemperature.ViewModel
 {
@@ -23,6 +22,7 @@ namespace BridgeTemperature.ViewModel
         public RelayCommand Apply { get; private set; }
         public RelayCommand PointsUpdated { get; private set; }
         public RelayCommand TemperatureUpdated { get; private set; }
+
         public CustomWindowViewModel()
         {
             SectionPropertiesVM = new SectionPropertiesViewModel();
@@ -35,13 +35,14 @@ namespace BridgeTemperature.ViewModel
 
             Apply = new RelayCommand(apply);
         }
-   
+
         public ObservableCollection<PointD> Points { get; set; }
-        public ObservableCollection<Distribution> Temperature {get;set;}
+        public ObservableCollection<Distribution> Temperature { get; set; }
         public IList<SectionDrawingData> Section { get; set; }
         public IList<DistributionDrawingData> Distribution { get; set; }
 
         private SectionType type;
+
         public SectionType Type
         {
             get
@@ -55,7 +56,6 @@ namespace BridgeTemperature.ViewModel
                     type = value;
                     pointUpdated();
                     RaisePropertyChanged(() => this.Type);
-                    
                 }
             }
         }
@@ -67,6 +67,7 @@ namespace BridgeTemperature.ViewModel
                 Temperature);
             Messenger.Default.Send<ISection>(section);
         }
+
         private void pointUpdated()
         {
             if (Points == null || Points.Count == 0) return;
@@ -77,6 +78,7 @@ namespace BridgeTemperature.ViewModel
             RaisePropertyChanged(() => Section);
             RaisePropertyChanged(() => Distribution);
         }
+
         private void distributionUpdated()
         {
             var distribution = new DistributionDrawingData();
@@ -86,9 +88,8 @@ namespace BridgeTemperature.ViewModel
             distribution.SectionMaxX = Points.Max(e => e.X);
             distribution.SectionMinX = Points.Min(e => e.X);
             Distribution = new List<DistributionDrawingData>() { distribution };
-            
+
             RaisePropertyChanged(() => Distribution);
         }
-
     }
 }

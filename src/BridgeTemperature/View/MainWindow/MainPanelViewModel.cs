@@ -14,10 +14,10 @@ using System.Collections.ObjectModel;
 
 namespace BridgeTemperature.ViewModel
 {
-    public class MainPanelViewModel :ViewModelBase
+    public class MainPanelViewModel : ViewModelBase
     {
         public IList<ISection> Sections { get; private set; }
-        public bool ResultsActual { get; set; }
+        public bool ResultsUpToDate { get; set; }
 
         public MainPanelViewModel()
         {
@@ -26,13 +26,12 @@ namespace BridgeTemperature.ViewModel
             UniformDistributionDrawing = new List<DistributionDrawingData>();
             BendingDistributionDrawing = new List<DistributionDrawingData>();
             SelfEqulibratingDistributionDrawing = new List<DistributionDrawingData>();
-            ResultsActual = false;
+            ResultsUpToDate = false;
             Sections = new List<ISection>();
 
             ExternalDistributionLabel = "External temperature";
 
             Messenger.Default.Register<ISection>(this, updateSections);
-            
         }
 
         public IList<SectionDrawingData> SectionDrawing { get; set; }
@@ -40,10 +39,11 @@ namespace BridgeTemperature.ViewModel
         public IList<DistributionDrawingData> UniformDistributionDrawing { get; set; }
         public IList<DistributionDrawingData> BendingDistributionDrawing { get; set; }
         public IList<DistributionDrawingData> SelfEqulibratingDistributionDrawing { get; set; }
+
         public void ClearCanvas()
         {
             Sections.Clear();
-            SectionDrawing.Clear(); 
+            SectionDrawing.Clear();
             ClearDistributions();
 
             RaisePropertyChanged(() => SectionDrawing);
@@ -60,20 +60,19 @@ namespace BridgeTemperature.ViewModel
 
         public void ClearDistributions()
         {
-            
             ExternalDistributionDrawing.Clear();
             UniformDistributionDrawing.Clear();
             BendingDistributionDrawing.Clear();
             SelfEqulibratingDistributionDrawing.Clear();
         }
+
         public void ClearSections()
         {
             SectionDrawing.Clear();
         }
 
-        public void UpdateDistribution(IEnumerable<Distribution> distribution,ISection section, Expression<Func<IList<DistributionDrawingData>>> property)
+        public void UpdateDistribution(IEnumerable<Distribution> distribution, ISection section, Expression<Func<IList<DistributionDrawingData>>> property)
         {
-            
             var expression = (MemberExpression)property.Body;
             var propertyInfo = (PropertyInfo)expression.Member;
             var currentPropertyValue = propertyInfo.GetValue(this) as IList<DistributionDrawingData>;
@@ -88,12 +87,12 @@ namespace BridgeTemperature.ViewModel
             });
             propertyInfo.SetValue(this, distributions);
             RaisePropertyChanged(propertyInfo.Name);
-    
         }
+
         private void updateSections(ISection section)
         {
             this.Sections.Add(section);
-            ResultsActual = false;
+            ResultsUpToDate = false;
             var sections = SectionDrawing != null ? new List<SectionDrawingData>(SectionDrawing) : new List<SectionDrawingData>();
             sections.Add(new SectionDrawingData()
             {
@@ -101,11 +100,12 @@ namespace BridgeTemperature.ViewModel
                 Type = section.Type
             });
             SectionDrawing = sections;
-            UpdateDistribution(section.ExternalTemperature.Distribution,section, () => this.ExternalDistributionDrawing);
+            UpdateDistribution(section.ExternalTemperature.Distribution, section, () => this.ExternalDistributionDrawing);
             RaisePropertyChanged(() => SectionDrawing);
         }
 
         private string externalDistributionLabel;
+
         public string ExternalDistributionLabel
         {
             get { return externalDistributionLabel; }
@@ -118,7 +118,9 @@ namespace BridgeTemperature.ViewModel
                 }
             }
         }
+
         private string uniformDistributionLabel;
+
         public string UniformDistributionLabel
         {
             get { return uniformDistributionLabel; }
@@ -131,7 +133,9 @@ namespace BridgeTemperature.ViewModel
                 }
             }
         }
+
         private string bendingDistributionLabel;
+
         public string BendingDistributionLabel
         {
             get { return bendingDistributionLabel; }
@@ -144,7 +148,9 @@ namespace BridgeTemperature.ViewModel
                 }
             }
         }
+
         private string selfDistributionLabel;
+
         public string SelfDistributionLabel
         {
             get { return selfDistributionLabel; }
