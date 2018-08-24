@@ -11,6 +11,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BridgeTemperature.Common", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BridgeTemperature.Calculations", "src\BridgeTemperature.Calculations\BridgeTemperature.Calculations.csproj", "{DB8E2A57-1422-4618-B79B-FE15968419B4}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{D9923B0D-68A2-4948-ABA0-CB22EB5DA54D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{7ED3EA2A-A3E7-4553-8FBC-4CAF9C2C92B3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -37,6 +41,12 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{2EABA49F-E79E-4D23-96E9-D12D05AD4CA3} = {D9923B0D-68A2-4948-ABA0-CB22EB5DA54D}
+		{2B3E392D-4C4E-40F6-A8C3-3A803CA0CB99} = {7ED3EA2A-A3E7-4553-8FBC-4CAF9C2C92B3}
+		{173D8831-7024-488F-A35C-A667972D5E7E} = {D9923B0D-68A2-4948-ABA0-CB22EB5DA54D}
+		{DB8E2A57-1422-4618-B79B-FE15968419B4} = {D9923B0D-68A2-4948-ABA0-CB22EB5DA54D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {3C73F366-4D17-4974-A07D-CF74883E9997}
