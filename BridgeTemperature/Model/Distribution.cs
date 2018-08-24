@@ -1,12 +1,4 @@
-﻿/*
- * Created by SharpDevelop.
- * User: MZ036205
- * Date: 31/12/2015
- * Time: 11:35
- * 
- * To change this template use Tools | Options | Coding | Edit Standard Headers.
- */
-using System;
+﻿using System;
 using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
@@ -51,6 +43,7 @@ namespace BridgeTemperature.DistributionOperations
 
         public Distribution()
         { }
+
         public Distribution(double y, double value)
         {
             Y = y;
@@ -64,23 +57,24 @@ namespace BridgeTemperature.DistributionOperations
 
         public bool Equals(Distribution other)
         {
-            //Check whether the compared object is null. 
+            //Check whether the compared object is null.
             if (Object.ReferenceEquals(other, null)) return false;
 
-            //Check whether the compared object references the same data. 
+            //Check whether the compared object references the same data.
             if (Object.ReferenceEquals(this, other)) return true;
-            //Check whether the products' properties are equal. 
+            //Check whether the products' properties are equal.
             return Y.IsApproximatelyEqualTo(other.Y) && Value.IsApproximatelyEqualTo(other.Value);
         }
+
         public override int GetHashCode()
         {
-            //Get hash code for the Name field if it is not null. 
+            //Get hash code for the Name field if it is not null.
             int hashY = Y.GetHashCode();
 
-            //Get hash code for the Code field. 
+            //Get hash code for the Code field.
             int hashValue = Value.GetHashCode();
 
-            //Calculate the hash code for the product. 
+            //Calculate the hash code for the product.
             return hashY ^ hashValue;
         }
     }
@@ -88,6 +82,7 @@ namespace BridgeTemperature.DistributionOperations
     public abstract class BaseDistribution
     {
         private enum operationType { Addition, Subtraction };
+
         protected Interpolation interpolation;
         public IEnumerable<Distribution> Distribution { get; private set; }
 
@@ -106,7 +101,6 @@ namespace BridgeTemperature.DistributionOperations
 
         public virtual double GetValue(double y)
         {
-
             return this.interpolation.Interpolate(y);
         }
 
@@ -114,10 +108,12 @@ namespace BridgeTemperature.DistributionOperations
         {
             this.addOrSubtract(distribution, operationType.Addition);
         }
+
         public void SubtractDistribution(IEnumerable<Distribution> distribution)
         {
             this.addOrSubtract(distribution, operationType.Subtraction);
         }
+
         public void MultiplyDistribution(double value)
         {
             var multipliedDistribution = new List<Distribution>();
@@ -130,6 +126,7 @@ namespace BridgeTemperature.DistributionOperations
             }
             updateDistribution(multipliedDistribution.Distinct().OrderBy(e => e.Y));
         }
+
         private void addOrSubtract(IEnumerable<Distribution> distribution, operationType operationType)
         {
             var distributionSum = new List<Distribution>();
@@ -152,7 +149,6 @@ namespace BridgeTemperature.DistributionOperations
             }
 
             updateDistribution(distributionSum.Distinct().OrderBy(e => e.Y));
-
         }
     }
 
@@ -160,7 +156,6 @@ namespace BridgeTemperature.DistributionOperations
     {
         public TemperatureDistribution(IEnumerable<Distribution> distribution) : base(distribution)
         {
-
         }
 
         public StressDistribution ConvertToStressDistribution(IEnumerable<PointD> coordinates, double modulusOfElasticity, double thermalCoefficient)
@@ -189,8 +184,8 @@ namespace BridgeTemperature.DistributionOperations
     {
         public StressDistribution(IEnumerable<Distribution> distribution) : base(distribution)
         {
-
         }
+
         public TemperatureDistribution ConvertToTemperatureDistribution(IEnumerable<PointD> coordinates, double modulusOfElasticity, double thermalCoefficient)
         {
             var temperatureDistribution = new List<Distribution>();
@@ -211,6 +206,7 @@ namespace BridgeTemperature.DistributionOperations
             }
             return new TemperatureDistribution(temperatureDistribution.Distinct().OrderBy(e => e.Y));
         }
+
         public static StressDistribution BendingStress(IEnumerable<PointD> coordinates, double bendingMoment, double centreOfGravity, double momentOfInertia, double baseModulusOfElasticity, double modulusOfElasticity)
         {
             var stressDistribution = new List<Distribution>();
@@ -224,6 +220,7 @@ namespace BridgeTemperature.DistributionOperations
             }
             return new StressDistribution(stressDistribution.Distinct().OrderBy(e => e.Y));
         }
+
         public static StressDistribution AxialStress(IEnumerable<PointD> coordinates, double axialForce, double area, double baseModulusOfElasticity, double modulusOfElasticity)
         {
             var stressDistribution = new List<Distribution>();
@@ -239,7 +236,6 @@ namespace BridgeTemperature.DistributionOperations
 
             return new StressDistribution(stressDistribution.Distinct().OrderBy(e => e.Y));
         }
-
     }
 
     public class DistributionCalculations
@@ -253,13 +249,13 @@ namespace BridgeTemperature.DistributionOperations
         //public IEnumerable<IEnumerable<Distribution>> StressResults { get; private set; }
         //public IEnumerable<IEnumerable<Distribution>> TemperatureResults { get; private set; }
 
-        ICompositeSection compositeSection;
+        private ICompositeSection compositeSection;
 
         public DistributionCalculations(ICompositeSection compositeSection)
         {
             this.compositeSection = compositeSection;
-            
         }
+
         private double calculateNormalForce()
         {
             Integration integration = new Integration();
@@ -269,6 +265,7 @@ namespace BridgeTemperature.DistributionOperations
             }
             return integration.NormalForce;
         }
+
         private void calculateNormalStress(double normalForce)
         {
             foreach (var section in compositeSection.Sections)
@@ -278,6 +275,7 @@ namespace BridgeTemperature.DistributionOperations
                 section.UniformStress.MultiplyDistribution(-1);
             }
         }
+
         private double calculateBendingMoment()
         {
             var integration = new Integration();
@@ -289,11 +287,11 @@ namespace BridgeTemperature.DistributionOperations
             }
             return integration.Moment;
         }
+
         private void calculateBendingAndSelfStresses(double moment)
         {
             foreach (var section in compositeSection.Sections)
             {
-
                 StressDistribution bendingDistribution = StressDistribution.BendingStress(section.Coordinates, moment, compositeSection.CentreOfGravity.Y, compositeSection.MomentOfIntertia, compositeSection.BaseModulusOfElasticity, section.ModulusOfElasticity);
                 section.BendingStress = bendingDistribution;
                 section.BendingStress.MultiplyDistribution(-1);
@@ -304,8 +302,8 @@ namespace BridgeTemperature.DistributionOperations
                 section.SelfEquilibratedStress = selfEquilibratingStress;
                 section.SelfEquilibratedStress.MultiplyDistribution(-1);
             }
-
         }
+
         private void convertStressToTemperature()
         {
             foreach (var section in compositeSection.Sections)
@@ -315,6 +313,7 @@ namespace BridgeTemperature.DistributionOperations
                 section.SelfEquilibratedTemperature = section.SelfEquilibratedStress.ConvertToTemperatureDistribution(section.Coordinates, section.ModulusOfElasticity, section.ThermalCooeficient);
             }
         }
+
         public void CalculateDistributions()
         {
             var normalForce = calculateNormalForce();
@@ -323,9 +322,9 @@ namespace BridgeTemperature.DistributionOperations
             calculateBendingAndSelfStresses(moment);
             convertStressToTemperature();
         }
+
         public IEnumerable<IEnumerable<Distribution>> GetResult(ResultType resultType)
         {
-
             var resultList = new List<IEnumerable<Distribution>>();
 
             foreach (var section in this.compositeSection.Sections)

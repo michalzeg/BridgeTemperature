@@ -38,11 +38,11 @@ namespace BridgeTemperature.DistributionOperations.Tests
             calculations.CalculateDistributions();
             List<List<Distribution>> expectedSelfEquilibratedStress = new List<List<Distribution>>();
             expectedSelfEquilibratedStress.Add(new List<Distribution>()
-            { new Distribution { Y=0,Value=-1300},
-            new Distribution {Y=0.2,Value=0 },
-            new Distribution {Y=0.6,Value=700 },
-            new Distribution {Y=0.85,Value=300 },
-            new Distribution {Y=1,Value=-2300 }
+            { new Distribution { Y=0,Value=-1145},
+            new Distribution {Y=0.2,Value=23 },
+            new Distribution {Y=0.6,Value=682 },
+            new Distribution {Y=0.85,Value=287 },
+            new Distribution {Y=1,Value=-2288 }
             });
 
             var actualSelfEquilibratedStress = calculations.GetResult(ResultType.SelfEquilibratedStress);
@@ -54,17 +54,10 @@ namespace BridgeTemperature.DistributionOperations.Tests
 
                 for (int j = 0; j <= actual.Count - 1; j++)
                 {
-                    Assert.AreEqual(expected[j].Value, actual[j].Value, 0.1);
-                    Assert.AreEqual(expected[j].Y, actual[j].Y, 0.1);
+                    Assert.AreEqual(expected[j].Value, actual[j].Value, 1);
+                    Assert.AreEqual(expected[j].Y, actual[j].Y, 1);
                 }
             }
-        }
-
-        [Test()]
-        public void CalculateDistributions_BoxSection_Passed()
-        {
-            
-            Assert.Fail();
         }
 
         [Test()]
@@ -96,22 +89,22 @@ namespace BridgeTemperature.DistributionOperations.Tests
 
             var actualSelfEquilibratedStress = calculations.GetResult(ResultType.SelfEquilibratedStress);
 
-            for (int i =0;i<=expectedSelfEquilibratedStress.Count-1;i++)
+            for (int i = 0; i <= expectedSelfEquilibratedStress.Count - 1; i++)
             {
                 List<Distribution> actual = actualSelfEquilibratedStress.ToList()[i].ToList();
                 List<Distribution> expected = expectedSelfEquilibratedStress[i];
 
-                for (int j =0;j<=actual.Count-1;j++)
+                for (int j = 0; j <= actual.Count - 1; j++)
                 {
                     Assert.AreEqual(expected[j].Value, actual[j].Value, 0.1);
                     Assert.AreEqual(expected[j].Y, actual[j].Y, 0.1);
                 }
             }
         }
+
         [Test()]
         public void CalculateDistributions_OwnExampleTwoSections_Passed()
         {
-            
             double thermalCoefficient = 12d / 1000000d;
             double modulusOfElasticity = 205000000d;
 

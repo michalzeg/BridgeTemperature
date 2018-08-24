@@ -14,9 +14,8 @@ namespace BridgeTemperature.SectionProperties
         double ModulusOfElasticity { get; }
         double Area { get; }
         double MomentOfInertia { get; }
-        PointD CentreOfGravity { get; }
-        SectionType Type { get; }
     }
+
     public enum SectionCharacteristic
     {
         A,
@@ -48,13 +47,15 @@ namespace BridgeTemperature.SectionProperties
         B,
         H
     };
+
     public class CompositeSectionPropertiesCalculations
     {
-        public double BaseModulusOfElasticity { get; private set; } 
+        public double BaseModulusOfElasticity { get; private set; }
         public PointD CentreOfGravity { get; private set; }
         public double Area { get; private set; }
         public double SecondMomentOfArea { get; private set; }
         private IEnumerable<ICompositePropertiesCalculations> sections;
+
         public CompositeSectionPropertiesCalculations(IEnumerable<ICompositePropertiesCalculations> sections)
         {
             this.sections = sections;
@@ -65,11 +66,10 @@ namespace BridgeTemperature.SectionProperties
         private void getBaseModulusOfElasticity()
         {
             this.BaseModulusOfElasticity = this.sections.Max(e => e.ModulusOfElasticity);
-
         }
+
         private void calculateSectionProperties()
         {
-
             double firstMomentOfAreaX = 0;
             double firstMomentOfAreaY = 0;
             double secondMomentOfAreaGlobalX = 0;
@@ -78,7 +78,7 @@ namespace BridgeTemperature.SectionProperties
             {
                 double multiplier = section.Type == SectionType.Void ? -1 : 1;
 
-                double alfa = this.BaseModulusOfElasticity / section.ModulusOfElasticity; 
+                double alfa = this.BaseModulusOfElasticity / section.ModulusOfElasticity;
                 area = area + multiplier * section.Area / alfa;
                 firstMomentOfAreaX = firstMomentOfAreaX + multiplier * section.Area / alfa * section.CentreOfGravity.Y;
                 firstMomentOfAreaY = firstMomentOfAreaY + multiplier * section.Area / alfa * section.CentreOfGravity.X;
@@ -90,10 +90,9 @@ namespace BridgeTemperature.SectionProperties
 
             this.CentreOfGravity = new PointD(x0, y0);
             this.SecondMomentOfArea = secondMomentOfAreaGlobalX - area * y0 * y0;
-            
         }
-
     }
+
     public class SectionPropertiesCalculations
     {
         private IList<PointD> coordinates;
@@ -135,6 +134,7 @@ namespace BridgeTemperature.SectionProperties
                 return _A;
             }
         }
+
         public double Sx
         {
             get
@@ -144,6 +144,7 @@ namespace BridgeTemperature.SectionProperties
                 return _Sx;
             }
         }
+
         public double Sy
         {
             get
@@ -153,6 +154,7 @@ namespace BridgeTemperature.SectionProperties
                 return _Sy;
             }
         }
+
         public double Ix
         {
             get
@@ -162,6 +164,7 @@ namespace BridgeTemperature.SectionProperties
                 return _Ix;
             }
         }
+
         public double Iy
         {
             get
@@ -171,6 +174,7 @@ namespace BridgeTemperature.SectionProperties
                 return _Iy;
             }
         }
+
         public double Ixy
         {
             get
@@ -180,6 +184,7 @@ namespace BridgeTemperature.SectionProperties
                 return _Ixy;
             }
         }
+
         public double Ix0
         {
             get
@@ -189,6 +194,7 @@ namespace BridgeTemperature.SectionProperties
                 return _Ix0;
             }
         }
+
         public double Iy0
         {
             get
@@ -198,6 +204,7 @@ namespace BridgeTemperature.SectionProperties
                 return _Iy0;
             }
         }
+
         public double Ixy0
         {
             get
@@ -207,6 +214,7 @@ namespace BridgeTemperature.SectionProperties
                 return _Ixy0;
             }
         }
+
         public double I1
         {
             get
@@ -216,6 +224,7 @@ namespace BridgeTemperature.SectionProperties
                 return _I1;
             }
         }
+
         public double I2
         {
             get
@@ -225,6 +234,7 @@ namespace BridgeTemperature.SectionProperties
                 return _I2;
             }
         }
+
         public double Alfa
         {
             get
@@ -234,6 +244,7 @@ namespace BridgeTemperature.SectionProperties
                 return _Alfa;
             }
         }
+
         public double X0Max
         {
             get
@@ -243,6 +254,7 @@ namespace BridgeTemperature.SectionProperties
                 return _X0Max;
             }
         }
+
         public double X0Min
         {
             get
@@ -252,6 +264,7 @@ namespace BridgeTemperature.SectionProperties
                 return _X0Min;
             }
         }
+
         public double Y0Max
         {
             get
@@ -261,6 +274,7 @@ namespace BridgeTemperature.SectionProperties
                 return _Y0Max;
             }
         }
+
         public double Y0Min
         {
             get
@@ -270,6 +284,7 @@ namespace BridgeTemperature.SectionProperties
                 return _Y0Min;
             }
         }
+
         public double XIMax
         {
             get
@@ -279,6 +294,7 @@ namespace BridgeTemperature.SectionProperties
                 return _XIMax;
             }
         }
+
         public double XIMin
         {
             get
@@ -288,6 +304,7 @@ namespace BridgeTemperature.SectionProperties
                 return _XIMin;
             }
         }
+
         public double YIMax
         {
             get
@@ -297,6 +314,7 @@ namespace BridgeTemperature.SectionProperties
                 return _YIMax;
             }
         }
+
         public double YIMin
         {
             get
@@ -306,6 +324,7 @@ namespace BridgeTemperature.SectionProperties
                 return _YIMin;
             }
         }
+
         public double XMax
         {
             get
@@ -315,6 +334,7 @@ namespace BridgeTemperature.SectionProperties
                 return _XMax;
             }
         }
+
         public double XMin
         {
             get
@@ -324,6 +344,7 @@ namespace BridgeTemperature.SectionProperties
                 return _XMin;
             }
         }
+
         public double YMax
         {
             get
@@ -333,6 +354,7 @@ namespace BridgeTemperature.SectionProperties
                 return _YMax;
             }
         }
+
         public double YMin
         {
             get
@@ -342,6 +364,7 @@ namespace BridgeTemperature.SectionProperties
                 return _YMin;
             }
         }
+
         public double X0
         {
             get
@@ -351,6 +374,7 @@ namespace BridgeTemperature.SectionProperties
                 return _X0;
             }
         }
+
         public double Y0
         {
             get
@@ -360,6 +384,7 @@ namespace BridgeTemperature.SectionProperties
                 return _Y0;
             }
         }
+
         public double B
         {
             get
@@ -369,6 +394,7 @@ namespace BridgeTemperature.SectionProperties
                 return _B;
             }
         }
+
         public double H
         {
             get
@@ -378,6 +404,7 @@ namespace BridgeTemperature.SectionProperties
                 return _H;
             }
         }
+
         public PointD CentreOfGravity
         {
             get
@@ -385,6 +412,7 @@ namespace BridgeTemperature.SectionProperties
                 return new PointD(this.X0, this.Y0);
             }
         }
+
         public SectionPropertiesCalculations(IList<PointD> coordinates)
         {
             this.coordinates = coordinates;
@@ -422,9 +450,9 @@ namespace BridgeTemperature.SectionProperties
             _B = double.NaN;
             _H = double.NaN;
         }
+
         private void calculateBasicProperties()
         {
-            
             double a = 0;
             double sx = 0;
             double sy = 0;
@@ -446,7 +474,7 @@ namespace BridgeTemperature.SectionProperties
                 iy = iy + (y2 - y1) * (x1 * x1 * x1 + x1 * x1 * x2 + x1 * x2 * x2 + x2 * x2 * x2);
                 ixy = ixy + (x1 - x2) * (x1 * (3 * y1 * y1 + y2 * y2 + 2 * y1 * y2) + x2 * (3 * y2 * y2 + y1 * y1 + 2 * y1 * y2));
             }
-            
+
             a = a / 2;
             sx = sx / 6;
             sy = sy / 6;
@@ -461,6 +489,7 @@ namespace BridgeTemperature.SectionProperties
             this._Iy = iy;
             this._Ixy = ixy;
         }
+
         private void calculateCentreOfGravity()
         {
             if (_A.IsNaN() || _Sx.IsNaN() || _Sy.IsNaN())
@@ -477,6 +506,7 @@ namespace BridgeTemperature.SectionProperties
             this._Iy0 = this._Iy - this._A * this._X0 * this._X0;
             this._Ixy0 = this._Ixy - this._A * this._X0 * this._Y0;
         }
+
         private void calculatePrincipalProperties()
         {
             if (_Ix0.IsNaN() || _Iy0.IsNaN() || _Ixy0.IsNaN())
@@ -487,6 +517,7 @@ namespace BridgeTemperature.SectionProperties
             if (double.IsNaN(_Alfa))
                 this._Alfa = Math.PI / 2;
         }
+
         private void extremeDistancesCentralCoordinateSystem()
         {
             if (_X0.IsNaN() || _Y0.IsNaN())
@@ -495,8 +526,8 @@ namespace BridgeTemperature.SectionProperties
             _X0Min = coordinates.Min(point => point.X) - this._X0;
             _Y0Max = coordinates.Max(point => point.Y) - this._Y0;
             _Y0Min = coordinates.Min(point => point.Y) - this._Y0;
-
         }
+
         private void extremeDistancesPrincipalCoordinateSystem()
         {
             if (_Alfa.IsNaN())
@@ -510,8 +541,8 @@ namespace BridgeTemperature.SectionProperties
             _XIMin = coordinates.Min(point => point.X * cos - point.Y * sin) - xo;
             _YIMax = coordinates.Max(point => point.X * sin + point.Y * cos) - yo;
             _YIMin = coordinates.Min(point => point.X * sin + point.Y * cos) - yo;
-
         }
+
         private void extremeCoordinates()
         {
             _XMax = coordinates.Max(point => point.X);
@@ -519,6 +550,7 @@ namespace BridgeTemperature.SectionProperties
             _XMin = coordinates.Min(point => point.X);
             _YMin = coordinates.Min(point => point.Y);
         }
+
         private void calculateRectangle()
         {
             if (_Ix0.IsNaN())
@@ -526,10 +558,10 @@ namespace BridgeTemperature.SectionProperties
             _H = Math.Sqrt(12 * _Ix0 / _A);
             _B = _A / _H;
         }
+
         [Obsolete]
         private void CalculateProperties()
         {
-            
             double F = 0;
             double Sx = 0;
             double Sy = 0;
@@ -569,7 +601,7 @@ namespace BridgeTemperature.SectionProperties
             double alfa = Math.Atan(Ixy0 / (Iy0 - I1));
             if (double.IsNaN(alfa))
                 alfa = Math.PI / 2;
-            
+
             ExtremeDistances extremeCoordinates = new ExtremeDistances(new PointD(x0, y0));
             double x0_max, x0_min, y0_max, y0_min;
             double xI_max, xI_min, yI_max, yI_min;
@@ -577,8 +609,8 @@ namespace BridgeTemperature.SectionProperties
             extremeCoordinates.maxDistancesCentralCoordinateSystem(coordinates, out x0_max, out x0_min, out y0_max, out y0_min);
             extremeCoordinates.maxDistancesPrincipalCoordinateSystem(coordinates, alfa, out xI_max, out xI_min, out yI_max, out yI_min);
             extremeCoordinates.extremeCoordinates(coordinates, out xmax, out xmin, out ymax, out ymin);
-            
-            /*this.SectionProperties = new Dictionary<SectionCharacteristic, double>(); 
+
+            /*this.SectionProperties = new Dictionary<SectionCharacteristic, double>();
             this.SectionProperties.Add(SectionCharacteristic.Alfa, alfa);
             this.SectionProperties.Add(SectionCharacteristic.B, b);
             this.SectionProperties.Add(SectionCharacteristic.A, F);
@@ -612,7 +644,7 @@ namespace BridgeTemperature.SectionProperties
         public Dictionary<SectionCharacteristic, double> GetAllProperties()
         {
             var allProperties = new Dictionary<SectionCharacteristic, double>();
-            allProperties = new Dictionary<SectionCharacteristic, double>(); 
+            allProperties = new Dictionary<SectionCharacteristic, double>();
             allProperties.Add(SectionCharacteristic.Alfa, Alfa);
             allProperties.Add(SectionCharacteristic.B, B);
             allProperties.Add(SectionCharacteristic.A, A);
@@ -644,27 +676,27 @@ namespace BridgeTemperature.SectionProperties
 
             return allProperties;
         }
-
     }
 
     [Obsolete]
     public class ExtremeDistances
     {
-        
         private PointD centreOfGravity;
+
         public ExtremeDistances(PointD centreOfGravity)
         {
             this.centreOfGravity = centreOfGravity;
         }
-        public void maxDistancesCentralCoordinateSystem(IList<PointD> coordinates, out double x0_max, out double x0_min, out double y0_max, out double y0_min) 
+
+        public void maxDistancesCentralCoordinateSystem(IList<PointD> coordinates, out double x0_max, out double x0_min, out double y0_max, out double y0_min)
         {
             x0_max = coordinates.Max(point => point.X) - this.centreOfGravity.X;
             x0_min = coordinates.Min(point => point.X) - this.centreOfGravity.X;
             y0_max = coordinates.Max(point => point.Y) - this.centreOfGravity.Y;
             y0_min = coordinates.Min(point => point.Y) - this.centreOfGravity.Y;
-
         }
-        public void maxDistancesPrincipalCoordinateSystem(IList<PointD> coordinates, double alfa, out double x_max, out double x_min, out double y_max, out double y_min) 
+
+        public void maxDistancesPrincipalCoordinateSystem(IList<PointD> coordinates, double alfa, out double x_max, out double x_min, out double y_max, out double y_min)
         {
             double cos = Math.Cos(alfa);
             double sin = Math.Sin(alfa);
@@ -675,7 +707,6 @@ namespace BridgeTemperature.SectionProperties
             x_min = coordinates.Min(point => point.X * cos - point.Y * sin) - xo;
             y_max = coordinates.Max(point => point.X * sin + point.Y * cos) - yo;
             y_min = coordinates.Min(point => point.X * sin + point.Y * cos) - yo;
-
         }
 
         public void extremeCoordinates(IList<PointD> coordinates, out double xmax, out double xmin, out double ymax, out double ymin)
@@ -685,6 +716,5 @@ namespace BridgeTemperature.SectionProperties
             xmin = coordinates.Min(point => point.X);
             ymin = coordinates.Min(point => point.Y);
         }
-
     }
 }
