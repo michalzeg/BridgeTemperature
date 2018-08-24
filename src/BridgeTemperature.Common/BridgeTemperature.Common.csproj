@@ -44,6 +44,8 @@
     <Compile Include="Extensions\ObjectExtensions.cs" />
     <Compile Include="Geometry\Interpolation.cs" />
     <Compile Include="Geometry\PointD.cs" />
+    <Compile Include="Helpers\PropertyName.cs" />
+    <Compile Include="Helpers\SectionType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

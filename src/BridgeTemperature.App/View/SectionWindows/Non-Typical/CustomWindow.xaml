@@ -6,34 +6,34 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BridgeTemperature.Common"
         xmlns:drawing="clr-namespace:BridgeTemperature.Drawing"
-        xmlns:helpers="clr-namespace:BridgeTemperature.Helpers"
+        xmlns:helpers="clr-namespace:BridgeTemperature.Helpers;assembly=BridgeTemperature.Common"
         xmlns:converter="clr-namespace:BridgeTemperature.Converters"
         mc:Ignorable="d"
         Title="CustomWindow" Height="600" Width="600" WindowStartupLocation="CenterScreen">
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="/BridgeTemperature;component/View/StylesDictionary.xaml"/>
+                <ResourceDictionary Source="/BridgeTemperature;component/View/StylesDictionary.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Window.Resources>
-    <Grid 
+    <Grid
         Margin="{StaticResource MarginValue}">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="3*"/>
-            <RowDefinition Height="3*"/>
-            <RowDefinition Height="3*"/>
-            <RowDefinition Height="auto"/>
+            <RowDefinition Height="3*" />
+            <RowDefinition Height="3*" />
+            <RowDefinition Height="3*" />
+            <RowDefinition Height="auto" />
         </Grid.RowDefinitions>
         <GroupBox Header="Coordinates">
-            <DataGrid 
-            Name="dataGridPoints" 
-            ItemsSource="{Binding Path=Points,Mode=TwoWay}" 
-            CanUserAddRows="True" 
+            <DataGrid
+            Name="dataGridPoints"
+            ItemsSource="{Binding Path=Points,Mode=TwoWay}"
+            CanUserAddRows="True"
             AutoGenerateColumns="False"
             CanUserSortColumns="False"
             HorizontalAlignment="Stretch"
@@ -43,91 +43,85 @@
             Margin="{StaticResource MarginValue}">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="X" Binding="{Binding Path=X, NotifyOnTargetUpdated=True,UpdateSourceTrigger=LostFocus,Mode=TwoWay}" />
-                    <DataGridTextColumn Header="Y" Binding="{Binding Path=Y, NotifyOnTargetUpdated=True,UpdateSourceTrigger=LostFocus,Mode=TwoWay}"/>
-                    
+                    <DataGridTextColumn Header="Y" Binding="{Binding Path=Y, NotifyOnTargetUpdated=True,UpdateSourceTrigger=LostFocus,Mode=TwoWay}" />
                 </DataGrid.Columns>
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="TargetUpdated">
-                        <i:InvokeCommandAction Command="{Binding PointsUpdated}"/>
+                        <i:InvokeCommandAction Command="{Binding PointsUpdated}" />
                     </i:EventTrigger>
                 </i:Interaction.Triggers>
             </DataGrid>
         </GroupBox>
         <GroupBox Header="Temperature"  Grid.Column="0" Grid.Row="1">
             <DataGrid
-                Name="dataGridTemperature" 
-                ItemsSource="{Binding Path=Temperature, Mode=TwoWay}" 
+                Name="dataGridTemperature"
+                ItemsSource="{Binding Path=Temperature, Mode=TwoWay}"
                 CanUserReorderColumns="False"
                 CanUserSortColumns="False"
-                CanUserAddRows="True" 
+                CanUserAddRows="True"
                 AutoGenerateColumns="False"
                 HorizontalAlignment="Stretch"
                 HorizontalContentAlignment="Stretch"
                 ColumnWidth="*"
-                Margin="{StaticResource MarginValue}"
-               >
+                Margin="{StaticResource MarginValue}">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Y" Binding="{Binding Path=Y, NotifyOnTargetUpdated=True,UpdateSourceTrigger=LostFocus}" />
-                    <DataGridTextColumn Header="Value" Binding="{Binding Path=Value, NotifyOnTargetUpdated=True,UpdateSourceTrigger=LostFocus}"/>
+                    <DataGridTextColumn Header="Value" Binding="{Binding Path=Value, NotifyOnTargetUpdated=True,UpdateSourceTrigger=LostFocus}" />
                 </DataGrid.Columns>
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="TargetUpdated">
-                        <i:InvokeCommandAction Command="{Binding TemperatureUpdated}"/>
+                        <i:InvokeCommandAction Command="{Binding TemperatureUpdated}" />
                     </i:EventTrigger>
-
                 </i:Interaction.Triggers>
             </DataGrid>
         </GroupBox>
-        <Image 
+        <Image
             Grid.Column="1"
             Grid.Row="0"
-            Margin="{StaticResource MarginValue}" 
+            Margin="{StaticResource MarginValue}"
             Stretch="Fill"
             RenderOptions.BitmapScalingMode="HighQuality"
-            Source="/Images/Window/CustomSectionDimensions.png"
-            />
+            Source="/Images/Window/CustomSectionDimensions.png" />
         <StackPanel Grid.Column="0" Grid.Row="2">
             <GroupBox Header="Properties">
-                <ContentControl 
+                <ContentControl
                 Content="{Binding SectionPropertiesVM}"
-                ContentTemplate="{StaticResource sectionPropertiesPanel}"/>
+                ContentTemplate="{StaticResource sectionPropertiesPanel}" />
             </GroupBox>
             <GroupBox Header="Type" DockPanel.Dock="Bottom">
                 <GroupBox.Resources>
-                    <converter:SectionTypeToBoolConverter x:Key="SectionTypeToBoolConverter"/>
+                    <converter:SectionTypeToBoolConverter x:Key="SectionTypeToBoolConverter" />
                 </GroupBox.Resources>
                 <StackPanel Orientation="Horizontal">
-                    <RadioButton 
+                    <RadioButton
                     Content="Fill"
-                    IsChecked="{Binding Path=Type,Converter={StaticResource SectionTypeToBoolConverter},ConverterParameter={x:Static helpers:SectionType.Custom}}"/>
-                    <RadioButton 
+                    IsChecked="{Binding Path=Type,Converter={StaticResource SectionTypeToBoolConverter},ConverterParameter={x:Static helpers:SectionType.Custom}}" />
+                    <RadioButton
                     Content="Void"
-                    IsChecked="{Binding Path=Type,Converter={StaticResource SectionTypeToBoolConverter},ConverterParameter={x:Static helpers:SectionType.Void}}"/>
+                    IsChecked="{Binding Path=Type,Converter={StaticResource SectionTypeToBoolConverter},ConverterParameter={x:Static helpers:SectionType.Void}}" />
                 </StackPanel>
             </GroupBox>
         </StackPanel>
         <Grid Grid.Column="1" Grid.Row="1" Grid.RowSpan="2"
               Background="{StaticResource BackgroundBrush}">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="2*"/>
-                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="2*" />
+                <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
             <Grid Grid.Column="0"
                   Margin="{StaticResource MarginValue}">
                 <drawing:SectionCanvas
                 x:Name="sectionCanvas"
-                Sections="{Binding Section,Mode=TwoWay}"
-                />
+                Sections="{Binding Section,Mode=TwoWay}" />
             </Grid>
             <Grid Grid.Column="1"
                   Margin="{StaticResource MarginValue}">
-                <drawing:DistributionDrawing 
+                <drawing:DistributionDrawing
 
                 x:Name="distributionDrawing"
-                DistributionData="{Binding Distribution,Mode=TwoWay}" 
-                SectionCanvasHeight="{Binding ActualHeight, ElementName=sectionCanvas, Mode=OneWay}" 
-                SectionCanvasWidth="{Binding ActualWidth, ElementName=sectionCanvas, Mode=OneWay}"
-                />
+                DistributionData="{Binding Distribution,Mode=TwoWay}"
+                SectionCanvasHeight="{Binding ActualHeight, ElementName=sectionCanvas, Mode=OneWay}"
+                SectionCanvasWidth="{Binding ActualWidth, ElementName=sectionCanvas, Mode=OneWay}" />
             </Grid>
         </Grid>
         <Button
@@ -135,13 +129,12 @@
             Command="{Binding Apply}"
             Style="{StaticResource ApplyButton}"
             Grid.Column="0"
-            Grid.Row="3" Click="Button_Click"
-            />
+            Grid.Row="3" Click="Button_Click" />
         <Button
             Content="Close"
             Click="Button_Click"
             Style="{StaticResource CloseButton}"
             Grid.Column="1"
-            Grid.Row="3"/>
+            Grid.Row="3" />
     </Grid>
 </Window>
