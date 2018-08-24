@@ -1,5 +1,4 @@
-﻿using BridgeTemperature.Common;
-using BridgeTemperature.Extensions;
+﻿using BridgeTemperature.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Linq;

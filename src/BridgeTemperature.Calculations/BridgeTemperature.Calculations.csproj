@@ -42,5 +42,11 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BridgeTemperature.Common\BridgeTemperature.Common.csproj">
+      <Project>{173d8831-7024-488f-a35c-a667972d5e7e}</Project>
+      <Name>BridgeTemperature.Common</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
