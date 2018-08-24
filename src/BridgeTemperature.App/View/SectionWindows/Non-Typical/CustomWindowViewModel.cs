@@ -81,12 +81,14 @@ namespace BridgeTemperature.ViewModel
 
         private void distributionUpdated()
         {
-            var distribution = new DistributionDrawingData();
-            distribution.Distribution = Temperature;
-            distribution.SectionMaxY = Points.Max(e => e.Y);
-            distribution.SectionMinY = Points.Min(e => e.Y);
-            distribution.SectionMaxX = Points.Max(e => e.X);
-            distribution.SectionMinX = Points.Min(e => e.X);
+            var distribution = new DistributionDrawingData
+            {
+                Distribution = Temperature,
+                SectionMaxY = Points.Max(e => e.Y),
+                SectionMinY = Points.Min(e => e.Y),
+                SectionMaxX = Points.Max(e => e.X),
+                SectionMinX = Points.Min(e => e.X)
+            };
             Distribution = new List<DistributionDrawingData>() { distribution };
 
             RaisePropertyChanged(() => Distribution);

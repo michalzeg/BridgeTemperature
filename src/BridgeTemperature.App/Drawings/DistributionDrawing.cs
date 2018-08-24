@@ -68,8 +68,10 @@ namespace BridgeTemperature.Drawing
             {
                 return;
             }
-            var sectionCoordinates = new List<IList<PointD>>();
-            sectionCoordinates.Add(sectionBoxCoordinates());
+            var sectionCoordinates = new List<IList<PointD>>
+            {
+                SectionBoxCoordinates()
+            };
             sectionScaleCalculator.UpdateProperties(sectionCoordinates);
 
             var distributionCoordinates = new List<IList<PointD>>();
@@ -77,7 +79,7 @@ namespace BridgeTemperature.Drawing
             {
                 if (distribution.Distribution == null || distribution.Distribution.Count == 0)
                     continue;
-                var distributionPoints = this.distributionCoordinates(distribution.Distribution);
+                var distributionPoints = this.GetDistributionCoordinates(distribution.Distribution);
                 distributionCoordinates.Add(distributionPoints);
             }
             distributionScaleCalculator.UpdateProperties(distributionCoordinates);
@@ -90,17 +92,17 @@ namespace BridgeTemperature.Drawing
                     continue;
                 PolygonDrawing drawing = new PolygonDrawing(distributionScaleCalculator);
                 var popup = new DistributionPopup();
-                var distributionPoints = this.distributionCoordinates(distribution.Distribution);
+                var distributionPoints = this.GetDistributionCoordinates(distribution.Distribution);
                 var polygon = drawing.CreatePolygonDrawing(distributionPoints);
-                setPolygonProperties(polygon);
-                showPopUp(polygon, drawing, popup);
+                SetPolygonProperties(polygon);
+                ShowPopUp(polygon, drawing, popup);
 
                 Children.Add(polygon);
                 Children.Add(popup);
             }
         }
 
-        private IList<PointD> distributionCoordinates(IList<Distribution> distribution)
+        private IList<PointD> GetDistributionCoordinates(IList<Distribution> distribution)
         {
             var result = distribution.Select(e => e.ConvertToPointD()).OrderBy(f => f.Y).ToList();
             result.Add(new PointD(0, distribution.Max(e => e.Y)));
@@ -108,7 +110,7 @@ namespace BridgeTemperature.Drawing
             return result;
         }
 
-        private IList<PointD> sectionBoxCoordinates()
+        private IList<PointD> SectionBoxCoordinates()
         {
             var maxX = DistributionData.Max(e => e.SectionMaxX);
             var minX = DistributionData.Min(e => e.SectionMinX);
@@ -122,11 +124,7 @@ namespace BridgeTemperature.Drawing
             return result;
         }
 
-        private void setLineProperties(Line line)
-        {
-        }
-
-        private void setPolygonProperties(Polygon polygon)
+        private void SetPolygonProperties(Polygon polygon)
         {
             var color1 = Color.FromRgb(158, 241, 14);
             var color2 = Color.FromRgb(21, 157, 24);
@@ -136,7 +134,7 @@ namespace BridgeTemperature.Drawing
             polygon.Name = "polygon";
         }
 
-        private void showPopUp(Polygon polygon, PolygonDrawing drawing, DistributionPopup popup)
+        private void ShowPopUp(Polygon polygon, PolygonDrawing drawing, DistributionPopup popup)
         {
             polygon.MouseLeave += (s, e) => popup.IsOpen = false;
             polygon.MouseMove += (s, e) =>

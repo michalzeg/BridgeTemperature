@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 
 namespace BridgeTemperature.ViewModel
 {
-    public class NormalCompositeWindowViewModel:ViewModelBase
+    public class NormalCompositeWindowViewModel : ViewModelBase
     {
         public SectionPropertiesViewModel SteelPropertiesVM { get; private set; }
         public SectionPropertiesViewModel ConcretePropertiesVM { get; private set; }
@@ -63,10 +63,10 @@ namespace BridgeTemperature.ViewModel
                 compositeGirder.GetSlabTemperature());
 
             Messenger.Default.Send<ISection>(concreteSection);
-
         }
 
         private NormalCompositeGirder compositeGirder;
+
         private void updateDrawings()
         {
             var steelSection = compositeGirder.GetPlateGirderCoordinates();
@@ -77,31 +77,36 @@ namespace BridgeTemperature.ViewModel
             Section = section;
             RaisePropertyChanged(() => Section);
 
-            var distributionDataSlab = new DistributionDrawingData();
-            distributionDataSlab.Distribution = compositeGirder.GetSlabTemperature();
-            distributionDataSlab.SectionMaxY = compositeGirder.MaxY;
-            distributionDataSlab.SectionMinY = compositeGirder.MinY;
-            distributionDataSlab.SectionMaxX = compositeGirder.MaxX;
-            distributionDataSlab.SectionMinX = compositeGirder.MinX;
-            var distributionDataGirder = new DistributionDrawingData();
-            distributionDataGirder.Distribution = compositeGirder.GetPlateGirderTemperature();
-            distributionDataGirder.SectionMaxY = compositeGirder.MaxY;
-            distributionDataGirder.SectionMinY = compositeGirder.MinY;
-            distributionDataGirder.SectionMaxX = compositeGirder.MaxX;
-            distributionDataGirder.SectionMinX = compositeGirder.MinX;
+            var distributionDataSlab = new DistributionDrawingData
+            {
+                Distribution = compositeGirder.GetSlabTemperature(),
+                SectionMaxY = compositeGirder.MaxY,
+                SectionMinY = compositeGirder.MinY,
+                SectionMaxX = compositeGirder.MaxX,
+                SectionMinX = compositeGirder.MinX
+            };
+            var distributionDataGirder = new DistributionDrawingData
+            {
+                Distribution = compositeGirder.GetPlateGirderTemperature(),
+                SectionMaxY = compositeGirder.MaxY,
+                SectionMinY = compositeGirder.MinY,
+                SectionMaxX = compositeGirder.MaxX,
+                SectionMinX = compositeGirder.MinX
+            };
 
-            var distribution = new List<DistributionDrawingData>() { distributionDataSlab,distributionDataGirder }; 
+            var distribution = new List<DistributionDrawingData>() { distributionDataSlab, distributionDataGirder };
             TempDistribution = distribution;
             RaisePropertyChanged(() => TempDistribution);
-
         }
+
         private double tf1;
+
         public double Tf1
         {
             get { return tf1; }
             set
             {
-                if (value!=tf1)
+                if (value != tf1)
                 {
                     tf1 = value;
                     compositeGirder.Tf1 = value;
@@ -109,7 +114,9 @@ namespace BridgeTemperature.ViewModel
                 }
             }
         }
+
         private double hw;
+
         public double Hw
         {
             get { return hw; }
@@ -123,7 +130,9 @@ namespace BridgeTemperature.ViewModel
                 }
             }
         }
+
         private double tf2;
+
         public double Tf2
         {
             get { return tf2; }
@@ -137,7 +146,9 @@ namespace BridgeTemperature.ViewModel
                 }
             }
         }
+
         private double tw;
+
         public double Tw
         {
             get { return tw; }
@@ -151,7 +162,9 @@ namespace BridgeTemperature.ViewModel
                 }
             }
         }
+
         private double bf1;
+
         public double Bf1
         {
             get { return bf1; }
@@ -165,7 +178,9 @@ namespace BridgeTemperature.ViewModel
                 }
             }
         }
+
         private double bf2;
+
         public double Bf2
         {
             get { return bf2; }
@@ -179,7 +194,9 @@ namespace BridgeTemperature.ViewModel
                 }
             }
         }
+
         private double bp;
+
         public double Bp
         {
             get { return bp; }
@@ -193,7 +210,9 @@ namespace BridgeTemperature.ViewModel
                 }
             }
         }
+
         private double hp;
+
         public double Hp
         {
             get { return hp; }
@@ -207,7 +226,9 @@ namespace BridgeTemperature.ViewModel
                 }
             }
         }
+
         private double dt1;
+
         public double DT1
         {
             get { return dt1; }
@@ -221,7 +242,9 @@ namespace BridgeTemperature.ViewModel
                 }
             }
         }
+
         private double dt2;
+
         public double DT2
         {
             get { return dt2; }
@@ -235,7 +258,9 @@ namespace BridgeTemperature.ViewModel
                 }
             }
         }
+
         private double h1;
+
         public double H1
         {
             get { return h1; }
@@ -249,7 +274,9 @@ namespace BridgeTemperature.ViewModel
                 }
             }
         }
+
         private double h2;
+
         public double H2
         {
             get { return h2; }

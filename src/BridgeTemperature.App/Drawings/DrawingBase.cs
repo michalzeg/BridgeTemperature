@@ -15,18 +15,18 @@ namespace BridgeTemperature.Drawing
             this.scaleProperties = scaleProperties;
         }
 
-        protected IList<PointD> transformCoordinatesToCentreOfGrid(IList<PointD> coordinates)
+        protected IList<PointD> TransformCoordinatesToCentreOfGrid(IList<PointD> coordinates)
         {
             var pointList = new List<PointD>();
             foreach (var point in coordinates)
             {
-                var newPoint = transformCoordinatesToCentreOfGrid(point);
+                var newPoint = TransformCoordinatesToCentreOfGrid(point);
                 pointList.Add(newPoint);
             }
             return pointList;
         }
 
-        protected PointD transformCoordinatesToCentreOfGrid(PointD point)
+        protected PointD TransformCoordinatesToCentreOfGrid(PointD point)
         {
             var newPoint = new PointD();
             newPoint.X = ((point.X - this.scaleProperties.Centre.X) * scaleProperties.ScaleX) + scaleProperties.CanvasActualWidth() / 2;
@@ -34,9 +34,9 @@ namespace BridgeTemperature.Drawing
             return newPoint;
         }
 
-        protected PointD transformCoordinatesToCentreOfGrid(double x, double y)
+        protected PointD TransformCoordinatesToCentreOfGrid(double x, double y)
         {
-            return transformCoordinatesToCentreOfGrid(new PointD(x, y));
+            return TransformCoordinatesToCentreOfGrid(new PointD(x, y));
         }
 
         public PointD TransformCoordinatesFromCentreOfGrid(PointD point)

@@ -17,7 +17,7 @@ namespace BridgeTemperature.Drawing
                 return null;
 
             var polygon = new Polygon();
-            var transferedCoordinates = base.transformCoordinatesToCentreOfGrid(section);
+            var transferedCoordinates = base.TransformCoordinatesToCentreOfGrid(section);
             foreach (var point in transferedCoordinates)
             {
                 polygon.Points.Add(new Point(point.X, point.Y));

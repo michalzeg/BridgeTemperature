@@ -43,10 +43,10 @@ namespace BridgeTemperature.Drawing
             var scaleX = this.CanvasActualWidth() / drawingWidth;
             var scaleY = this.CanvasActualHeight() / drawingHeight;
 
-            calculateScale(scaleX, scaleY);
+            CalculateScale(scaleX, scaleY);
         }
 
-        protected virtual void calculateScale(double scaleX, double scaleY)
+        protected virtual void CalculateScale(double scaleX, double scaleY)
         {
             var scale = Math.Min(scaleX, scaleY);
             this.ScaleY = scale;

@@ -9,7 +9,7 @@ namespace BridgeTemperature.Drawing
         {
         }
 
-        protected override void calculateScale(double scaleX, double scaleY)
+        protected override void CalculateScale(double scaleX, double scaleY)
         {
             ScaleX = scaleX;
             ScaleY = scaleY;

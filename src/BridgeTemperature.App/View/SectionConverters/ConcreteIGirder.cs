@@ -48,36 +48,40 @@ namespace BridgeTemperature.View.ViewClasses
 
         public IList<PointD> GetIGirderCoordinates()
         {
-            var coordinates = new List<PointD>();
-            coordinates.Add(new PointD(0, 0));
-            coordinates.Add(new PointD(Bf2, 0));
-            coordinates.Add(new PointD(Bf2, Tf2));
-            coordinates.Add(new PointD(Bf2 / 2 + Tw / 2, Tf2));
-            coordinates.Add(new PointD(Bf2 / 2 + Tw / 2, Tf2 + Hw));
-            coordinates.Add(new PointD(Bf2 / 2 + Bf1 / 2, Tf2 + Hw));
-            coordinates.Add(new PointD(Bf2 / 2 + Bf1 / 2, Tf2 + Hw + Tf1));
-            coordinates.Add(new PointD(Bf2 / 2 + Bp / 2, Tf2 + Hw + Tf1));
-            coordinates.Add(new PointD(Bf2 / 2 + Bp / 2, Tf2 + Hw + Tf1 + Hp));
-            coordinates.Add(new PointD(Bf2 / 2 - Bp / 2, Tf2 + Hw + Tf1 + Hp));
-            coordinates.Add(new PointD(Bf2 / 2 - Bp / 2, Tf2 + Hw + Tf1));
-            coordinates.Add(new PointD(Bf2 / 2 - Bf1 / 2, Tf2 + Hw + Tf1));
-            coordinates.Add(new PointD(Bf2 / 2 - Bf1 / 2, Tf2 + Hw));
-            coordinates.Add(new PointD(Bf2 / 2 - Tw / 2, Tf2 + Hw));
-            coordinates.Add(new PointD(Bf2 / 2 - Tw / 2, Tf2));
-            coordinates.Add(new PointD(0, Tf2));
+            var coordinates = new List<PointD>
+            {
+                new PointD(0, 0),
+                new PointD(Bf2, 0),
+                new PointD(Bf2, Tf2),
+                new PointD(Bf2 / 2 + Tw / 2, Tf2),
+                new PointD(Bf2 / 2 + Tw / 2, Tf2 + Hw),
+                new PointD(Bf2 / 2 + Bf1 / 2, Tf2 + Hw),
+                new PointD(Bf2 / 2 + Bf1 / 2, Tf2 + Hw + Tf1),
+                new PointD(Bf2 / 2 + Bp / 2, Tf2 + Hw + Tf1),
+                new PointD(Bf2 / 2 + Bp / 2, Tf2 + Hw + Tf1 + Hp),
+                new PointD(Bf2 / 2 - Bp / 2, Tf2 + Hw + Tf1 + Hp),
+                new PointD(Bf2 / 2 - Bp / 2, Tf2 + Hw + Tf1),
+                new PointD(Bf2 / 2 - Bf1 / 2, Tf2 + Hw + Tf1),
+                new PointD(Bf2 / 2 - Bf1 / 2, Tf2 + Hw),
+                new PointD(Bf2 / 2 - Tw / 2, Tf2 + Hw),
+                new PointD(Bf2 / 2 - Tw / 2, Tf2),
+                new PointD(0, Tf2)
+            };
             return coordinates;
         }
 
         public IList<Distribution> GetIGirderDistribution()
         {
             var h = Tf2 + Hw + Tf1 + Hp;
-            var distribution = new List<Distribution>();
-            distribution.Add(new Distribution(0, DT4));
-            distribution.Add(new Distribution(H4, DT3));
-            distribution.Add(new Distribution(H4 + H3, 0));
-            distribution.Add(new Distribution(h - H1 - H2, 0));
-            distribution.Add(new Distribution(h - H1, DT2));
-            distribution.Add(new Distribution(h, DT1));
+            var distribution = new List<Distribution>
+            {
+                new Distribution(0, DT4),
+                new Distribution(H4, DT3),
+                new Distribution(H4 + H3, 0),
+                new Distribution(h - H1 - H2, 0),
+                new Distribution(h - H1, DT2),
+                new Distribution(h, DT1)
+            };
             return distribution;
         }
     }

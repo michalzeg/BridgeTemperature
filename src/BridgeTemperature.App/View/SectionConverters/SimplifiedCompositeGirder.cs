@@ -66,46 +66,54 @@ namespace BridgeTemperature.View.ViewClasses
 
         public IList<PointD> GetPlateGirderCoordinates()
         {
-            var coordinates = new List<PointD>();
-            coordinates.Add(new PointD(0, 0));
-            coordinates.Add(new PointD(Bf2, 0));
-            coordinates.Add(new PointD(Bf2, Tf2));
-            coordinates.Add(new PointD(Bf2 / 2 + Tw / 2, Tf2));
-            coordinates.Add(new PointD(Bf2 / 2 + Tw / 2, Tf2 + Hw));
-            coordinates.Add(new PointD(Bf2 / 2 + Bf1 / 2, Tf2 + Hw));
-            coordinates.Add(new PointD(Bf2 / 2 + Bf1 / 2, Tf2 + Hw + Tf1));
-            coordinates.Add(new PointD(Bf2 / 2 - Bf1 / 2, Tf2 + Hw + Tf1));
-            coordinates.Add(new PointD(Bf2 / 2 - Bf1 / 2, Tf2 + Hw));
-            coordinates.Add(new PointD(Bf2 / 2 - Tw / 2, Tf2 + Hw));
-            coordinates.Add(new PointD(Bf2 / 2 - Tw / 2, Tf2));
-            coordinates.Add(new PointD(0, Tf2));
-            coordinates.Add(new PointD(0, 0));
+            var coordinates = new List<PointD>
+            {
+                new PointD(0, 0),
+                new PointD(Bf2, 0),
+                new PointD(Bf2, Tf2),
+                new PointD(Bf2 / 2 + Tw / 2, Tf2),
+                new PointD(Bf2 / 2 + Tw / 2, Tf2 + Hw),
+                new PointD(Bf2 / 2 + Bf1 / 2, Tf2 + Hw),
+                new PointD(Bf2 / 2 + Bf1 / 2, Tf2 + Hw + Tf1),
+                new PointD(Bf2 / 2 - Bf1 / 2, Tf2 + Hw + Tf1),
+                new PointD(Bf2 / 2 - Bf1 / 2, Tf2 + Hw),
+                new PointD(Bf2 / 2 - Tw / 2, Tf2 + Hw),
+                new PointD(Bf2 / 2 - Tw / 2, Tf2),
+                new PointD(0, Tf2),
+                new PointD(0, 0)
+            };
             return coordinates;
         }
 
         public IList<PointD> GetSlabCoordinates()
         {
-            var coordinates = new List<PointD>();
-            coordinates.Add(new PointD(Bf2 / 2 - Bp / 2, Tf2 + Hw + Tf1));
-            coordinates.Add(new PointD(Bf2 / 2 + Bp / 2, Tf2 + Hw + Tf1));
-            coordinates.Add(new PointD(Bf2 / 2 + Bp / 2, Tf2 + Hw + Tf1 + Hp));
-            coordinates.Add(new PointD(Bf2 / 2 - Bp / 2, Tf2 + Hw + Tf1 + Hp));
+            var coordinates = new List<PointD>
+            {
+                new PointD(Bf2 / 2 - Bp / 2, Tf2 + Hw + Tf1),
+                new PointD(Bf2 / 2 + Bp / 2, Tf2 + Hw + Tf1),
+                new PointD(Bf2 / 2 + Bp / 2, Tf2 + Hw + Tf1 + Hp),
+                new PointD(Bf2 / 2 - Bp / 2, Tf2 + Hw + Tf1 + Hp)
+            };
             return coordinates;
         }
 
         public virtual IList<Distribution> GetPlateGirderTemperature()
         {
-            var distribution = new List<Distribution>();
-            distribution.Add(new Distribution(0, 0));
-            distribution.Add(new Distribution(Tf2 + Hw + Tf1, 0));
+            var distribution = new List<Distribution>
+            {
+                new Distribution(0, 0),
+                new Distribution(Tf2 + Hw + Tf1, 0)
+            };
             return distribution;
         }
 
         public virtual IList<Distribution> GetSlabTemperature()
         {
-            var distribution = new List<Distribution>();
-            distribution.Add(new Distribution(Tf2 + Hw + Tf1, DT1));
-            distribution.Add(new Distribution(Tf2 + Hw + Tf1 + Hp, DT1));
+            var distribution = new List<Distribution>
+            {
+                new Distribution(Tf2 + Hw + Tf1, DT1),
+                new Distribution(Tf2 + Hw + Tf1 + Hp, DT1)
+            };
             return distribution;
         }
     }

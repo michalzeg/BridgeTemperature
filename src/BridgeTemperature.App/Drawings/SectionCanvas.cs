@@ -19,10 +19,10 @@ namespace BridgeTemperature.Drawing
             SectionsDependencyProperty = DependencyProperty.Register("Sections", typeof(IList<SectionDrawingData>), typeof(SectionCanvas), metaData);
         }
 
-        public static void OnSectionChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        public static void OnSectionChanged(DependencyObject @object, DependencyPropertyChangedEventArgs @event)
         {
-            var canvas = d as SectionCanvas;
-            canvas.Sections = e.NewValue as IList<SectionDrawingData>;
+            var canvas = @object as SectionCanvas;
+            canvas.Sections = @event.NewValue as IList<SectionDrawingData>;
             canvas.RefreshDrawing();
         }
 
@@ -72,13 +72,7 @@ namespace BridgeTemperature.Drawing
 
         protected void setPolygonProperties(SectionType type, Polygon polygon)
         {
-            Brush brush = customBrush();
-            if (type == SectionType.Concrete)
-                brush = concreteBrush();
-            else if (type == SectionType.Steel)
-                brush = steelBrush();
-            else if (type == SectionType.Void)
-                brush = voidBrush();
+            Brush brush = GetBrush(type);
 
             polygon.Stroke = brush;
             polygon.StrokeThickness = 2;
@@ -86,22 +80,34 @@ namespace BridgeTemperature.Drawing
             polygon.Fill = brush;
         }
 
-        protected Brush customBrush()
+        private Brush GetBrush(SectionType type)
+        {
+            Brush brush = CustomBrush();
+            if (type == SectionType.Concrete)
+                brush = ConcreteBrush();
+            else if (type == SectionType.Steel)
+                brush = SteelBrush();
+            else if (type == SectionType.Void)
+                brush = VoidBrush();
+            return brush;
+        }
+
+        protected Brush CustomBrush()
         {
             return new LinearGradientBrush(Color.FromRgb(4, 90, 2), Color.FromRgb(6, 26, 0), 90);
         }
 
-        protected Brush steelBrush()
+        protected Brush SteelBrush()
         {
             return new LinearGradientBrush(Color.FromRgb(252, 49, 49), Color.FromRgb(136, 0, 32), 90);
         }
 
-        protected Brush concreteBrush()
+        protected Brush ConcreteBrush()
         {
             return new LinearGradientBrush(Color.FromRgb(48, 48, 48), Color.FromRgb(120, 120, 120), 90);
         }
 
-        protected Brush voidBrush()
+        protected Brush VoidBrush()
         {
             return Brushes.Bisque;
         }

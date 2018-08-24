@@ -29,20 +29,24 @@ namespace BridgeTemperature.View.ViewClasses
 
         public IList<PointD> GetCoordinates()
         {
-            var coordinates = new List<PointD>();
-            coordinates.Add(new PointD(X - B / 2, Y - H / 2));
-            coordinates.Add(new PointD(X + B / 2, Y - H / 2));
-            coordinates.Add(new PointD(X + B / 2, Y + H / 2));
-            coordinates.Add(new PointD(X - B / 2, Y + H / 2));
+            var coordinates = new List<PointD>
+            {
+                new PointD(X - B / 2, Y - H / 2),
+                new PointD(X + B / 2, Y - H / 2),
+                new PointD(X + B / 2, Y + H / 2),
+                new PointD(X - B / 2, Y + H / 2)
+            };
 
             return coordinates;
         }
 
         public IList<Distribution> GetTemperature()
         {
-            var distributionList = new List<Distribution>();
-            distributionList.Add(new Distribution(Y - H / 2, DT1));
-            distributionList.Add(new Distribution(Y + H / 2, DT2));
+            var distributionList = new List<Distribution>
+            {
+                new Distribution(Y - H / 2, DT1),
+                new Distribution(Y + H / 2, DT2)
+            };
             return distributionList;
         }
     }

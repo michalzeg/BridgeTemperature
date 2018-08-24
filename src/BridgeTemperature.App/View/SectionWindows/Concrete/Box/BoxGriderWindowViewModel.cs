@@ -14,15 +14,13 @@ using System.Threading.Tasks;
 
 namespace BridgeTemperature.ViewModel
 {
-    public class BoxGriderWindowViewModel:ViewModelBase
+    public class BoxGriderWindowViewModel : ViewModelBase
     {
-        
         public SectionPropertiesViewModel ConcretePropertiesVM { get; private set; }
         public RelayCommand Apply { get; private set; }
 
         public BoxGriderWindowViewModel()
         {
-            
             ConcretePropertiesVM = new SectionPropertiesViewModel();
             ConcretePropertiesVM.Materials = MaterialProperties.MaterialProvider.GetConcreteMaterials().ToList();
 
@@ -59,10 +57,10 @@ namespace BridgeTemperature.ViewModel
                 concreteGirder.GetIGirderDistribution());
 
             Messenger.Default.Send<ISection>(concreteSection);
-
         }
 
         private BoxGirder concreteGirder;
+
         private void updateDrawings()
         {
             var sectionCoordinates = concreteGirder.GetIGirderCoordinates();
@@ -71,24 +69,27 @@ namespace BridgeTemperature.ViewModel
             Section = section;
             RaisePropertyChanged(() => Section);
 
-            var distributionData = new DistributionDrawingData();
-            distributionData.Distribution = concreteGirder.GetIGirderDistribution();
-            distributionData.SectionMaxY = sectionCoordinates.Max(e => e.Y);
-            distributionData.SectionMinY = sectionCoordinates.Min(e => e.Y);
-            distributionData.SectionMaxX = sectionCoordinates.Max(e => e.X);
-            distributionData.SectionMinX = sectionCoordinates.Min(e => e.X);
+            var distributionData = new DistributionDrawingData
+            {
+                Distribution = concreteGirder.GetIGirderDistribution(),
+                SectionMaxY = sectionCoordinates.Max(e => e.Y),
+                SectionMinY = sectionCoordinates.Min(e => e.Y),
+                SectionMaxX = sectionCoordinates.Max(e => e.X),
+                SectionMinX = sectionCoordinates.Min(e => e.X)
+            };
             var distribution = new List<DistributionDrawingData>() { distributionData };
             TempDistribution = distribution;
             RaisePropertyChanged(() => TempDistribution);
-
         }
+
         private double tf1;
+
         public double Tf1
         {
             get { return tf1; }
             set
             {
-                if (value!=tf1)
+                if (value != tf1)
                 {
                     tf1 = value;
                     concreteGirder.Tf1 = value;
@@ -96,7 +97,9 @@ namespace BridgeTemperature.ViewModel
                 }
             }
         }
+
         private double hw;
+
         public double Hw
         {
             get { return hw; }
@@ -110,7 +113,9 @@ namespace BridgeTemperature.ViewModel
                 }
             }
         }
+
         private double tf2;
+
         public double Tf2
         {
             get { return tf2; }
@@ -124,7 +129,9 @@ namespace BridgeTemperature.ViewModel
                 }
             }
         }
+
         private double tw;
+
         public double Tw
         {
             get { return tw; }
@@ -138,7 +145,9 @@ namespace BridgeTemperature.ViewModel
                 }
             }
         }
+
         private double bf1;
+
         public double Bf1
         {
             get { return bf1; }
@@ -152,7 +161,9 @@ namespace BridgeTemperature.ViewModel
                 }
             }
         }
+
         private double bf2;
+
         public double Bf2
         {
             get { return bf2; }
@@ -166,8 +177,9 @@ namespace BridgeTemperature.ViewModel
                 }
             }
         }
-        
+
         private double dt1;
+
         public double DT1
         {
             get { return dt1; }
@@ -181,7 +193,9 @@ namespace BridgeTemperature.ViewModel
                 }
             }
         }
+
         private double dt2;
+
         public double DT2
         {
             get { return dt2; }
@@ -195,7 +209,9 @@ namespace BridgeTemperature.ViewModel
                 }
             }
         }
+
         private double h1;
+
         public double H1
         {
             get { return h1; }
@@ -209,7 +225,9 @@ namespace BridgeTemperature.ViewModel
                 }
             }
         }
+
         private double h2;
+
         public double H2
         {
             get { return h2; }
@@ -223,7 +241,9 @@ namespace BridgeTemperature.ViewModel
                 }
             }
         }
+
         private double dt3;
+
         public double DT3
         {
             get { return dt3; }
@@ -237,7 +257,9 @@ namespace BridgeTemperature.ViewModel
                 }
             }
         }
+
         private double dt4;
+
         public double DT4
         {
             get { return dt4; }
@@ -245,13 +267,15 @@ namespace BridgeTemperature.ViewModel
             {
                 if (value != dt4)
                 {
-                    dt4= value;
+                    dt4 = value;
                     concreteGirder.DT4 = value;
                     updateDrawings();
                 }
             }
         }
+
         private double h3;
+
         public double H3
         {
             get { return h3; }
@@ -265,7 +289,9 @@ namespace BridgeTemperature.ViewModel
                 }
             }
         }
+
         private double h4;
+
         public double H4
         {
             get { return h4; }

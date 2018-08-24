@@ -44,22 +44,24 @@ namespace BridgeTemperature.View.ViewClasses
 
         public IList<PointD> GetIGirderCoordinates()
         {
-            var coordinates = new List<PointD>();
-            coordinates.Add(new PointD(0, 0));
-            coordinates.Add(new PointD(Tw + Bf2 + Tw, 0));
-            coordinates.Add(new PointD(Tw + Bf2 + Tw, Tf2 + Hw));
-            coordinates.Add(new PointD(Tw + Bf2 / 2 + Bf1 / 2, Tf2 + Hw));
-            coordinates.Add(new PointD(Tw + Bf2 / 2 + Bf1 / 2, Tf2 + Hw + Tf1));
-            coordinates.Add(new PointD(Tw + Bf2 / 2 - Bf1 / 2, Tf2 + Hw + Tf1));
-            coordinates.Add(new PointD(Tw + Bf2 / 2 - Bf1 / 2, Tf2 + Hw));
-            coordinates.Add(new PointD(0, Tf2 + Hw));
-            coordinates.Add(new PointD(Tw, Tf2 + Hw));
-            coordinates.Add(new PointD(Tw + Bf2, Tf2 + Hw));
-            coordinates.Add(new PointD(Tw + Bf2, Tf2));
-            coordinates.Add(new PointD(Tw, Tf2));
-            coordinates.Add(new PointD(Tw, Tf2 + Hw));
-            coordinates.Add(new PointD(0, Tf2 + Hw));
-            coordinates.Add(new PointD(0, 0));
+            var coordinates = new List<PointD>
+            {
+                new PointD(0, 0),
+                new PointD(Tw + Bf2 + Tw, 0),
+                new PointD(Tw + Bf2 + Tw, Tf2 + Hw),
+                new PointD(Tw + Bf2 / 2 + Bf1 / 2, Tf2 + Hw),
+                new PointD(Tw + Bf2 / 2 + Bf1 / 2, Tf2 + Hw + Tf1),
+                new PointD(Tw + Bf2 / 2 - Bf1 / 2, Tf2 + Hw + Tf1),
+                new PointD(Tw + Bf2 / 2 - Bf1 / 2, Tf2 + Hw),
+                new PointD(0, Tf2 + Hw),
+                new PointD(Tw, Tf2 + Hw),
+                new PointD(Tw + Bf2, Tf2 + Hw),
+                new PointD(Tw + Bf2, Tf2),
+                new PointD(Tw, Tf2),
+                new PointD(Tw, Tf2 + Hw),
+                new PointD(0, Tf2 + Hw),
+                new PointD(0, 0)
+            };
 
             return coordinates;
         }
@@ -67,13 +69,15 @@ namespace BridgeTemperature.View.ViewClasses
         public IList<Distribution> GetIGirderDistribution()
         {
             var h = Tf2 + Hw + Tf1;
-            var distribution = new List<Distribution>();
-            distribution.Add(new Distribution(0, DT4));
-            distribution.Add(new Distribution(H4, DT3));
-            distribution.Add(new Distribution(H4 + H3, 0));
-            distribution.Add(new Distribution(h - H1 - H2, 0));
-            distribution.Add(new Distribution(h - H1, DT2));
-            distribution.Add(new Distribution(h, DT1));
+            var distribution = new List<Distribution>
+            {
+                new Distribution(0, DT4),
+                new Distribution(H4, DT3),
+                new Distribution(H4 + H3, 0),
+                new Distribution(h - H1 - H2, 0),
+                new Distribution(h - H1, DT2),
+                new Distribution(h, DT1)
+            };
             return distribution;
         }
     }

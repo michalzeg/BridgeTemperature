@@ -13,10 +13,11 @@ using System.Threading.Tasks;
 
 namespace BridgeTemperature.ViewModel
 {
-    public class SteelWindowViewModel:ViewModelBase
+    public class SteelWindowViewModel : ViewModelBase
     {
         public SectionPropertiesViewModel SectionPropertiesVM { get; private set; }
         public RelayCommand Apply { get; private set; }
+
         public SteelWindowViewModel()
         {
             SectionPropertiesVM = new SectionPropertiesViewModel();
@@ -47,7 +48,9 @@ namespace BridgeTemperature.ViewModel
                 steelPlateGirder.GetTemperature());
             Messenger.Default.Send<ISection>(section);
         }
+
         private SteelPlateGirder steelPlateGirder;
+
         private void UpdateDrawings()
         {
             var sectionCoordinates = steelPlateGirder.GetCoordinates();
@@ -56,24 +59,27 @@ namespace BridgeTemperature.ViewModel
             Section = section;
             RaisePropertyChanged(() => Section);
 
-            var distributionData = new DistributionDrawingData();
-            distributionData.Distribution = steelPlateGirder.GetTemperature();
-            distributionData.SectionMaxY = sectionCoordinates.Max(e => e.Y);
-            distributionData.SectionMinY = sectionCoordinates.Min(e => e.Y);
-            distributionData.SectionMaxX = sectionCoordinates.Max(e => e.X);
-            distributionData.SectionMinX = sectionCoordinates.Min(e => e.X);
-            var distribution = new List<DistributionDrawingData>() { distributionData }; 
+            var distributionData = new DistributionDrawingData
+            {
+                Distribution = steelPlateGirder.GetTemperature(),
+                SectionMaxY = sectionCoordinates.Max(e => e.Y),
+                SectionMinY = sectionCoordinates.Min(e => e.Y),
+                SectionMaxX = sectionCoordinates.Max(e => e.X),
+                SectionMinX = sectionCoordinates.Min(e => e.X)
+            };
+            var distribution = new List<DistributionDrawingData>() { distributionData };
             TempDistribution = distribution;
             RaisePropertyChanged(() => TempDistribution);
-
         }
+
         private double tf1;
+
         public double Tf1
         {
             get { return tf1; }
             set
             {
-                if (value!=tf1)
+                if (value != tf1)
                 {
                     tf1 = value;
                     steelPlateGirder.Tf1 = value;
@@ -81,7 +87,9 @@ namespace BridgeTemperature.ViewModel
                 }
             }
         }
+
         private double hw;
+
         public double Hw
         {
             get { return hw; }
@@ -95,7 +103,9 @@ namespace BridgeTemperature.ViewModel
                 }
             }
         }
+
         private double tf2;
+
         public double Tf2
         {
             get { return tf2; }
@@ -109,7 +119,9 @@ namespace BridgeTemperature.ViewModel
                 }
             }
         }
+
         private double tw;
+
         public double Tw
         {
             get { return tw; }
@@ -123,7 +135,9 @@ namespace BridgeTemperature.ViewModel
                 }
             }
         }
+
         private double bf;
+
         public double Bf
         {
             get { return bf; }
@@ -137,7 +151,9 @@ namespace BridgeTemperature.ViewModel
                 }
             }
         }
+
         private double dt1;
+
         public double DT1
         {
             get { return dt1; }
@@ -151,7 +167,9 @@ namespace BridgeTemperature.ViewModel
                 }
             }
         }
+
         private double h1;
+
         public double H1
         {
             get { return h1; }
