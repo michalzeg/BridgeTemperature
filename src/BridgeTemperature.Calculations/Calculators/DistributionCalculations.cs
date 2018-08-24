@@ -24,9 +24,9 @@ namespace BridgeTemperature.DistributionOperations
             this.compositeSection = compositeSection;
         }
 
-        private double calculateNormalForce()
+        private double CalculateNormalForce()
         {
-            Integration integration = new Integration();
+            var integration = new Integration();
             foreach (var section in compositeSection.Sections)
             {
                 integration.Integrate(section, compositeSection.CentreOfGravity, section.ExternalStress.GetValue);
@@ -34,17 +34,17 @@ namespace BridgeTemperature.DistributionOperations
             return integration.NormalForce;
         }
 
-        private void calculateNormalStress(double normalForce)
+        private void CalculateNormalStress(double normalForce)
         {
             foreach (var section in compositeSection.Sections)
             {
-                StressDistribution uniformDistribution = StressDistribution.AxialStress(section.Coordinates, normalForce, compositeSection.Area, compositeSection.BaseModulusOfElasticity, section.ModulusOfElasticity);
+                var uniformDistribution = StressDistribution.AxialStress(section.Coordinates, normalForce, compositeSection.Area, compositeSection.BaseModulusOfElasticity, section.ModulusOfElasticity);
                 section.UniformStress = uniformDistribution;
                 section.UniformStress.MultiplyDistribution(-1);
             }
         }
 
-        private double calculateBendingMoment()
+        private double CalculateBendingMoment()
         {
             var integration = new Integration();
             foreach (var section in compositeSection.Sections)
@@ -56,7 +56,7 @@ namespace BridgeTemperature.DistributionOperations
             return integration.Moment;
         }
 
-        private void calculateBendingAndSelfStresses(double moment)
+        private void CalculateBendingAndSelfStresses(double moment)
         {
             foreach (var section in compositeSection.Sections)
             {
@@ -72,7 +72,7 @@ namespace BridgeTemperature.DistributionOperations
             }
         }
 
-        private void convertStressToTemperature()
+        private void ConvertStressToTemperature()
         {
             foreach (var section in compositeSection.Sections)
             {
@@ -84,11 +84,11 @@ namespace BridgeTemperature.DistributionOperations
 
         public void CalculateDistributions()
         {
-            var normalForce = calculateNormalForce();
-            calculateNormalStress(normalForce);
-            var moment = calculateBendingMoment();
-            calculateBendingAndSelfStresses(moment);
-            convertStressToTemperature();
+            var normalForce = CalculateNormalForce();
+            CalculateNormalStress(normalForce);
+            var moment = CalculateBendingMoment();
+            CalculateBendingAndSelfStresses(moment);
+            ConvertStressToTemperature();
         }
 
         public IEnumerable<IEnumerable<Distribution>> GetResult(ResultType resultType)

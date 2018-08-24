@@ -1,0 +1,34 @@
+﻿namespace BridgeTemperature.SectionProperties
+{
+    public enum SectionCharacteristic
+    {
+        A,
+        Sx,
+        Sy,
+        Ix,
+        Iy,
+        Ixy,
+        Ix0,
+        Iy0,
+        Ixy0,
+        I1,
+        I2,
+        Alfa,
+        X0Max,
+        X0Min,
+        Y0Max,
+        Y0Min,
+        XIMax,
+        XIMin,
+        YIMax,
+        YIMin,
+        Xmax,
+        Xmin,
+        Ymax,
+        Ymin,
+        X0,
+        Y0,
+        B,
+        H
+    };
+}

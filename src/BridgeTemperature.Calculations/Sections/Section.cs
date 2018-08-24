@@ -35,8 +35,8 @@ namespace BridgeTemperature.Sections
 
         public Section(IList<PointD> coordinates, SectionType type, double modulusOfElasticity, double thermalCooefficient, IEnumerable<Distribution> externalTemperatureDistribution)
         {
-            this.Coordinates = checkIfCoordinatesAreClockwise(coordinates);
-            this.checkLastElement();
+            this.Coordinates = CheckIfCoordinatesAreClockwise(coordinates);
+            this.CheckLastElement();
             this.Type = type;
             this.ModulusOfElasticity = modulusOfElasticity;
             this.ThermalCooeficient = thermalCooefficient;
@@ -56,7 +56,7 @@ namespace BridgeTemperature.Sections
             this.ExternalStress = this.ExternalTemperature.ConvertToStressDistribution(coordinates, modulusOfElasticity, thermalCooefficient);
         }
 
-        private void checkLastElement()
+        private void CheckLastElement()
         {
             PointD firstPoint = this.Coordinates[0];
             PointD lastPoint = this.Coordinates.Last();
@@ -71,15 +71,15 @@ namespace BridgeTemperature.Sections
             }
         }
 
-        private IList<PointD> checkIfCoordinatesAreClockwise(IList<PointD> coordinates)
+        private IList<PointD> CheckIfCoordinatesAreClockwise(IList<PointD> coordinates)
         {
             if (coordinates.Count < 3)
                 throw new ArgumentOutOfRangeException();
-            double crossPrd;
-            List<PointD> tempCoord = new List<PointD>(coordinates);
+
+            var tempCoord = new List<PointD>(coordinates);
             for (int i = 0; i <= coordinates.Count - 3; i++)
             {
-                crossPrd = this.crossProduct(coordinates[i], coordinates[i + 1], coordinates[i + 2]);
+                var crossPrd = this.CrossProduct(coordinates[i], coordinates[i + 1], coordinates[i + 2]);
                 if (crossPrd > 0)
                 {
                     //clockwise
@@ -96,15 +96,15 @@ namespace BridgeTemperature.Sections
             return tempCoord;
         }
 
-        private double crossProduct(PointD p0, PointD p1, PointD p2)
+        private double CrossProduct(PointD point0, PointD point1, PointD point2)
         {
             double[] vector1 = new double[2];
             double[] vector2 = new double[2];
 
-            vector1[0] = p1.X - p0.X;
-            vector1[1] = p1.Y - p0.Y;
-            vector2[0] = p2.X - p1.X;
-            vector2[1] = p2.Y - p1.Y;
+            vector1[0] = point1.X - point0.X;
+            vector1[1] = point1.Y - point0.Y;
+            vector2[0] = point2.X - point1.X;
+            vector2[1] = point2.Y - point1.Y;
 
             double result;
             result = vector1[0] * vector2[1] - vector1[1] * vector2[0];

@@ -40,6 +40,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Interfaces\IIntegrable.cs" />
+    <Compile Include="Interfaces\IIntegration.cs" />
+    <Compile Include="Interfaces\ICompositePropertiesCalculations.cs" />
+    <Compile Include="Sections\CompositeSectionPropertiesCalculations.cs" />
+    <Compile Include="Sections\ExtremeDistances.cs" />
+    <Compile Include="Sections\SectionCharacteristic.cs" />
+    <Compile Include="Slicing\SectionSlice.cs" />
+    <Compile Include="Slicing\SlicingCalculator.cs" />
     <Compile Include="Distributions\BaseDistribution.cs" />
     <Compile Include="Distributions\Distribution.cs" />
     <Compile Include="Calculators\DistributionCalculations.cs" />
@@ -60,5 +68,6 @@
       <Name>BridgeTemperature.Common</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

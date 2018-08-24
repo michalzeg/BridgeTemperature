@@ -13,10 +13,10 @@ namespace BridgeTemperature.DistributionOperations
 
         protected BaseDistribution(IEnumerable<Distribution> distribution)
         {
-            this.updateDistribution(distribution);
+            this.UpdateDistribution(distribution);
         }
 
-        private void updateDistribution(IEnumerable<Distribution> distribution)
+        private void UpdateDistribution(IEnumerable<Distribution> distribution)
         {
             var x = distribution.Select(e => e.Y);
             var y = distribution.Select(e => e.Value);
@@ -31,12 +31,12 @@ namespace BridgeTemperature.DistributionOperations
 
         public void AddDistribution(IEnumerable<Distribution> distribution)
         {
-            this.addOrSubtract(distribution, operationType.Addition);
+            this.AddOrSubtract(distribution, operationType.Addition);
         }
 
         public void SubtractDistribution(IEnumerable<Distribution> distribution)
         {
-            this.addOrSubtract(distribution, operationType.Subtraction);
+            this.AddOrSubtract(distribution, operationType.Subtraction);
         }
 
         public void MultiplyDistribution(double value)
@@ -49,10 +49,10 @@ namespace BridgeTemperature.DistributionOperations
                 distribution.Y = element.Y;
                 multipliedDistribution.Add(distribution);
             }
-            updateDistribution(multipliedDistribution.Distinct().OrderBy(e => e.Y));
+            UpdateDistribution(multipliedDistribution.Distinct().OrderBy(e => e.Y));
         }
 
-        private void addOrSubtract(IEnumerable<Distribution> distribution, operationType operationType)
+        private void AddOrSubtract(IEnumerable<Distribution> distribution, operationType operationType)
         {
             var distributionSum = new List<Distribution>();
             var tempInterpolation = new Interpolation(distribution.Select(e => e.Y), distribution.Select(e => e.Value));
@@ -73,7 +73,7 @@ namespace BridgeTemperature.DistributionOperations
                 distributionSum.Add(newDistribution);
             }
 
-            updateDistribution(distributionSum.Distinct().OrderBy(e => e.Y));
+            UpdateDistribution(distributionSum.Distinct().OrderBy(e => e.Y));
         }
     }
 }

@@ -5,94 +5,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using BridgeTemperature.Extensions;
-using BridgeTemperature.IntegrationFunctions;
 
 namespace BridgeTemperature.SectionProperties
 {
-    public interface ICompositePropertiesCalculations : IIntegrable
-    {
-        double ModulusOfElasticity { get; }
-        double Area { get; }
-        double MomentOfInertia { get; }
-    }
-
-    public enum SectionCharacteristic
-    {
-        A,
-        Sx,
-        Sy,
-        Ix,
-        Iy,
-        Ixy,
-        Ix0,
-        Iy0,
-        Ixy0,
-        I1,
-        I2,
-        Alfa,
-        X0Max,
-        X0Min,
-        Y0Max,
-        Y0Min,
-        XIMax,
-        XIMin,
-        YIMax,
-        YIMin,
-        Xmax,
-        Xmin,
-        Ymax,
-        Ymin,
-        X0,
-        Y0,
-        B,
-        H
-    };
-
-    public class CompositeSectionPropertiesCalculations
-    {
-        public double BaseModulusOfElasticity { get; private set; }
-        public PointD CentreOfGravity { get; private set; }
-        public double Area { get; private set; }
-        public double SecondMomentOfArea { get; private set; }
-        private IEnumerable<ICompositePropertiesCalculations> sections;
-
-        public CompositeSectionPropertiesCalculations(IEnumerable<ICompositePropertiesCalculations> sections)
-        {
-            this.sections = sections;
-            this.getBaseModulusOfElasticity();
-            this.calculateSectionProperties();
-        }
-
-        private void getBaseModulusOfElasticity()
-        {
-            this.BaseModulusOfElasticity = this.sections.Max(e => e.ModulusOfElasticity);
-        }
-
-        private void calculateSectionProperties()
-        {
-            double firstMomentOfAreaX = 0;
-            double firstMomentOfAreaY = 0;
-            double secondMomentOfAreaGlobalX = 0;
-            double area = 0;
-            foreach (var section in this.sections)
-            {
-                double multiplier = section.Type == SectionType.Void ? -1 : 1;
-
-                double alfa = this.BaseModulusOfElasticity / section.ModulusOfElasticity;
-                area = area + multiplier * section.Area / alfa;
-                firstMomentOfAreaX = firstMomentOfAreaX + multiplier * section.Area / alfa * section.CentreOfGravity.Y;
-                firstMomentOfAreaY = firstMomentOfAreaY + multiplier * section.Area / alfa * section.CentreOfGravity.X;
-                secondMomentOfAreaGlobalX = secondMomentOfAreaGlobalX + multiplier * (section.MomentOfInertia / alfa + section.Area / alfa * section.CentreOfGravity.Y * section.CentreOfGravity.Y);
-            }
-            this.Area = area;
-            double y0 = firstMomentOfAreaX / area;
-            double x0 = firstMomentOfAreaY / area;
-
-            this.CentreOfGravity = new PointD(x0, y0);
-            this.SecondMomentOfArea = secondMomentOfAreaGlobalX - area * y0 * y0;
-        }
-    }
-
     public class SectionPropertiesCalculations
     {
         private IList<PointD> coordinates;
@@ -606,39 +521,9 @@ namespace BridgeTemperature.SectionProperties
             double x0_max, x0_min, y0_max, y0_min;
             double xI_max, xI_min, yI_max, yI_min;
             double xmax, xmin, ymax, ymin;
-            extremeCoordinates.maxDistancesCentralCoordinateSystem(coordinates, out x0_max, out x0_min, out y0_max, out y0_min);
-            extremeCoordinates.maxDistancesPrincipalCoordinateSystem(coordinates, alfa, out xI_max, out xI_min, out yI_max, out yI_min);
-            extremeCoordinates.extremeCoordinates(coordinates, out xmax, out xmin, out ymax, out ymin);
-
-            /*this.SectionProperties = new Dictionary<SectionCharacteristic, double>();
-            this.SectionProperties.Add(SectionCharacteristic.Alfa, alfa);
-            this.SectionProperties.Add(SectionCharacteristic.B, b);
-            this.SectionProperties.Add(SectionCharacteristic.A, F);
-            this.SectionProperties.Add(SectionCharacteristic.H, h);
-            this.SectionProperties.Add(SectionCharacteristic.I1, I1);
-            this.SectionProperties.Add(SectionCharacteristic.I2, I2);
-            this.SectionProperties.Add(SectionCharacteristic.Ix, Ix);
-            this.SectionProperties.Add(SectionCharacteristic.Ix0, Ix0);
-            this.SectionProperties.Add(SectionCharacteristic.Ixy, Ixy);
-            this.SectionProperties.Add(SectionCharacteristic.Ixy0, Ixy0);
-            this.SectionProperties.Add(SectionCharacteristic.Iy, Iy);
-            this.SectionProperties.Add(SectionCharacteristic.Iy0, Iy0);
-            this.SectionProperties.Add(SectionCharacteristic.Sx, Sx);
-            this.SectionProperties.Add(SectionCharacteristic.Sy, Sy);
-            this.SectionProperties.Add(SectionCharacteristic.X0Max, x0_max);
-            this.SectionProperties.Add(SectionCharacteristic.X0Min, x0_min);
-            this.SectionProperties.Add(SectionCharacteristic.XIMax, xI_max);
-            this.SectionProperties.Add(SectionCharacteristic.XIMin, xI_min);
-            this.SectionProperties.Add(SectionCharacteristic.X0, x0);
-            this.SectionProperties.Add(SectionCharacteristic.Y0Max, y0_max);
-            this.SectionProperties.Add(SectionCharacteristic.Y0Min, y0_min);
-            this.SectionProperties.Add(SectionCharacteristic.YIMax, yI_max);
-            this.SectionProperties.Add(SectionCharacteristic.YIMin, yI_min);
-            this.SectionProperties.Add(SectionCharacteristic.Y0, y0);
-            this.SectionProperties.Add(SectionCharacteristic.Xmax, xmax);
-            this.SectionProperties.Add(SectionCharacteristic.Xmin, xmin);
-            this.SectionProperties.Add(SectionCharacteristic.Ymax, ymax);
-            this.SectionProperties.Add(SectionCharacteristic.Ymin, ymin);*/
+            extremeCoordinates.MaxDistancesCentralCoordinateSystem(coordinates, out x0_max, out x0_min, out y0_max, out y0_min);
+            extremeCoordinates.MaxDistancesPrincipalCoordinateSystem(coordinates, alfa, out xI_max, out xI_min, out yI_max, out yI_min);
+            extremeCoordinates.ExtremeCoordinates(coordinates, out xmax, out xmin, out ymax, out ymin);
         }
 
         public Dictionary<SectionCharacteristic, double> GetAllProperties()
@@ -675,46 +560,6 @@ namespace BridgeTemperature.SectionProperties
             allProperties.Add(SectionCharacteristic.Ymin, YMin);
 
             return allProperties;
-        }
-    }
-
-    [Obsolete]
-    public class ExtremeDistances
-    {
-        private PointD centreOfGravity;
-
-        public ExtremeDistances(PointD centreOfGravity)
-        {
-            this.centreOfGravity = centreOfGravity;
-        }
-
-        public void maxDistancesCentralCoordinateSystem(IList<PointD> coordinates, out double x0_max, out double x0_min, out double y0_max, out double y0_min)
-        {
-            x0_max = coordinates.Max(point => point.X) - this.centreOfGravity.X;
-            x0_min = coordinates.Min(point => point.X) - this.centreOfGravity.X;
-            y0_max = coordinates.Max(point => point.Y) - this.centreOfGravity.Y;
-            y0_min = coordinates.Min(point => point.Y) - this.centreOfGravity.Y;
-        }
-
-        public void maxDistancesPrincipalCoordinateSystem(IList<PointD> coordinates, double alfa, out double x_max, out double x_min, out double y_max, out double y_min)
-        {
-            double cos = Math.Cos(alfa);
-            double sin = Math.Sin(alfa);
-            double xo = this.centreOfGravity.X * cos - this.centreOfGravity.Y * sin;
-            double yo = this.centreOfGravity.X * sin + this.centreOfGravity.Y * cos;
-
-            x_max = coordinates.Max(point => point.X * cos - point.Y * sin) - xo;
-            x_min = coordinates.Min(point => point.X * cos - point.Y * sin) - xo;
-            y_max = coordinates.Max(point => point.X * sin + point.Y * cos) - yo;
-            y_min = coordinates.Min(point => point.X * sin + point.Y * cos) - yo;
-        }
-
-        public void extremeCoordinates(IList<PointD> coordinates, out double xmax, out double xmin, out double ymax, out double ymin)
-        {
-            xmax = coordinates.Max(point => point.X);
-            ymax = coordinates.Max(point => point.Y);
-            xmin = coordinates.Min(point => point.X);
-            ymin = coordinates.Min(point => point.Y);
         }
     }
 }
