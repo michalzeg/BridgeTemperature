@@ -1,51 +1,13 @@
 ﻿using System;
-using System.Collections;
 using System.Linq;
 using System.Collections.Generic;
-using System.Xml;
-using System.Xml.Serialization;
 using BridgeTemperature.Extensions;
 using BridgeTemperature.SectionProperties;
 using BridgeTemperature.Helpers;
-using BridgeTemperature.IntegrationFunctions;
 using BridgeTemperature.DistributionOperations;
+
 namespace BridgeTemperature.Sections
 {
-    public interface ICompositeSection
-    {
-        ICollection<ISection> Sections { get; }
-        PointD CentreOfGravity { get; }
-        double MomentOfIntertia { get; }
-        double BaseModulusOfElasticity { get; }
-        double Area { get; }
-    }
-
-    public class TypicalCompositeSection : ICompositeSection
-    {
-        public double BaseModulusOfElasticity { get; private set; }
-        public PointD CentreOfGravity { get; private set; }
-        public double MomentOfIntertia { get; private set; }
-        public ICollection<ISection> Sections { get; private set; }
-        public double Area {get; private set;}
-
-        public TypicalCompositeSection(ICollection<ISection> sections)
-        {
-            var compositeProperties = new CompositeSectionPropertiesCalculations(sections);
-            this.Sections = sections;
-            this.BaseModulusOfElasticity = compositeProperties.BaseModulusOfElasticity;
-            this.CentreOfGravity = compositeProperties.CentreOfGravity;
-            this.Area = compositeProperties.Area;
-            this.MomentOfIntertia = compositeProperties.SecondMomentOfArea;
-        }
-    }
-    public interface ISection : ICompositePropertiesCalculations, IDistributable
-    {
-        double ThermalCooeficient { get; }
-        double XMax { get; }
-        double XMin { get; }
-        double Height { get; }
-    }
-
     public class Section : ISection
     {
         public StressDistribution ExternalStress { get; private set; }
@@ -68,10 +30,10 @@ namespace BridgeTemperature.Sections
         public double YMin { get; }
         public double XMax { get; }
         public double XMin { get; }
-        public double Height { get;}
+        public double Height { get; }
         public IList<PointD> Coordinates { get; }
 
-        public Section(IList<PointD> coordinates, SectionType type, double modulusOfElasticity, double thermalCooefficient,IEnumerable<Distribution> externalTemperatureDistribution)
+        public Section(IList<PointD> coordinates, SectionType type, double modulusOfElasticity, double thermalCooefficient, IEnumerable<Distribution> externalTemperatureDistribution)
         {
             this.Coordinates = checkIfCoordinatesAreClockwise(coordinates);
             this.checkLastElement();
@@ -90,15 +52,16 @@ namespace BridgeTemperature.Sections
             this.XMin = properties.XMin;
             this.Height = properties.YMax - properties.YMin;
 
-            this.ExternalTemperature = new TemperatureDistribution(externalTemperatureDistribution.OrderBy(e=>e.Y));
+            this.ExternalTemperature = new TemperatureDistribution(externalTemperatureDistribution.OrderBy(e => e.Y));
             this.ExternalStress = this.ExternalTemperature.ConvertToStressDistribution(coordinates, modulusOfElasticity, thermalCooefficient);
         }
+
         private void checkLastElement()
         {
             PointD firstPoint = this.Coordinates[0];
             PointD lastPoint = this.Coordinates.Last();
 
-            if (firstPoint.X.IsApproximatelyEqualTo(lastPoint.X) && firstPoint.Y.IsApproximatelyEqualTo(lastPoint.Y)) 
+            if (firstPoint.X.IsApproximatelyEqualTo(lastPoint.X) && firstPoint.Y.IsApproximatelyEqualTo(lastPoint.Y))
             {
                 return;
             }
@@ -107,7 +70,8 @@ namespace BridgeTemperature.Sections
                 this.Coordinates.Add(firstPoint);
             }
         }
-        private IList<PointD> checkIfCoordinatesAreClockwise(IList<PointD> coordinates) 
+
+        private IList<PointD> checkIfCoordinatesAreClockwise(IList<PointD> coordinates)
         {
             if (coordinates.Count < 3)
                 throw new ArgumentOutOfRangeException();
@@ -126,7 +90,7 @@ namespace BridgeTemperature.Sections
                     //counterclockwise
                     tempCoord.Reverse();
                     break;
-                }               
+                }
             }
 
             return tempCoord;
@@ -142,10 +106,9 @@ namespace BridgeTemperature.Sections
             vector2[0] = p2.X - p1.X;
             vector2[1] = p2.Y - p1.Y;
 
-            double result; 
+            double result;
             result = vector1[0] * vector2[1] - vector1[1] * vector2[0];
             return result;
         }
     }
-
 }

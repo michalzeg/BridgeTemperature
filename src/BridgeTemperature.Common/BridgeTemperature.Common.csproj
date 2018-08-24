@@ -46,7 +46,10 @@
     <Compile Include="Geometry\PointD.cs" />
     <Compile Include="Helpers\PropertyName.cs" />
     <Compile Include="Helpers\SectionType.cs" />
+    <Compile Include="Materials\MaterialProvider.cs" />
+    <Compile Include="Materials\Materials.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Results\ResultType.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -40,17 +40,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Calculations\BaseDistribution.cs" />
-    <Compile Include="Calculations\Distribution.cs" />
-    <Compile Include="Calculations\DistributionCalculations.cs" />
-    <Compile Include="Calculations\IDistributable.cs" />
-    <Compile Include="Calculations\Interigation.cs" />
-    <Compile Include="Calculations\Materials.cs" />
-    <Compile Include="Calculations\ResultType.cs" />
-    <Compile Include="Calculations\SectionProperties.cs" />
-    <Compile Include="Calculations\Sections.cs" />
-    <Compile Include="Calculations\StressDistribution.cs" />
-    <Compile Include="Calculations\TemperatureDistribution.cs" />
+    <Compile Include="Distributions\BaseDistribution.cs" />
+    <Compile Include="Distributions\Distribution.cs" />
+    <Compile Include="Calculators\DistributionCalculations.cs" />
+    <Compile Include="Sections\Section.cs" />
+    <Compile Include="Distributions\TypicalCompositeSection.cs" />
+    <Compile Include="Interfaces\ICompositeSection.cs" />
+    <Compile Include="Interfaces\IDistributable.cs" />
+    <Compile Include="Calculators\Interigation.cs" />
+    <Compile Include="Sections\SectionProperties.cs" />
+    <Compile Include="Interfaces\ISection.cs" />
+    <Compile Include="Distributions\StressDistribution.cs" />
+    <Compile Include="Distributions\TemperatureDistribution.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
