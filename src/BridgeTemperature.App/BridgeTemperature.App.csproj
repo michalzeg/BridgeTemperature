@@ -202,16 +202,16 @@
       <DependentUpon>SteelWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\SectionWindows\Steel\SteelWindowViewModel.cs" />
-    <Compile Include="View\ViewClasses\DistributionDrawing.cs" />
-    <Compile Include="View\ViewClasses\DistributionDrawingData.cs" />
-    <Compile Include="View\ViewClasses\DistributionPopup.cs" />
-    <Compile Include="View\ViewClasses\DistributionScaleCalculator.cs" />
-    <Compile Include="View\ViewClasses\DrawingBase.cs" />
-    <Compile Include="View\ViewClasses\MessangerTokens.cs" />
-    <Compile Include="View\ViewClasses\PolygonDrawing.cs" />
-    <Compile Include="View\ViewClasses\ScaleCalculator.cs" />
-    <Compile Include="View\ViewClasses\SectionCanvas.cs" />
-    <Compile Include="View\ViewClasses\SectionDrawingData.cs" />
+    <Compile Include="Drawings\DistributionDrawing.cs" />
+    <Compile Include="Drawings\DistributionDrawingData.cs" />
+    <Compile Include="Drawings\DistributionPopup.cs" />
+    <Compile Include="Drawings\DistributionScaleCalculator.cs" />
+    <Compile Include="Drawings\DrawingBase.cs" />
+    <Compile Include="Messages\MessangerTokens.cs" />
+    <Compile Include="Drawings\PolygonDrawing.cs" />
+    <Compile Include="Drawings\ScaleCalculator.cs" />
+    <Compile Include="Drawings\SectionCanvas.cs" />
+    <Compile Include="Drawings\SectionDrawingData.cs" />
     <Compile Include="View\SectionConverters\RectangularGirder.cs" />
     <Compile Include="View\ViewModelLocator.cs" />
     <Compile Include="View\MainWindow\MainWindow.xaml.cs">
