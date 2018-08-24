@@ -105,6 +105,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Calculations\BaseDistribution.cs" />
+    <Compile Include="Calculations\DistributionCalculations.cs" />
+    <Compile Include="Calculations\IDistributable.cs" />
+    <Compile Include="Calculations\ResultType.cs" />
+    <Compile Include="Calculations\StressDistribution.cs" />
+    <Compile Include="Calculations\TemperatureDistribution.cs" />
     <Compile Include="Extensions\ObjectExtensions.cs" />
     <Compile Include="Geometry\PointD.cs" />
     <Compile Include="Helpers\SectionType.cs" />
