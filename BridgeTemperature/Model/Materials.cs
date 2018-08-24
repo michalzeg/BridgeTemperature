@@ -7,22 +7,14 @@ using System.Xml.Serialization;
 
 namespace BridgeTemperature.MaterialProperties
 {
-    /*public class MaterialList
-    {
-        [XmlElement("Concrete")]
-        public List<Concrete> ConcreteList { get; set; }
-        [XmlElement("StructuralSteel")]
-        public List<StructuralSteel> StructuralSteelList { get; set; }
-        
-    }*/
-    
     public class Material
     {
         [XmlElement()]
-        public string Type { get; set; } 
+        public string Type { get; set; }
 
         [XmlElement()]
-        public string Grade { get; set; } 
+        public string Grade { get; set; }
+
         [XmlElement()]
         public double E { get; set; }
 
@@ -30,56 +22,34 @@ namespace BridgeTemperature.MaterialProperties
         public double ThermalCoefficient { get; set; }
     }
 
-    /*public class Concrete :IMaterial
-    {
-        
-        [XmlElement()]
-        public string Grade { get; set; } 
-
-        [XmlElement()]
-        public double E {get;set;}
-        
-        [XmlElement()]
-        public double ThermalCoefficient {get;set;}
-    }
-
-    public class StructuralSteel :IMaterial
-    {
-        [XmlElement()]
-        public string Grade { get; set; }
-
-        [XmlElement()]
-        public double E { get; set; }
-        
-        [XmlElement()]
-        public double ThermalCoefficient {get;set;}
-    }*/
-
-    public class MaterialOperations
+    public class MaterialProvider
     {
         public static IEnumerable<Material> GetAllMaterials()
         {
             IEnumerable<Material> materials;
 
+            var location = Path.GetDirectoryName(typeof(Material).Assembly.Location);
+
+            var filePath = Path.Combine(location, "Resources", "materials.xml");
             XmlSerializer serializer = new XmlSerializer(typeof(List<Material>));
-            using (var reader = new StringReader(Properties.Resources.materials)) 
+            using (var reader = new StreamReader(filePath))
             {
                 materials = serializer.Deserialize(reader) as IEnumerable<Material>;
             }
             return materials;
         }
-        
+
         public static IEnumerable<Material> GetSteelMaterials()
         {
             var materials = GetAllMaterials();
 
             return materials.Where(e => e.Grade[0] == 'S');
         }
+
         public static IEnumerable<Material> GetConcreteMaterials()
         {
             var materials = GetAllMaterials();
             return materials.Where(e => e.Grade[0] == 'C');
         }
-
     }
 }

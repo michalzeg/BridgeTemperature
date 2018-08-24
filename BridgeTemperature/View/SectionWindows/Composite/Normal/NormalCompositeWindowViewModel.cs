@@ -23,9 +23,9 @@ namespace BridgeTemperature.ViewModel
         public NormalCompositeWindowViewModel()
         {
             SteelPropertiesVM = new SectionPropertiesViewModel();
-            SteelPropertiesVM.Materials = MaterialProperties.MaterialOperations.GetSteelMaterials().ToList();
+            SteelPropertiesVM.Materials = MaterialProperties.MaterialProvider.GetSteelMaterials().ToList();
             ConcretePropertiesVM = new SectionPropertiesViewModel();
-            ConcretePropertiesVM.Materials = MaterialProperties.MaterialOperations.GetConcreteMaterials().ToList();
+            ConcretePropertiesVM.Materials = MaterialProperties.MaterialProvider.GetConcreteMaterials().ToList();
 
             Section = new List<SectionDrawingData>();
             TempDistribution = new List<DistributionDrawingData>();

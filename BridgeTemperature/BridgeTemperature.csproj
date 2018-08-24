@@ -278,7 +278,9 @@
     <Resource Include="Images\Buttons\ApplyIcon.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\materials.xml" />
+    <EmbeddedResource Include="Resources\materials.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\Ribbon\Run.png" />

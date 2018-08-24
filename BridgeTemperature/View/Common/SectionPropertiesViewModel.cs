@@ -17,7 +17,7 @@ namespace BridgeTemperature.ViewModel
 
         public SectionPropertiesViewModel()
         {
-            Materials = MaterialOperations.GetAllMaterials().ToList();
+            Materials = MaterialProvider.GetAllMaterials().ToList();
             RaisePropertyChanged(() => Materials);
         }
 

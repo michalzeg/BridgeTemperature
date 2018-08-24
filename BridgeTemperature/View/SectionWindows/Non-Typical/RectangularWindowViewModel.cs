@@ -20,7 +20,7 @@ namespace BridgeTemperature.ViewModel
         public RectangularWindowViewModel()
         {
             SectionPropertiesVM = new SectionPropertiesViewModel();
-            SectionPropertiesVM.Materials = MaterialProperties.MaterialOperations.GetAllMaterials().ToList();
+            SectionPropertiesVM.Materials = MaterialProperties.MaterialProvider.GetAllMaterials().ToList();
             Section = new List<SectionDrawingData>();
             TempDistribution = new List<DistributionDrawingData>();
             Apply = new RelayCommand(apply);

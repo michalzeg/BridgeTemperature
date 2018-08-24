@@ -24,7 +24,7 @@ namespace BridgeTemperature.ViewModel
         {
             
             ConcretePropertiesVM = new SectionPropertiesViewModel();
-            ConcretePropertiesVM.Materials = MaterialProperties.MaterialOperations.GetConcreteMaterials().ToList();
+            ConcretePropertiesVM.Materials = MaterialProperties.MaterialProvider.GetConcreteMaterials().ToList();
 
             Section = new List<SectionDrawingData>();
             TempDistribution = new List<DistributionDrawingData>();
