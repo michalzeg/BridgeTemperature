@@ -13,7 +13,6 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using GalaSoft.MvvmLight.Ioc;
 using BridgeTemperature.ViewModel;
-using BridgeTemperature.Helpers;
 using BridgeTemperature.DistributionOperations;
 using GalaSoft.MvvmLight.Messaging;
 

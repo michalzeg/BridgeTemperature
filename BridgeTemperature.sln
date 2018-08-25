@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BridgeTemperature.App", "sr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BridgeTemperatureTests", "tests\BridgeTemperatureTests\BridgeTemperatureTests.csproj", "{2B3E392D-4C4E-40F6-A8C3-3A803CA0CB99}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BridgeTemperature.Common", "src\BridgeTemperature.Common\BridgeTemperature.Common.csproj", "{173D8831-7024-488F-A35C-A667972D5E7E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BridgeTemperature.Shared", "src\BridgeTemperature.Shared\BridgeTemperature.Shared.csproj", "{173D8831-7024-488F-A35C-A667972D5E7E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BridgeTemperature.Calculations", "src\BridgeTemperature.Calculations\BridgeTemperature.Calculations.csproj", "{DB8E2A57-1422-4618-B79B-FE15968419B4}"
 EndProject

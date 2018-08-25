@@ -319,9 +319,9 @@
       <Project>{db8e2a57-1422-4618-b79b-fe15968419b4}</Project>
       <Name>BridgeTemperature.Calculations</Name>
     </ProjectReference>
-    <ProjectReference Include="..\BridgeTemperature.Common\BridgeTemperature.Common.csproj">
+    <ProjectReference Include="..\BridgeTemperature.Shared\BridgeTemperature.Shared.csproj">
       <Project>{173d8831-7024-488f-a35c-a667972d5e7e}</Project>
-      <Name>BridgeTemperature.Common</Name>
+      <Name>BridgeTemperature.Shared</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
