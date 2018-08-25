@@ -12,10 +12,10 @@ using BridgeTemperature.Helpers;
 
 namespace BridgeTemperature.SectionProperties.Tests
 {
-    [TestFixture()]
+    [TestFixture]
     public class CompositeSectionPropertiesCalculationsTests
     {
-        [Test()]
+        [Test]
         public void CompositeSectionPropertiesCalculations_TwoRectanglesFromTheSameMaterial_Passed()
         {
             var section1 = Substitute.For<ICompositePropertiesCalculations>();
@@ -38,12 +38,15 @@ namespace BridgeTemperature.SectionProperties.Tests
 
             var compositeProperties = new CompositeSectionPropertiesCalculations(listOfSections);
 
-            Assert.AreEqual(7.5, compositeProperties.CentreOfGravity.Y);
-            Assert.AreEqual(48, compositeProperties.Area);
-            Assert.AreEqual(316, compositeProperties.SecondMomentOfArea);
+            Assert.Multiple(() =>
+            {
+                Assert.AreEqual(7.5, compositeProperties.CentreOfGravity.Y);
+                Assert.AreEqual(48, compositeProperties.Area);
+                Assert.AreEqual(316, compositeProperties.SecondMomentOfArea);
+            });
         }
 
-        [Test()]
+        [Test]
         public void CompositeSectionPropertiesCalculations_TwoRectanglesFromDiferentMaterials_Passed()
         {
             var section1 = Substitute.For<ICompositePropertiesCalculations>();
@@ -66,12 +69,15 @@ namespace BridgeTemperature.SectionProperties.Tests
 
             var compositeProperties = new CompositeSectionPropertiesCalculations(listOfSections);
 
-            Assert.AreEqual(5.2272.Round(), compositeProperties.CentreOfGravity.Y.Round());
-            Assert.AreEqual(25.1428.Round(), compositeProperties.Area.Round());
-            Assert.AreEqual(35.65.Round(), compositeProperties.SecondMomentOfArea.Round());
+            Assert.Multiple(() =>
+            {
+                Assert.AreEqual(5.2272.Round(), compositeProperties.CentreOfGravity.Y.Round());
+                Assert.AreEqual(25.1428.Round(), compositeProperties.Area.Round());
+                Assert.AreEqual(35.65.Round(), compositeProperties.SecondMomentOfArea.Round());
+            });
         }
 
-        [Test()]
+        [Test]
         public void CompositeSectionPropertiesCalculations_RectangleWithVoid_Passed()
         {
             var section1 = Substitute.For<ICompositePropertiesCalculations>();
@@ -93,11 +99,12 @@ namespace BridgeTemperature.SectionProperties.Tests
             listOfSections.Add(section2);
 
             var compositeProperties = new CompositeSectionPropertiesCalculations(listOfSections);
-
-            Assert.AreEqual(5.0.Round(), compositeProperties.CentreOfGravity.Y.Round());
-            Assert.AreEqual(75d.Round(), compositeProperties.Area.Round());
-            Assert.AreEqual(781.25.Round(), compositeProperties.SecondMomentOfArea.Round());
+            Assert.Multiple(() =>
+            {
+                Assert.AreEqual(5.0.Round(), compositeProperties.CentreOfGravity.Y.Round());
+                Assert.AreEqual(75d.Round(), compositeProperties.Area.Round());
+                Assert.AreEqual(781.25.Round(), compositeProperties.SecondMomentOfArea.Round());
+            });
         }
-        
     }
 }

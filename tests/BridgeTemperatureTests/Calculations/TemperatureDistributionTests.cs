@@ -9,31 +9,38 @@ using BridgeTemperature.Helpers;
 
 namespace BridgeTemperature.DistributionOperations.Tests
 {
-    [TestFixture()]
+    [TestFixture]
     public class TemperatureDistributionTests
     {
-        [Test()]
+        [Test]
         public void ConvertToStressDistribution_Passed()
         {
-            IList<PointD> coordinates = new List<PointD>();
-            coordinates.Add(new PointD(0, 0));
-            coordinates.Add(new PointD(10, 0));
-            coordinates.Add(new PointD(10, 10));
-            coordinates.Add(new PointD(0, 10));
-            coordinates.Add(new PointD(0, 0));
+            var coordinates = new List<PointD>
+            {
+                new PointD(0, 0),
+                new PointD(10, 0),
+                new PointD(10, 10),
+                new PointD(0, 10),
+                new PointD(0, 0)
+            };
 
-            var distribution = new List<Distribution>();
-            distribution.Add(new Distribution() { Y = 0, Value = 10 });
-            distribution.Add(new Distribution() { Y = 5, Value = 5 });
+            var distribution = new List<Distribution>
+            {
+                new Distribution() { Y = 0, Value = 10 },
+                new Distribution() { Y = 5, Value = 5 }
+            };
 
             var temperatureDistribution = new TemperatureDistribution(distribution);
 
-            var expectedStressDitribution = new List<Distribution>();
-            expectedStressDitribution.Add(new Distribution() { Y = 0, Value = 240000 });
-            expectedStressDitribution.Add(new Distribution() { Y = 5, Value = 120000 });
-            expectedStressDitribution.Add(new Distribution() { Y = 10, Value = 0 });
+            var expectedStressDitribution = new List<Distribution>
+            {
+                new Distribution() { Y = 0, Value = 240000 },
+                new Distribution() { Y = 5, Value = 120000 },
+                new Distribution() { Y = 10, Value = 0 }
+            };
 
             var actualStressDistribution = temperatureDistribution.ConvertToStressDistribution(coordinates, 200000000, 0.00012);
+
             Assert.AreEqual(expectedStressDitribution, actualStressDistribution.Distribution);
         }
     }

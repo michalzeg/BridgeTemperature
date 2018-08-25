@@ -25,7 +25,7 @@ namespace BridgeTemperature.IntegrationFunctions
         {
             double resultantMoment = 0;
             double resultantNormalForce = 0;
-            SlicingCalculator slicing = new SlicingCalculator();
+            var slicing = new SlicingCalculator();
 
             double sectionTypeMultiplier = (section.Type == SectionType.Void) ? -1 : 1;
 
@@ -33,7 +33,7 @@ namespace BridgeTemperature.IntegrationFunctions
             double deltaY = (section.YMax - section.YMin) / this.numberOfSlices;
             do
             {
-                SectionSlice slice = slicing.GetSlice(section.Coordinates, currentY + deltaY, currentY);
+                var slice = slicing.GetSlice(section.Coordinates, currentY + deltaY, currentY);
                 currentY = currentY + deltaY;
                 double value = distributionFunction(slice.CentreOfGravityY);
                 double normalForce = value * slice.Area * sectionTypeMultiplier;
