@@ -2,9 +2,9 @@
 using BridgeTemperature.Calculations.Distributions;
 using BridgeTemperature.Calculations.Interfaces;
 using BridgeTemperature.Calculations.Sections;
-using BridgeTemperature.Common.Geometry;
-using BridgeTemperature.Common.Results;
-using BridgeTemperature.Common.Sections;
+using BridgeTemperature.Shared.Geometry;
+using BridgeTemperature.Shared.Results;
+using BridgeTemperature.Shared.Sections;
 using NUnit.Framework;
 using System.Collections.Generic;
 using System.Linq;

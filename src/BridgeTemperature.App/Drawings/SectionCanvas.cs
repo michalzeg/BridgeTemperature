@@ -4,7 +4,7 @@ using System.Windows.Controls;
 using System.Windows.Shapes;
 using System.Windows;
 using System.Windows.Media;
-using BridgeTemperature.Common.Sections;
+using BridgeTemperature.Shared.Sections;
 
 namespace BridgeTemperature.Drawing
 {

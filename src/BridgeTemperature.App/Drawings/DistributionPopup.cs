@@ -2,8 +2,8 @@
 using System.Windows.Media;
 using System.Windows.Controls.Primitives;
 using System.Windows.Documents;
-using BridgeTemperature.Common.Geometry;
-using BridgeTemperature.Common.Extensions;
+using BridgeTemperature.Shared.Geometry;
+using BridgeTemperature.Shared.Extensions;
 
 namespace BridgeTemperature.Drawing
 {

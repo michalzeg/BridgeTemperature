@@ -6,9 +6,9 @@ using System.Text;
 using MathNet.Numerics.Interpolation;
 using System.Threading.Tasks;
 using NSubstitute;
-using BridgeTemperature.Common.Geometry;
+using BridgeTemperature.Shared.Geometry;
 using BridgeTemperature.Calculations.Interfaces;
-using BridgeTemperature.Common.Sections;
+using BridgeTemperature.Shared.Sections;
 using BridgeTemperature.Calculations.Calculators;
 
 namespace BridgeTemperatureTests.Calculations

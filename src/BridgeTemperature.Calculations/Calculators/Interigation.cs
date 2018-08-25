@@ -2,8 +2,8 @@
 using System.Linq;
 using BridgeTemperature.Calculations.Interfaces;
 using BridgeTemperature.Calculations.Slicing;
-using BridgeTemperature.Common.Geometry;
-using BridgeTemperature.Common.Sections;
+using BridgeTemperature.Shared.Geometry;
+using BridgeTemperature.Shared.Sections;
 
 namespace BridgeTemperature.Calculations.Calculators
 {

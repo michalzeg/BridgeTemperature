@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace BridgeTemperature.Common.Extensions
+namespace BridgeTemperature.Shared.Extensions
 {
     public static class DoubleExtensions
     {

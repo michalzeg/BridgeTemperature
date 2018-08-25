@@ -1,7 +1,7 @@
 ﻿using BridgeTemperature.Calculations.Interfaces;
 using BridgeTemperature.Calculations.Sections;
-using BridgeTemperature.Common.Materials;
-using BridgeTemperature.Common.Sections;
+using BridgeTemperature.Shared.Materials;
+using BridgeTemperature.Shared.Sections;
 using BridgeTemperature.Drawing;
 using BridgeTemperature.View.ViewClasses;
 using GalaSoft.MvvmLight;

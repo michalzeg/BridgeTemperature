@@ -1,5 +1,5 @@
 ﻿using BridgeTemperature.Calculations.Sections;
-using BridgeTemperature.Common.Geometry;
+using BridgeTemperature.Shared.Geometry;
 using NUnit.Framework;
 
 using System;

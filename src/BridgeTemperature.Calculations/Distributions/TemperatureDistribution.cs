@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 using System.Collections.Generic;
-using BridgeTemperature.Common.Geometry;
+using BridgeTemperature.Shared.Geometry;
 
 namespace BridgeTemperature.Calculations.Distributions
 {

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BridgeTemperature.Common.Sections
+namespace BridgeTemperature.Shared.Sections
 {
     public enum SectionType
     {

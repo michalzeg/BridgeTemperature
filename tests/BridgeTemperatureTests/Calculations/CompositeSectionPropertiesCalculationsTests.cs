@@ -6,10 +6,10 @@ using System.Text;
 using System.Threading.Tasks;
 using NSubstitute;
 using BridgeTemperature.Calculations.Interfaces;
-using BridgeTemperature.Common.Sections;
-using BridgeTemperature.Common.Geometry;
+using BridgeTemperature.Shared.Sections;
+using BridgeTemperature.Shared.Geometry;
 using BridgeTemperature.Calculations.Sections;
-using BridgeTemperature.Common.Extensions;
+using BridgeTemperature.Shared.Extensions;
 
 namespace BridgeTemperatureTests.Calculations
 {

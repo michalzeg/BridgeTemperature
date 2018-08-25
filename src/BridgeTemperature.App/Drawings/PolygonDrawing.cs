@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Windows.Shapes;
 using System.Windows;
-using BridgeTemperature.Common.Geometry;
+using BridgeTemperature.Shared.Geometry;
 
 namespace BridgeTemperature.Drawing
 {

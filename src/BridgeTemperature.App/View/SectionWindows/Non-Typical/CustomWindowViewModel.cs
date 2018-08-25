@@ -10,9 +10,9 @@ using System.Windows.Controls;
 using GalaSoft.MvvmLight.Messaging;
 using GalaSoft.MvvmLight.Command;
 using BridgeTemperature.Drawing;
-using BridgeTemperature.Common.Geometry;
+using BridgeTemperature.Shared.Geometry;
 using BridgeTemperature.Calculations.Distributions;
-using BridgeTemperature.Common.Sections;
+using BridgeTemperature.Shared.Sections;
 using BridgeTemperature.Calculations.Sections;
 using BridgeTemperature.Calculations.Interfaces;
 

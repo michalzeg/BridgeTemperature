@@ -1,4 +1,4 @@
-﻿using BridgeTemperature.Common.Geometry;
+﻿using BridgeTemperature.Shared.Geometry;
 using System;
 using System.Collections.Generic;
 using System.Linq;

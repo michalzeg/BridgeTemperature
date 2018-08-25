@@ -2,7 +2,7 @@
 using System.Text;
 using System.Xml.Serialization;
 
-namespace BridgeTemperature.Common.Materials
+namespace BridgeTemperature.Shared.Materials
 {
     public class Material
     {

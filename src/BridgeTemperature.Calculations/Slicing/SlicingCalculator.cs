@@ -1,6 +1,6 @@
 ﻿using BridgeTemperature.Calculations.Sections;
-using BridgeTemperature.Common.Extensions;
-using BridgeTemperature.Common.Geometry;
+using BridgeTemperature.Shared.Extensions;
+using BridgeTemperature.Shared.Geometry;
 using System;
 using System.Collections.Generic;
 using System.Linq;

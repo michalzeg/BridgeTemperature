@@ -3,7 +3,7 @@ using System.Linq;
 using System.Collections.Generic;
 using BridgeTemperature.Calculations.Interfaces;
 using BridgeTemperature.Calculations.Distributions;
-using BridgeTemperature.Common.Results;
+using BridgeTemperature.Shared.Results;
 
 namespace BridgeTemperature.Calculations.Calculators
 {

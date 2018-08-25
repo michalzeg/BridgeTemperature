@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using BridgeTemperature.Common.Geometry;
-using BridgeTemperature.Common.Extensions;
+using BridgeTemperature.Shared.Geometry;
+using BridgeTemperature.Shared.Extensions;
 
 namespace BridgeTemperature.Calculations.Sections
 {

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BridgeTemperature.Drawing;
-using BridgeTemperature.Common.Materials;
+using BridgeTemperature.Shared.Materials;
 
 namespace BridgeTemperature.ViewModel
 {

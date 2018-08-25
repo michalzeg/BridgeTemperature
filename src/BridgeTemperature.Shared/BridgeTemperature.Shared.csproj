@@ -7,8 +7,8 @@
     <ProjectGuid>{173D8831-7024-488F-A35C-A667972D5E7E}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>BridgeTemperature.Common</RootNamespace>
-    <AssemblyName>BridgeTemperature.Common</AssemblyName>
+    <RootNamespace>BridgeTemperature.Shared</RootNamespace>
+    <AssemblyName>BridgeTemperature.Shared</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

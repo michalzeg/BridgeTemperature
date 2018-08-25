@@ -1,5 +1,5 @@
-﻿using BridgeTemperature.Common.Geometry;
-using BridgeTemperature.Common.Sections;
+﻿using BridgeTemperature.Shared.Geometry;
+using BridgeTemperature.Shared.Sections;
 using System.Collections.Generic;
 
 namespace BridgeTemperature.Drawing

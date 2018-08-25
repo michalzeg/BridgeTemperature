@@ -3,7 +3,7 @@ using System.IO;
 using System.Linq;
 using System.Xml.Serialization;
 
-namespace BridgeTemperature.Common.Materials
+namespace BridgeTemperature.Shared.Materials
 {
     public class MaterialProvider
     {

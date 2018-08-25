@@ -1,4 +1,4 @@
-﻿namespace BridgeTemperature.Common.Results
+﻿namespace BridgeTemperature.Shared.Results
 {
     public enum ResultType
     {

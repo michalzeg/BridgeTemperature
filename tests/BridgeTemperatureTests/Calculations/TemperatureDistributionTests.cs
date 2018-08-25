@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BridgeTemperature.Calculations.Distributions;
-using BridgeTemperature.Common.Geometry;
+using BridgeTemperature.Shared.Geometry;
 
 namespace BridgeTemperatureTests.Calculations
 {

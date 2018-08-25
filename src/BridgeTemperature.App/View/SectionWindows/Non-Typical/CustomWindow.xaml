@@ -6,7 +6,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BridgeTemperature.Common"
         xmlns:drawing="clr-namespace:BridgeTemperature.Drawing"
-        xmlns:helpers="clr-namespace:BridgeTemperature.Common.Sections;assembly=BridgeTemperature.Common"
+        xmlns:helpers="clr-namespace:BridgeTemperature.Shared.Sections;assembly=BridgeTemperature.Shared"
         xmlns:converter="clr-namespace:BridgeTemperature.Converters"
         mc:Ignorable="d"
         Title="CustomWindow" Height="600" Width="600" WindowStartupLocation="CenterScreen">

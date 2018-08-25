@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace BridgeTemperature.Common.Geometry
+namespace BridgeTemperature.Shared.Geometry
 {
     public class Interpolation
     {
