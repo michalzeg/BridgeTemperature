@@ -6,6 +6,7 @@ using BridgeTemperature.View;
 using BridgeTemperature.Sections;
 using BridgeTemperature.DistributionOperations;
 using Xceed.Wpf.Toolkit;
+
 namespace BridgeTemperature.ViewModel
 {
     /// <summary>
@@ -41,14 +42,14 @@ namespace BridgeTemperature.ViewModel
             Temperature = new RelayCommand(this.updateTemperature);
 
             MainPanelVM = new MainPanelViewModel();
-            
         }
+
         public RelayCommand New { get; private set; }
         public RelayCommand OpenPlateGirderWindow { get; private set; }
         public RelayCommand OpenCompositeGirderSimplifiedWindow { get; private set; }
         public RelayCommand OpenCompositeGirderNormalWindow { get; private set; }
         public RelayCommand OpenSlabWindow { get; private set; }
-        public RelayCommand OpenIGirderWindow{get;private set;}
+        public RelayCommand OpenIGirderWindow { get; private set; }
         public RelayCommand OpenBoxGirderWindow { get; private set; }
         public RelayCommand OpenRectangularSectionWindow { get; private set; }
         public RelayCommand OpenCustomWindow { get; private set; }
@@ -68,6 +69,7 @@ namespace BridgeTemperature.ViewModel
             steelWindow.DataContext = vm;
             steelWindow.Show();
         }
+
         private void openCompositeGirderSimplifiedWindow()
         {
             var composteWindow = new SimplifiedCompositeWindow();
@@ -75,6 +77,7 @@ namespace BridgeTemperature.ViewModel
             composteWindow.DataContext = vm;
             composteWindow.Show();
         }
+
         private void openCompositeGirderNormalWindow()
         {
             var composteWindow = new NormalCompositeWindow();
@@ -82,7 +85,11 @@ namespace BridgeTemperature.ViewModel
             composteWindow.DataContext = vm;
             composteWindow.Show();
         }
-        private void openSlabWindow() {  }
+
+        private void openSlabWindow()
+        {
+        }
+
         private void openIGirderWindow()
         {
             var cconcreteIGirderWindow = new ConcreteIGirderWindow();
@@ -90,6 +97,7 @@ namespace BridgeTemperature.ViewModel
             cconcreteIGirderWindow.DataContext = vm;
             cconcreteIGirderWindow.Show();
         }
+
         private void openBoxGirderWindow()
         {
             var boxGirderWindow = new BoxGirderWindow();
@@ -97,6 +105,7 @@ namespace BridgeTemperature.ViewModel
             boxGirderWindow.DataContext = vm;
             boxGirderWindow.Show();
         }
+
         private void openRectangularSectionWindow()
         {
             var rectangularWindow = new RectangularWindow();
@@ -104,6 +113,7 @@ namespace BridgeTemperature.ViewModel
             rectangularWindow.DataContext = vm;
             rectangularWindow.Show();
         }
+
         private void openCustomWindow()
         {
             var customWindow = new CustomWindow();
@@ -111,8 +121,9 @@ namespace BridgeTemperature.ViewModel
             customWindow.DataContext = vm;
             customWindow.Show();
         }
-        
+
         private ICompositeSection compositeSection;
+
         private void run()
         {
             if (MainPanelVM.Sections == null || MainPanelVM.Sections.Count == 0)
@@ -124,10 +135,9 @@ namespace BridgeTemperature.ViewModel
                 calculator.CalculateDistributions();
                 MainPanelVM.ResultsUpToDate = true;
                 updateTemperature();
-                
             }
         }
-        
+
         private void updateTemperature()
         {
             if (!MainPanelVM.ResultsUpToDate)
@@ -148,6 +158,7 @@ namespace BridgeTemperature.ViewModel
                 MainPanelVM.SelfDistributionLabel = "Selfequilibrating temperature";
             }
         }
+
         private void updateStress()
         {
             if (!MainPanelVM.ResultsUpToDate)
@@ -168,6 +179,5 @@ namespace BridgeTemperature.ViewModel
                 MainPanelVM.SelfDistributionLabel = "Selfequilibrating Stress";
             }
         }
-
     }
 }

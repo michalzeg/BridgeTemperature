@@ -22,6 +22,7 @@ namespace BridgeTemperature.ViewModel
         }
 
         private Material selectedMaterial;
+
         public Material SelectedMaterial
         {
             get { return selectedMaterial; }
@@ -35,9 +36,10 @@ namespace BridgeTemperature.ViewModel
                     RaisePropertyChanged(() => this.SelectedMaterial);
                 }
             }
-        }   
+        }
 
         private double modulusOfElasticity;
+
         public double ModulusOfElasticity
         {
             get { return modulusOfElasticity; }
@@ -52,6 +54,7 @@ namespace BridgeTemperature.ViewModel
         }
 
         private double thermalCoefficient;
+
         public double ThermalCoefficient
         {
             get { return thermalCoefficient; }

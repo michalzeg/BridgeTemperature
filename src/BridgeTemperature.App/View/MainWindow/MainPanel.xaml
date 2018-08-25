@@ -1,16 +1,15 @@
 ﻿<UserControl x:Class="BridgeTemperature.View.MainPanel"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:BridgeTemperature.View"
              xmlns:drawing="clr-namespace:BridgeTemperature.Drawing"
-             mc:Ignorable="d" 
-             >
+             mc:Ignorable="d">
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="/BridgeTemperature;component/View/StylesDictionary.xaml"/>
+                <ResourceDictionary Source="/BridgeTemperature;component/View/StylesDictionary.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
@@ -18,71 +17,66 @@
         <DockPanel Margin="50,10">
             <Grid DockPanel.Dock="Top">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="2*"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="2*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
                 <TextBlock Grid.Column="0"
-                   Text="Section" FontWeight="Bold" HorizontalAlignment="Center"/>
+                   Text="Section" FontWeight="Bold" HorizontalAlignment="Center" />
                 <TextBlock Grid.Column="1"
-                   Text="{Binding ExternalDistributionLabel}" FontWeight="Bold" HorizontalAlignment="Center" TextWrapping="Wrap"/>
+                   Text="{Binding ExternalDistributionLabel}" FontWeight="Bold" HorizontalAlignment="Center" TextWrapping="Wrap" />
                 <TextBlock Grid.Column="2"
-                   Text="{Binding UniformDistributionLabel}" FontWeight="Bold" HorizontalAlignment="Center" TextWrapping="Wrap"/>
+                   Text="{Binding UniformDistributionLabel}" FontWeight="Bold" HorizontalAlignment="Center" TextWrapping="Wrap" />
                 <TextBlock Grid.Column="3"
-                   Text="{Binding BendingDistributionLabel}" FontWeight="Bold" HorizontalAlignment="Center" TextWrapping="Wrap"/>
+                   Text="{Binding BendingDistributionLabel}" FontWeight="Bold" HorizontalAlignment="Center" TextWrapping="Wrap" />
                 <TextBlock Grid.Column="4"
-                   Text="{Binding SelfDistributionLabel}" FontWeight="Bold" HorizontalAlignment="Center" TextWrapping="Wrap"/>
+                   Text="{Binding SelfDistributionLabel}" FontWeight="Bold" HorizontalAlignment="Center" TextWrapping="Wrap" />
             </Grid>
-            
+
             <Grid>
 
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="2*"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="2*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
-                
+
                 <Grid Grid.Column="0" Margin="{StaticResource MarginValue}">
                     <drawing:SectionCanvas
                 x:Name="sectionCanvas"
-                Sections="{Binding SectionDrawing,Mode=TwoWay}"
-                />
+                Sections="{Binding SectionDrawing,Mode=TwoWay}" />
                 </Grid>
                 <Grid Grid.Column="1" Margin="{StaticResource MarginValue}">
-                    <drawing:DistributionDrawing 
+                    <drawing:DistributionDrawing
                 x:Name="externalDistributionDrawing"
-                DistributionData="{Binding ExternalDistributionDrawing,Mode=TwoWay}" 
-                SectionCanvasHeight="{Binding ActualHeight, ElementName=sectionCanvas, Mode=OneWay}" 
-                SectionCanvasWidth="{Binding ActualWidth, ElementName=sectionCanvas, Mode=OneWay}"
-                />
+                DistributionData="{Binding ExternalDistributionDrawing,Mode=TwoWay}"
+                SectionCanvasHeight="{Binding ActualHeight, ElementName=sectionCanvas, Mode=OneWay}"
+                SectionCanvasWidth="{Binding ActualWidth, ElementName=sectionCanvas, Mode=OneWay}" />
                 </Grid>
                 <Grid Grid.Column="2" Margin="{StaticResource MarginValue}">
-                    <drawing:DistributionDrawing 
+                    <drawing:DistributionDrawing
                 x:Name="uniformDistributionDrawing"
-                DistributionData="{Binding UniformDistributionDrawing,Mode=TwoWay}" 
-                SectionCanvasHeight="{Binding ActualHeight, ElementName=sectionCanvas, Mode=OneWay}" 
-                SectionCanvasWidth="{Binding ActualWidth, ElementName=sectionCanvas, Mode=OneWay}"
-                />
+                DistributionData="{Binding UniformDistributionDrawing,Mode=TwoWay}"
+                SectionCanvasHeight="{Binding ActualHeight, ElementName=sectionCanvas, Mode=OneWay}"
+                SectionCanvasWidth="{Binding ActualWidth, ElementName=sectionCanvas, Mode=OneWay}" />
                 </Grid>
                 <Grid Grid.Column="3" Margin="{StaticResource MarginValue}">
-                    <drawing:DistributionDrawing 
+                    <drawing:DistributionDrawing
                 x:Name="bendingDistributionDrawing"
-                DistributionData="{Binding BendingDistributionDrawing,Mode=TwoWay}" 
-                SectionCanvasHeight="{Binding ActualHeight, ElementName=sectionCanvas, Mode=OneWay}" 
-                SectionCanvasWidth="{Binding ActualWidth, ElementName=sectionCanvas, Mode=OneWay}"
-                />
+                DistributionData="{Binding BendingDistributionDrawing,Mode=TwoWay}"
+                SectionCanvasHeight="{Binding ActualHeight, ElementName=sectionCanvas, Mode=OneWay}"
+                SectionCanvasWidth="{Binding ActualWidth, ElementName=sectionCanvas, Mode=OneWay}" />
                 </Grid>
                 <Grid Grid.Column="4" Margin="{StaticResource MarginValue}">
-                    <drawing:DistributionDrawing 
+                    <drawing:DistributionDrawing
                 x:Name="selfEqulibratingDistributionDrawing"
-                DistributionData="{Binding SelfEqulibratingDistributionDrawing,Mode=TwoWay}" 
-                SectionCanvasHeight="{Binding ActualHeight, ElementName=sectionCanvas, Mode=OneWay}" 
-                SectionCanvasWidth="{Binding ActualWidth, ElementName=sectionCanvas, Mode=OneWay}"
-                />
+                DistributionData="{Binding SelfEqulibratingDistributionDrawing,Mode=TwoWay}"
+                SectionCanvasHeight="{Binding ActualHeight, ElementName=sectionCanvas, Mode=OneWay}"
+                SectionCanvasWidth="{Binding ActualWidth, ElementName=sectionCanvas, Mode=OneWay}" />
                 </Grid>
             </Grid>
         </DockPanel>

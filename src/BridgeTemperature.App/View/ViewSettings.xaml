@@ -6,10 +6,9 @@
                     xmlns:vm="clr-namespace:BridgeTemperature.ViewModel">
 
     <DataTemplate x:Key="sectionPropertiesPanel" DataType="{x:Type vm:SectionPropertiesViewModel}">
-        <view:SectionProperties/>
+        <view:SectionProperties />
     </DataTemplate>
     <DataTemplate x:Key="mainPanel" DataType="{x:Type vm:MainPanelViewModel}">
-        <view:MainPanel/>
+        <view:MainPanel />
     </DataTemplate>
-    
 </ResourceDictionary>

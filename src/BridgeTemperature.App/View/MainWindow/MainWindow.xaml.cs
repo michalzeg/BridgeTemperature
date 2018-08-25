@@ -14,21 +14,20 @@ using System.Windows.Shapes;
 using System.Windows.Controls.Ribbon;
 using GalaSoft.MvvmLight.Ioc;
 using BridgeTemperature.ViewModel;
+
 namespace BridgeTemperature.View
 {
-    
     public partial class MainWindow : RibbonWindow
     {
         public MainWindow()
         {
             InitializeComponent();
-            var mainViewModel =  new MainViewModel();
+            var mainViewModel = new MainViewModel();
             DataContext = mainViewModel;
         }
 
         private void New_Click(object sender, RoutedEventArgs e)
         {
-            
         }
 
         private void Close_Click(object sender, RoutedEventArgs e)

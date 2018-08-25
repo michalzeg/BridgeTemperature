@@ -7,57 +7,56 @@
         mc:Ignorable="d"
         Title="Bridge Temperature" Height="600" Width="800"
         DataContext="{Binding Source={StaticResource Locator}, Path=Main}" Icon="/BridgeTemperature;component/Images/Ribbon/Temperature.png" WindowStartupLocation="CenterScreen">
-    
+
     <DockPanel>
         <Ribbon DockPanel.Dock="Top">
             <Ribbon.ApplicationMenu>
                 <RibbonApplicationMenu KeyTip="F">
-                    <RibbonApplicationMenuItem Header="New" ImageSource="/Images/Ribbon/NewIcon.png" Command="{Binding New}" Click="New_Click"/>
-                    <RibbonApplicationMenuItem Header="Close" ImageSource="/Images/Ribbon/CloseIcon.png" Click="Close_Click"/>
+                    <RibbonApplicationMenuItem Header="New" ImageSource="/Images/Ribbon/NewIcon.png" Command="{Binding New}" Click="New_Click" />
+                    <RibbonApplicationMenuItem Header="Close" ImageSource="/Images/Ribbon/CloseIcon.png" Click="Close_Click" />
                 </RibbonApplicationMenu>
             </Ribbon.ApplicationMenu>
             <RibbonTab Header="Section">
                 <RibbonGroup Header="Steel">
                     <Grid>
                         <RibbonButton Grid.Column="2" Label="Plate Girder" LargeImageSource="/Images/Ribbon/SteelGirder.png"
-                                      Command="{Binding OpenPlateGirderWindow}"/>
+                                      Command="{Binding OpenPlateGirderWindow}" />
                     </Grid>
                 </RibbonGroup>
                 <RibbonGroup Header="Composite">
                     <RibbonButton Label="Plate Girder (Simplified)" LargeImageSource="/Images/Ribbon/CompositeGirder.png"
-                                  Command="{Binding OpenCompositeGirderSimplifiedWindow}"/>
+                                  Command="{Binding OpenCompositeGirderSimplifiedWindow}" />
                     <RibbonButton Label="Plate Girder (Normal)" LargeImageSource="/Images/Ribbon/CompositeGirder.png"
-                                  Command="{Binding OpenCompositeGirderNormalWindow}"/>
+                                  Command="{Binding OpenCompositeGirderNormalWindow}" />
                 </RibbonGroup>
                 <RibbonGroup Header="Concrete">
                     <RibbonButton Label="I-Girder" LargeImageSource="/Images/Ribbon/IGirder.png"
-                                  Command="{Binding OpenIGirderWindow}"/>
+                                  Command="{Binding OpenIGirderWindow}" />
                     <RibbonButton Label="Box" LargeImageSource="/Images/Ribbon/BoxSection.png"
-                                  Command="{Binding OpenBoxGirderWindow}"/>
+                                  Command="{Binding OpenBoxGirderWindow}" />
                 </RibbonGroup>
                 <RibbonGroup Header="Non-typical">
-                    <RibbonButton Label="Rectangular" LargeImageSource="/Images/Ribbon/RectangularSection.png" 
-                                  Command="{Binding OpenRectangularSectionWindow}"/>
+                    <RibbonButton Label="Rectangular" LargeImageSource="/Images/Ribbon/RectangularSection.png"
+                                  Command="{Binding OpenRectangularSectionWindow}" />
                     <RibbonButton Label="Custom Section" Command="{Binding OpenCustomWindow}" LargeImageSource="/Images/Ribbon/CustomSection.png" />
                 </RibbonGroup>
             </RibbonTab>
             <RibbonTab Header="Results">
                 <RibbonGroup Header="Calculations">
-                    <RibbonButton Label="Run" LargeImageSource="/Images/Ribbon/Run.png" 
+                    <RibbonButton Label="Run" LargeImageSource="/Images/Ribbon/Run.png"
                                   HorizontalAlignment="Center"
-                                  Command="{Binding Run}"/>
+                                  Command="{Binding Run}" />
                 </RibbonGroup>
                 <RibbonGroup Header="Result Type">
                     <RibbonButton Label="Stress" LargeImageSource="/Images/Ribbon/Stress.png"
-                                  Command="{Binding Stress}"/>
+                                  Command="{Binding Stress}" />
                     <RibbonButton Label="Temperature" LargeImageSource="/Images/Ribbon/Temperature.png"
-                                  Command="{Binding Temperature}"/>
+                                  Command="{Binding Temperature}" />
                 </RibbonGroup>
             </RibbonTab>
-
         </Ribbon>
         <ContentControl DockPanel.Dock="Top"
                 ContentTemplate="{StaticResource mainPanel}"
-                Content="{Binding MainPanelVM}"/>
+                Content="{Binding MainPanelVM}" />
     </DockPanel>
 </RibbonWindow>

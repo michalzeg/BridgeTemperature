@@ -13,5 +13,4 @@ namespace BridgeTemperature.Helpers
         Concrete,
         Void
     }
-
 }

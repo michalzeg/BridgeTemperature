@@ -13,113 +13,109 @@
 
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="/BridgeTemperature;component/View/StylesDictionary.xaml"/>
+                <ResourceDictionary Source="/BridgeTemperature;component/View/StylesDictionary.xaml" />
             </ResourceDictionary.MergedDictionaries>
-            <converters:MultiplyValueConverter x:Key="MultiplyValueConverter"/>
+            <converters:MultiplyValueConverter x:Key="MultiplyValueConverter" />
         </ResourceDictionary>
     </Window.Resources>
-    <Grid 
+    <Grid
         Margin="{StaticResource MarginValue}">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="2*"/>
-            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="2*" />
+            <ColumnDefinition Width="3*" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="2*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="3*"/>
-            <RowDefinition Height="auto"/>
+            <RowDefinition Height="2*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="3*" />
+            <RowDefinition Height="auto" />
         </Grid.RowDefinitions>
         <GroupBox Header="Dimensions">
             <Grid>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
                 </Grid.RowDefinitions>
                 <TextBlock Grid.Column="0" Grid.Row="0"
-                           Text="b [mm]"/>
+                           Text="b [mm]" />
                 <TextBlock Grid.Column="0" Grid.Row="1"
-                           Text="h [mm]"/>
+                           Text="h [mm]" />
                 <TextBlock Grid.Column="0" Grid.Row="2"
-                           Text="X [mm]"/>
+                           Text="X [mm]" />
                 <TextBlock Grid.Column="0" Grid.Row="3"
-                           Text="Y [mm]"/>
+                           Text="Y [mm]" />
                 <TextBox Grid.Column="1" Grid.Row="0"
-                           Text="{Binding B,Converter={StaticResource MultiplyValueConverter},ConverterParameter=1000}"/>
+                           Text="{Binding B,Converter={StaticResource MultiplyValueConverter},ConverterParameter=1000}" />
                 <TextBox Grid.Column="1" Grid.Row="1"
-                           Text="{Binding H,Converter={StaticResource MultiplyValueConverter},ConverterParameter=1000}"/>
+                           Text="{Binding H,Converter={StaticResource MultiplyValueConverter},ConverterParameter=1000}" />
                 <TextBox Grid.Column="1" Grid.Row="2"
-                           Text="{Binding X,Converter={StaticResource MultiplyValueConverter},ConverterParameter=1000}"/>
+                           Text="{Binding X,Converter={StaticResource MultiplyValueConverter},ConverterParameter=1000}" />
                 <TextBox Grid.Column="1" Grid.Row="3"
-                           Text="{Binding Y,Converter={StaticResource MultiplyValueConverter},ConverterParameter=1000}"/>
-                
+                           Text="{Binding Y,Converter={StaticResource MultiplyValueConverter},ConverterParameter=1000}" />
             </Grid>
         </GroupBox>
         <GroupBox Header="Temperature"  Grid.Column="0" Grid.Row="1">
             <Grid>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
                 </Grid.RowDefinitions>
                 <TextBlock Grid.Column="0" Grid.Row="0"
-                           Text="&#x0394;T1 [&#x00B0;C]"/>
+                           Text="&#x0394;T1 [&#x00B0;C]" />
                 <TextBlock Grid.Column="0" Grid.Row="1"
-                           Text="&#x0394;T2 [&#x00B0;C]"/>
+                           Text="&#x0394;T2 [&#x00B0;C]" />
                 <TextBox Grid.Column="1" Grid.Row="0"
-                           Text="{Binding DT1}"/>
+                           Text="{Binding DT1}" />
                 <TextBox Grid.Column="1" Grid.Row="1"
-                           Text="{Binding DT2,Converter={StaticResource MultiplyValueConverter},ConverterParameter=1000}"/>
+                           Text="{Binding DT2,Converter={StaticResource MultiplyValueConverter},ConverterParameter=1000}" />
             </Grid>
         </GroupBox>
-        <Image 
+        <Image
             Grid.Column="1"
             Grid.Row="0"
             Grid.RowSpan="2"
-            Margin="{StaticResource MarginValue}" 
+            Margin="{StaticResource MarginValue}"
             Stretch="Uniform"
             RenderOptions.BitmapScalingMode="HighQuality"
-            Source="/Images/Window/RectangularSectionDimensions.png"
-            />
+            Source="/Images/Window/RectangularSectionDimensions.png" />
         <DockPanel Grid.Column="0" Grid.Row="2" LastChildFill="False">
             <GroupBox DockPanel.Dock="Top" Header="Properties">
-                <ContentControl 
+                <ContentControl
                 Content="{Binding SectionPropertiesVM}"
-                ContentTemplate="{StaticResource sectionPropertiesPanel}"/>
+                ContentTemplate="{StaticResource sectionPropertiesPanel}" />
             </GroupBox>
         </DockPanel>
         <Grid Grid.Column="1" Grid.Row="2" Grid.RowSpan="1"
               Background="{StaticResource BackgroundBrush}">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="2*"/>
-                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="2*" />
+                <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
             <Grid Grid.Column="0"
                   Margin="{StaticResource MarginValue}">
                 <drawing:SectionCanvas
                 x:Name="sectionCanvas"
-                Sections="{Binding Section,Mode=TwoWay}"
-                />
+                Sections="{Binding Section,Mode=TwoWay}" />
             </Grid>
             <Grid Grid.Column="1"
                   Margin="{StaticResource MarginValue}">
-                <drawing:DistributionDrawing 
+                <drawing:DistributionDrawing
 
                 x:Name="distributionDrawing"
-                DistributionData="{Binding TempDistribution,Mode=TwoWay}" 
-                SectionCanvasHeight="{Binding ActualHeight, ElementName=sectionCanvas, Mode=OneWay}" 
-                SectionCanvasWidth="{Binding ActualWidth, ElementName=sectionCanvas, Mode=OneWay}"
-                />
+                DistributionData="{Binding TempDistribution,Mode=TwoWay}"
+                SectionCanvasHeight="{Binding ActualHeight, ElementName=sectionCanvas, Mode=OneWay}"
+                SectionCanvasWidth="{Binding ActualWidth, ElementName=sectionCanvas, Mode=OneWay}" />
             </Grid>
         </Grid>
         <Button
@@ -127,13 +123,12 @@
             Command="{Binding Apply}"
             Style="{StaticResource ApplyButton}"
             Grid.Column="0"
-            Grid.Row="3" Click="Button_Click"
-            />
+            Grid.Row="3" Click="Button_Click" />
         <Button
             Content="Close"
             Click="Button_Click"
             Style="{StaticResource CloseButton}"
             Grid.Column="1"
-            Grid.Row="3"/>
+            Grid.Row="3" />
     </Grid>
 </Window>

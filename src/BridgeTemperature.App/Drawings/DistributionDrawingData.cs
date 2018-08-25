@@ -11,5 +11,4 @@ namespace BridgeTemperature.Drawing
         public double SectionMaxX { get; set; }
         public double SectionMinX { get; set; }
     }
-
 }

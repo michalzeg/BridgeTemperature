@@ -17,7 +17,6 @@ using BridgeTemperature.Helpers;
 using BridgeTemperature.DistributionOperations;
 using GalaSoft.MvvmLight.Messaging;
 
-
 namespace BridgeTemperature.View
 {
     /// <summary>
@@ -25,7 +24,6 @@ namespace BridgeTemperature.View
     /// </summary>
     public partial class ConcreteIGirderWindow : Window
     {
-
         public ConcreteIGirderWindow()
         {
             InitializeComponent();

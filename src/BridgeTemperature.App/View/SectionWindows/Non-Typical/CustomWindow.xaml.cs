@@ -17,7 +17,6 @@ using BridgeTemperature.Helpers;
 using BridgeTemperature.DistributionOperations;
 using GalaSoft.MvvmLight.Messaging;
 
-
 namespace BridgeTemperature.Common
 {
     /// <summary>
@@ -25,7 +24,6 @@ namespace BridgeTemperature.Common
     /// </summary>
     public partial class CustomWindow : Window
     {
-
         public CustomWindow()
         {
             InitializeComponent();
