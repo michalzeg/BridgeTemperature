@@ -5,7 +5,7 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BridgeTemperature.Helpers
+namespace BridgeTemperature.Common.Helpers
 {
     public class PropertyName
     {

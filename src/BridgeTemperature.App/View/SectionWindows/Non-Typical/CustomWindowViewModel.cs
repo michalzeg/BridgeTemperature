@@ -1,5 +1,4 @@
-﻿using BridgeTemperature.Helpers;
-using GalaSoft.MvvmLight;
+﻿using GalaSoft.MvvmLight;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -8,11 +7,14 @@ using System.Text;
 using System.Threading.Tasks;
 using BridgeTemperature.Common;
 using System.Windows.Controls;
-using BridgeTemperature.DistributionOperations;
 using GalaSoft.MvvmLight.Messaging;
 using GalaSoft.MvvmLight.Command;
 using BridgeTemperature.Drawing;
-using BridgeTemperature.Sections;
+using BridgeTemperature.Common.Geometry;
+using BridgeTemperature.Calculations.Distributions;
+using BridgeTemperature.Common.Sections;
+using BridgeTemperature.Calculations.Sections;
+using BridgeTemperature.Calculations.Interfaces;
 
 namespace BridgeTemperature.ViewModel
 {

@@ -1,4 +1,4 @@
-﻿namespace BridgeTemperature.Extensions
+﻿namespace BridgeTemperature.Common.Extensions
 {
     public static class ObjectExtensions
     {

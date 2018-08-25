@@ -1,4 +1,4 @@
-﻿using BridgeTemperature.DistributionOperations;
+﻿using BridgeTemperature.Calculations.Distributions;
 using System.Collections.Generic;
 using System.Linq;
 

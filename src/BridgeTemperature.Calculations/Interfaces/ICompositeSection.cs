@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using BridgeTemperature.Helpers;
+using BridgeTemperature.Common.Geometry;
 
-namespace BridgeTemperature.Sections
+namespace BridgeTemperature.Calculations.Interfaces
 {
     public interface ICompositeSection
     {

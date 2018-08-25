@@ -1,7 +1,7 @@
-﻿using System;
+﻿using BridgeTemperature.Common.Geometry;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using BridgeTemperature.Helpers;
 
 namespace BridgeTemperature.Drawing
 {

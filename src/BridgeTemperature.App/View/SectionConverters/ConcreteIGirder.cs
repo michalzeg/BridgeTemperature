@@ -1,5 +1,5 @@
-﻿using BridgeTemperature.DistributionOperations;
-using BridgeTemperature.Helpers;
+﻿using BridgeTemperature.Calculations.Distributions;
+using BridgeTemperature.Common.Geometry;
 using System.Collections.Generic;
 
 namespace BridgeTemperature.View.ViewClasses

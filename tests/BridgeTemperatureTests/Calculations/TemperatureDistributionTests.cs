@@ -1,13 +1,13 @@
 ﻿using NUnit.Framework;
-using BridgeTemperature.DistributionOperations;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using BridgeTemperature.Helpers;
+using BridgeTemperature.Calculations.Distributions;
+using BridgeTemperature.Common.Geometry;
 
-namespace BridgeTemperature.DistributionOperations.Tests
+namespace BridgeTemperatureTests.Calculations
 {
     [TestFixture]
     public class TemperatureDistributionTests

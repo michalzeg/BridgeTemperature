@@ -1,9 +1,9 @@
-﻿using BridgeTemperature.Helpers;
+﻿using BridgeTemperature.Common.Geometry;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace BridgeTemperature.SectionProperties
+namespace BridgeTemperature.Calculations.Sections
 {
     public class ExtremeDistances
     {

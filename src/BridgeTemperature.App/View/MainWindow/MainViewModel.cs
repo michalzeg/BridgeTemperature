@@ -3,9 +3,10 @@ using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Ioc;
 using BridgeTemperature.Common;
 using BridgeTemperature.View;
-using BridgeTemperature.Sections;
-using BridgeTemperature.DistributionOperations;
 using Xceed.Wpf.Toolkit;
+using BridgeTemperature.Calculations.Interfaces;
+using BridgeTemperature.Calculations.Sections;
+using BridgeTemperature.Calculations.Calculators;
 
 namespace BridgeTemperature.ViewModel
 {

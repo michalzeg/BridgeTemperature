@@ -25,8 +25,7 @@ namespace BridgeTemperature.View
         public SectionProperties()
         {
             InitializeComponent();
-            //this.comboMaterials.ItemsSource = MaterialProperties.MaterialOperations.GetAllMaterials();
-            //this.DataContext = new SectionPropertiesViewModel();
+
             this.comboMaterials.SelectedIndex = 0;
         }
     }

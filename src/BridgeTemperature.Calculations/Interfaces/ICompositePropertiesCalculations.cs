@@ -1,6 +1,4 @@
-﻿using BridgeTemperature.IntegrationFunctions;
-
-namespace BridgeTemperature.SectionProperties
+﻿namespace BridgeTemperature.Calculations.Interfaces
 {
     public interface ICompositePropertiesCalculations : IIntegrable
     {

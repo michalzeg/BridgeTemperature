@@ -1,8 +1,10 @@
-﻿using BridgeTemperature.Helpers;
+﻿using BridgeTemperature.Calculations.Interfaces;
+using BridgeTemperature.Common.Geometry;
+using BridgeTemperature.Common.Sections;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace BridgeTemperature.SectionProperties
+namespace BridgeTemperature.Calculations.Sections
 {
     public class CompositeSectionPropertiesCalculations
     {

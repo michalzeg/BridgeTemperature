@@ -1,4 +1,4 @@
-﻿namespace BridgeTemperature.DistributionOperations
+﻿namespace BridgeTemperature.Common.Results
 {
     public enum ResultType
     {

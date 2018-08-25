@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Linq;
 using System.Collections.Generic;
-using BridgeTemperature.Sections;
-using BridgeTemperature.IntegrationFunctions;
+using BridgeTemperature.Calculations.Interfaces;
+using BridgeTemperature.Calculations.Distributions;
+using BridgeTemperature.Common.Results;
 
-namespace BridgeTemperature.DistributionOperations
+namespace BridgeTemperature.Calculations.Calculators
 {
     public class DistributionCalculations
     {

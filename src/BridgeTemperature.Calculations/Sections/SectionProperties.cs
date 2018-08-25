@@ -1,12 +1,11 @@
-﻿using BridgeTemperature.Helpers;
-using BridgeTemperature.Sections;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using BridgeTemperature.Extensions;
+using BridgeTemperature.Common.Geometry;
+using BridgeTemperature.Common.Extensions;
 
-namespace BridgeTemperature.SectionProperties
+namespace BridgeTemperature.Calculations.Sections
 {
     public class SectionPropertiesCalculations
     {

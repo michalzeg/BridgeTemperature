@@ -1,13 +1,14 @@
-﻿using NUnit.Framework;
-using BridgeTemperature.SectionProperties;
+﻿using BridgeTemperature.Calculations.Sections;
+using BridgeTemperature.Common.Geometry;
+using NUnit.Framework;
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using BridgeTemperature.Helpers;
 
-namespace BridgeTemperature.SectionProperties.Tests
+namespace BridgeTemperatureTests.Calculations
 {
     [TestFixture]
     public class SectionPropertiesCalculationsTests

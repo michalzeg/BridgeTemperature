@@ -13,7 +13,6 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using GalaSoft.MvvmLight.Ioc;
 using BridgeTemperature.ViewModel;
-using BridgeTemperature.DistributionOperations;
 using GalaSoft.MvvmLight.Messaging;
 
 namespace BridgeTemperature.Common
@@ -26,8 +25,6 @@ namespace BridgeTemperature.Common
         public CustomWindow()
         {
             InitializeComponent();
-            //var viewModel = new CustomWindowViewModel();
-            //this.DataContext = viewModel;
 
             this.sectionCanvas.SizeChanged += (a, e) => this.sectionCanvas.RefreshDrawing();
             this.distributionDrawing.SizeChanged += (a, e) => this.distributionDrawing.RefreshDrawing();

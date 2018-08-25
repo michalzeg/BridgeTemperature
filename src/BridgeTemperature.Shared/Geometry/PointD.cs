@@ -1,7 +1,7 @@
-﻿using BridgeTemperature.Extensions;
+﻿using BridgeTemperature.Common.Extensions;
 using System;
 
-namespace BridgeTemperature.Helpers
+namespace BridgeTemperature.Common.Geometry
 {
     public class PointD : IEquatable<PointD>
     {

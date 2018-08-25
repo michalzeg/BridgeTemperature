@@ -1,11 +1,11 @@
-﻿using System;
+﻿using BridgeTemperature.Calculations.Sections;
+using BridgeTemperature.Common.Extensions;
+using BridgeTemperature.Common.Geometry;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using BridgeTemperature.Extensions;
-using BridgeTemperature.Helpers;
-using BridgeTemperature.SectionProperties;
 
-namespace BridgeTemperature.IntegrationFunctions
+namespace BridgeTemperature.Calculations.Slicing
 {
     internal class SlicingCalculator
     {

@@ -1,4 +1,4 @@
-﻿namespace BridgeTemperature.SectionProperties
+﻿namespace BridgeTemperature.Calculations.Sections
 {
     public enum SectionCharacteristic
     {

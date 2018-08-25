@@ -1,11 +1,8 @@
 ﻿using System.Collections;
 using System.Xml;
 using System.Xml.Serialization;
-using BridgeTemperature.SectionProperties;
-using BridgeTemperature.IntegrationFunctions;
-using BridgeTemperature.DistributionOperations;
 
-namespace BridgeTemperature.Sections
+namespace BridgeTemperature.Calculations.Interfaces
 {
     public interface ISection : ICompositePropertiesCalculations, IDistributable
     {

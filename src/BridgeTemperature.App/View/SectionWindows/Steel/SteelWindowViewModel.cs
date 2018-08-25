@@ -1,6 +1,8 @@
-﻿using BridgeTemperature.Drawing;
-using BridgeTemperature.Helpers;
-using BridgeTemperature.Sections;
+﻿using BridgeTemperature.Calculations.Interfaces;
+using BridgeTemperature.Calculations.Sections;
+using BridgeTemperature.Common.Materials;
+using BridgeTemperature.Common.Sections;
+using BridgeTemperature.Drawing;
 using BridgeTemperature.View.ViewClasses;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
@@ -21,7 +23,7 @@ namespace BridgeTemperature.ViewModel
         public SteelWindowViewModel()
         {
             SectionPropertiesVM = new SectionPropertiesViewModel();
-            SectionPropertiesVM.Materials = MaterialProperties.MaterialProvider.GetSteelMaterials().ToList();
+            SectionPropertiesVM.Materials = MaterialProvider.GetSteelMaterials().ToList();
             Section = new List<SectionDrawingData>();
             TempDistribution = new List<DistributionDrawingData>();
             Apply = new RelayCommand(apply);

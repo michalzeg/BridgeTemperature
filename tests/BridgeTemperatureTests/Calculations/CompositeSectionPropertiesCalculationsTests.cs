@@ -1,16 +1,17 @@
 ﻿using NUnit.Framework;
-using BridgeTemperature.SectionProperties;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using NSubstitute;
-using BridgeTemperature.Extensions;
-using BridgeTemperature.Sections;
-using BridgeTemperature.Helpers;
+using BridgeTemperature.Calculations.Interfaces;
+using BridgeTemperature.Common.Sections;
+using BridgeTemperature.Common.Geometry;
+using BridgeTemperature.Calculations.Sections;
+using BridgeTemperature.Common.Extensions;
 
-namespace BridgeTemperature.SectionProperties.Tests
+namespace BridgeTemperatureTests.Calculations
 {
     [TestFixture]
     public class CompositeSectionPropertiesCalculationsTests

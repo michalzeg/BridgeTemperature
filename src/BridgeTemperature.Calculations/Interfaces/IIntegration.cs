@@ -1,4 +1,4 @@
-﻿namespace BridgeTemperature.IntegrationFunctions
+﻿namespace BridgeTemperature.Calculations.Interfaces
 {
     public interface IIntegration
     {

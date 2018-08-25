@@ -1,7 +1,8 @@
-﻿using BridgeTemperature.DistributionOperations;
+﻿using BridgeTemperature.Calculations.Interfaces;
+using BridgeTemperature.Calculations.Sections;
+using BridgeTemperature.Common.Materials;
+using BridgeTemperature.Common.Sections;
 using BridgeTemperature.Drawing;
-using BridgeTemperature.Helpers;
-using BridgeTemperature.Sections;
 using BridgeTemperature.View.ViewClasses;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
@@ -23,9 +24,9 @@ namespace BridgeTemperature.ViewModel
         public SimplifiedCompositeWindowViewModel()
         {
             SteelPropertiesVM = new SectionPropertiesViewModel();
-            SteelPropertiesVM.Materials = MaterialProperties.MaterialProvider.GetSteelMaterials().ToList();
+            SteelPropertiesVM.Materials = MaterialProvider.GetSteelMaterials().ToList();
             ConcretePropertiesVM = new SectionPropertiesViewModel();
-            ConcretePropertiesVM.Materials = MaterialProperties.MaterialProvider.GetConcreteMaterials().ToList();
+            ConcretePropertiesVM.Materials = MaterialProvider.GetConcreteMaterials().ToList();
 
             Section = new List<SectionDrawingData>();
             TempDistribution = new List<DistributionDrawingData>();
@@ -71,7 +72,7 @@ namespace BridgeTemperature.ViewModel
             var concreteSection = compositeGirder.GetSlabCoordinates();
             var section = new List<SectionDrawingData>()
             { new SectionDrawingData(){ Coordinates = steelSection, Type = SectionType.Steel },
-            new SectionDrawingData() {Coordinates = concreteSection,Type=SectionType.Concrete } };
+            new SectionDrawingData() {Coordinates = concreteSection,Type= SectionType.Concrete } };
             Section = section;
             RaisePropertyChanged(() => Section);
 

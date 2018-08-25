@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Linq;
-using BridgeTemperature.Helpers;
-using BridgeTemperature.Sections;
+using BridgeTemperature.Calculations.Interfaces;
+using BridgeTemperature.Calculations.Slicing;
+using BridgeTemperature.Common.Geometry;
+using BridgeTemperature.Common.Sections;
 
-namespace BridgeTemperature.IntegrationFunctions
+namespace BridgeTemperature.Calculations.Calculators
 {
     public class Integration : IIntegration
     {

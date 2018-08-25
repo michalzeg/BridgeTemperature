@@ -1,7 +1,8 @@
-﻿using System.Collections.Generic;
-using BridgeTemperature.Helpers;
+﻿using BridgeTemperature.Common.Geometry;
+using BridgeTemperature.Common.Sections;
+using System.Collections.Generic;
 
-namespace BridgeTemperature.IntegrationFunctions
+namespace BridgeTemperature.Calculations.Interfaces
 {
     public interface IIntegrable
     {

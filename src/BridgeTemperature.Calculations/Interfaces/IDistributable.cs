@@ -1,4 +1,6 @@
-﻿namespace BridgeTemperature.DistributionOperations
+﻿using BridgeTemperature.Calculations.Distributions;
+
+namespace BridgeTemperature.Calculations.Interfaces
 {
     public interface IDistributable
     {

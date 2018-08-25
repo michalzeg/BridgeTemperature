@@ -1,5 +1,4 @@
 ﻿using NUnit.Framework;
-using BridgeTemperature.IntegrationFunctions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,11 +6,12 @@ using System.Text;
 using MathNet.Numerics.Interpolation;
 using System.Threading.Tasks;
 using NSubstitute;
-using BridgeTemperature.Sections;
-using BridgeTemperature.Helpers;
-using BridgeTemperature.Extensions;
+using BridgeTemperature.Common.Geometry;
+using BridgeTemperature.Calculations.Interfaces;
+using BridgeTemperature.Common.Sections;
+using BridgeTemperature.Calculations.Calculators;
 
-namespace BridgeTemperature.IntegrationFunctions.Tests
+namespace BridgeTemperatureTests.Calculations
 {
     [TestFixture]
     public class IntegrationTests

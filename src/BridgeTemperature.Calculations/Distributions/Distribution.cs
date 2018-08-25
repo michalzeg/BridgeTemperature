@@ -1,9 +1,9 @@
-﻿using System;
+﻿using BridgeTemperature.Common.Extensions;
+using BridgeTemperature.Common.Geometry;
+using System;
 using System.Collections;
-using BridgeTemperature.Helpers;
-using BridgeTemperature.Extensions;
 
-namespace BridgeTemperature.DistributionOperations
+namespace BridgeTemperature.Calculations.Distributions
 {
     public class Distribution : IEquatable<Distribution>
     {

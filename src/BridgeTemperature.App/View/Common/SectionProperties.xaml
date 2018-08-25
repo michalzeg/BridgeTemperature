@@ -5,7 +5,6 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:BridgeTemperature.View"
              xmlns:converter="clr-namespace:BridgeTemperature.Converters"
-             xmlns:helpers="clr-namespace:BridgeTemperature.Helpers"
              mc:Ignorable="d">
 
     <UserControl.Resources>
@@ -13,8 +12,8 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/BridgeTemperature;component/View/StylesDictionary.xaml" />
             </ResourceDictionary.MergedDictionaries>
-        <converter:SectionTypeToBoolConverter x:Key="SectionTypeToBoolConverter" />
-        <converter:MultiplyValueConverter x:Key="MultiplyValueConverter" />
+            <converter:SectionTypeToBoolConverter x:Key="SectionTypeToBoolConverter" />
+            <converter:MultiplyValueConverter x:Key="MultiplyValueConverter" />
         </ResourceDictionary>
     </UserControl.Resources>
     <DockPanel>

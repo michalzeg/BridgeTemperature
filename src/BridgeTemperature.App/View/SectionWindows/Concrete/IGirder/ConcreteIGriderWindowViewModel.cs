@@ -1,7 +1,8 @@
-﻿using BridgeTemperature.DistributionOperations;
+﻿using BridgeTemperature.Calculations.Interfaces;
+using BridgeTemperature.Calculations.Sections;
+using BridgeTemperature.Common.Materials;
+using BridgeTemperature.Common.Sections;
 using BridgeTemperature.Drawing;
-using BridgeTemperature.Helpers;
-using BridgeTemperature.Sections;
 using BridgeTemperature.View.ViewClasses;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
@@ -22,7 +23,7 @@ namespace BridgeTemperature.ViewModel
         public ConcreteIGriderWindowViewModel()
         {
             ConcretePropertiesVM = new SectionPropertiesViewModel();
-            ConcretePropertiesVM.Materials = MaterialProperties.MaterialProvider.GetConcreteMaterials().ToList();
+            ConcretePropertiesVM.Materials = MaterialProvider.GetConcreteMaterials().ToList();
 
             Section = new List<SectionDrawingData>();
             TempDistribution = new List<DistributionDrawingData>();

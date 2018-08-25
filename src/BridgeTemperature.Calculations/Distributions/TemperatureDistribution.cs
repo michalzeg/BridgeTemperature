@@ -1,8 +1,8 @@
 ﻿using System.Linq;
 using System.Collections.Generic;
-using BridgeTemperature.Helpers;
+using BridgeTemperature.Common.Geometry;
 
-namespace BridgeTemperature.DistributionOperations
+namespace BridgeTemperature.Calculations.Distributions
 {
     public class TemperatureDistribution : BaseDistribution
     {

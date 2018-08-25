@@ -6,11 +6,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using GalaSoft.MvvmLight.Messaging;
-using BridgeTemperature.Sections;
-using BridgeTemperature.DistributionOperations;
 using System.Linq.Expressions;
 using System.Reflection;
 using System.Collections.ObjectModel;
+using BridgeTemperature.Calculations.Interfaces;
+using BridgeTemperature.Calculations.Distributions;
 
 namespace BridgeTemperature.ViewModel
 {

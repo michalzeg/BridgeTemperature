@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using BridgeTemperature.DistributionOperations;
+using BridgeTemperature.Calculations.Distributions;
 
 namespace BridgeTemperature.Drawing
 {

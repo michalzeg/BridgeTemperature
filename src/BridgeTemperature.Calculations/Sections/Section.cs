@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Linq;
 using System.Collections.Generic;
-using BridgeTemperature.Extensions;
-using BridgeTemperature.SectionProperties;
-using BridgeTemperature.Helpers;
-using BridgeTemperature.DistributionOperations;
+using BridgeTemperature.Calculations.Distributions;
+using BridgeTemperature.Calculations.Interfaces;
+using BridgeTemperature.Common.Sections;
+using BridgeTemperature.Common.Geometry;
+using BridgeTemperature.Common.Extensions;
 
-namespace BridgeTemperature.Sections
+namespace BridgeTemperature.Calculations.Sections
 {
     public class Section : ISection
     {

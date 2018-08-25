@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
-using BridgeTemperature.SectionProperties;
-using BridgeTemperature.Helpers;
+﻿using BridgeTemperature.Calculations.Interfaces;
+using BridgeTemperature.Common.Geometry;
+using System.Collections.Generic;
 
-namespace BridgeTemperature.Sections
+namespace BridgeTemperature.Calculations.Sections
 {
     public class TypicalCompositeSection : ICompositeSection
     {

@@ -1,12 +1,13 @@
-﻿using NUnit.Framework;
-using BridgeTemperature.Helpers;
+﻿using BridgeTemperature.Common.Geometry;
+using NUnit.Framework;
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BridgeTemperature.Helpers.Tests
+namespace BridgeTemperatureTests.Calculations
 {
     [TestFixture()]
     public class InterpolationTests
