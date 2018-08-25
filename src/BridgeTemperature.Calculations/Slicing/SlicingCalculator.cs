@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using BridgeTemperature.Extensions;
 using BridgeTemperature.Helpers;
 using BridgeTemperature.SectionProperties;
@@ -12,11 +13,11 @@ namespace BridgeTemperature.IntegrationFunctions
         {
             var lowerCoordinates = this.lowerSection(section, lowerY);
             var upperCoordinates = this.UpperSection(lowerCoordinates, upperY);
-            var sectionSlice = this.calculateProperties(upperCoordinates);
+            var sectionSlice = this.CalculateProperties(upperCoordinates);
             return sectionSlice;
         }
 
-        private SectionSlice calculateProperties(IList<PointD> coordinates)
+        private SectionSlice CalculateProperties(IList<PointD> coordinates)
         {
             var calculations = new SectionPropertiesCalculations(coordinates);
             var slice = new SectionSlice
@@ -27,9 +28,9 @@ namespace BridgeTemperature.IntegrationFunctions
             return slice;
         }
 
-        private IList<PointD> lowerSection(IList<PointD> section, double a)
+        private IList<PointD> lowerSection(IList<PointD> section, double elevation)
         {
-            var compressedSection = new System.Collections.Generic.List<PointD>();
+            var compressedSection = new List<PointD>();
 
             for (int i = 0; i <= section.Count - 2; i++)
             {
@@ -37,7 +38,7 @@ namespace BridgeTemperature.IntegrationFunctions
                 var pointB = section[i + 1];
                 if ((pointA.Y - pointB.Y).IsApproximatelyEqualTo(0))
                 {
-                    if ((pointA.Y >= a) && (pointB.Y >= a))
+                    if ((pointA.Y >= elevation) && (pointB.Y >= elevation))
                     {
                         compressedSection.Add(pointA);
                         compressedSection.Add(pointB);
@@ -45,7 +46,7 @@ namespace BridgeTemperature.IntegrationFunctions
                 }
                 else
                 {
-                    var pointPP = this.IntersectionPoint(pointA, pointB, a);
+                    var pointPP = this.IntersectionPoint(pointA, pointB, elevation);
                     if (this.IsPointInsideSection(pointA, pointB, pointPP))
                     {
                         if (pointA.Y > pointPP.Y)
@@ -61,7 +62,7 @@ namespace BridgeTemperature.IntegrationFunctions
                     }
                     else
                     {
-                        if ((pointA.Y >= a) && (pointB.Y >= a))
+                        if ((pointA.Y >= elevation) && (pointB.Y >= elevation))
                         {
                             compressedSection.Add(pointA);
                             compressedSection.Add(pointB);
@@ -69,19 +70,16 @@ namespace BridgeTemperature.IntegrationFunctions
                     }
                 }
             }
-            if (!(((compressedSection[0].X).IsApproximatelyEqualTo(compressedSection[compressedSection.Count - 1].X)) && (compressedSection[0].Y.IsApproximatelyEqualTo(compressedSection[compressedSection.Count - 1].Y))))
+            if (!compressedSection.First().Equals(compressedSection.Last()))
             {
-                PointD P = new PointD();
-                P.X = compressedSection[0].X;
-                P.Y = compressedSection[0].Y;
-                compressedSection.Add(P);
+                compressedSection.Add(compressedSection.First().Clone());
             }
             return compressedSection;
         }
 
-        private List<PointD> UpperSection(IList<PointD> compressedSection, double a)
+        private List<PointD> UpperSection(IList<PointD> compressedSection, double elevation)
         {
-            List<PointD> parabolicSection = new System.Collections.Generic.List<PointD>();
+            List<PointD> parabolicSection = new List<PointD>();
 
             for (int i = 0; i <= compressedSection.Count - 2; i++)
             {
@@ -89,7 +87,7 @@ namespace BridgeTemperature.IntegrationFunctions
                 var pointB = compressedSection[i + 1];
                 if ((pointA.Y - pointB.Y).IsApproximatelyEqualTo(0))
                 {
-                    if ((pointA.Y <= a) && (pointB.Y <= a))
+                    if ((pointA.Y <= elevation) && (pointB.Y <= elevation))
                     {
                         parabolicSection.Add(pointA);
                         parabolicSection.Add(pointB);
@@ -97,7 +95,7 @@ namespace BridgeTemperature.IntegrationFunctions
                 }
                 else
                 {
-                    var pointPP = this.IntersectionPoint(pointA, pointB, a);
+                    var pointPP = this.IntersectionPoint(pointA, pointB, elevation);
                     if (this.IsPointInsideSection(pointA, pointB, pointPP))
                     {
                         if (pointA.Y > pointPP.Y)
@@ -113,7 +111,7 @@ namespace BridgeTemperature.IntegrationFunctions
                     }
                     else
                     {
-                        if ((pointA.Y <= a) && (pointB.Y <= a))
+                        if ((pointA.Y <= elevation) && (pointB.Y <= elevation))
                         {
                             parabolicSection.Add(pointA);
                             parabolicSection.Add(pointB);
@@ -135,17 +133,17 @@ namespace BridgeTemperature.IntegrationFunctions
             return parabolicSection;
         }
 
-        private PointD IntersectionPoint(PointD a1, PointD a2, double a)
+        private PointD IntersectionPoint(PointD point1, PointD point2, double elevation)
         {
-            var xa = a1.X;
-            var xb = a2.X;
-            var ya = a1.Y;
-            var yb = a2.Y;
+            var xa = point1.X;
+            var xb = point2.X;
+            var ya = point1.Y;
+            var yb = point2.Y;
 
             var point = new PointD
             {
-                Y = a,
-                X = ((a - ya) * (xb - xa)) / (yb - ya) + xa
+                Y = elevation,
+                X = ((elevation - ya) * (xb - xa)) / (yb - ya) + xa
             };
             return point;
         }

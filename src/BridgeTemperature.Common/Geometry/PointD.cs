@@ -31,5 +31,7 @@ namespace BridgeTemperature.Helpers
             int hashValue = Y.GetHashCode();
             return hashY ^ hashValue;
         }
+
+        public PointD Clone() => new PointD(this.X, this.Y);
     }
 }

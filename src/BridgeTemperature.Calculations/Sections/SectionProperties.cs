@@ -45,7 +45,7 @@ namespace BridgeTemperature.SectionProperties
             get
             {
                 if (_A.IsNaN())
-                    this.calculateBasicProperties();
+                    this.CalculateBasicProperties();
                 return _A;
             }
         }
@@ -55,7 +55,7 @@ namespace BridgeTemperature.SectionProperties
             get
             {
                 if (_Sx.IsNaN())
-                    this.calculateBasicProperties();
+                    this.CalculateBasicProperties();
                 return _Sx;
             }
         }
@@ -65,7 +65,7 @@ namespace BridgeTemperature.SectionProperties
             get
             {
                 if (_Sy.IsNaN())
-                    this.calculateBasicProperties();
+                    this.CalculateBasicProperties();
                 return _Sy;
             }
         }
@@ -75,7 +75,7 @@ namespace BridgeTemperature.SectionProperties
             get
             {
                 if (_Ix.IsNaN())
-                    this.calculateBasicProperties();
+                    this.CalculateBasicProperties();
                 return _Ix;
             }
         }
@@ -85,7 +85,7 @@ namespace BridgeTemperature.SectionProperties
             get
             {
                 if (_Iy.IsNaN())
-                    this.calculateBasicProperties();
+                    this.CalculateBasicProperties();
                 return _Iy;
             }
         }
@@ -95,7 +95,7 @@ namespace BridgeTemperature.SectionProperties
             get
             {
                 if (_Ixy.IsNaN())
-                    this.calculateBasicProperties();
+                    this.CalculateBasicProperties();
                 return _Ixy;
             }
         }
@@ -105,7 +105,7 @@ namespace BridgeTemperature.SectionProperties
             get
             {
                 if (_Ix0.IsNaN())
-                    this.calculateCentralProperties();
+                    this.CalculateCentralProperties();
                 return _Ix0;
             }
         }
@@ -115,7 +115,7 @@ namespace BridgeTemperature.SectionProperties
             get
             {
                 if (_Iy0.IsNaN())
-                    this.calculateCentralProperties();
+                    this.CalculateCentralProperties();
                 return _Iy0;
             }
         }
@@ -125,7 +125,7 @@ namespace BridgeTemperature.SectionProperties
             get
             {
                 if (_Ixy0.IsNaN())
-                    this.calculateCentralProperties();
+                    this.CalculateCentralProperties();
                 return _Ixy0;
             }
         }
@@ -135,7 +135,7 @@ namespace BridgeTemperature.SectionProperties
             get
             {
                 if (_I1.IsNaN())
-                    this.calculatePrincipalProperties();
+                    this.CalculatePrincipalProperties();
                 return _I1;
             }
         }
@@ -145,7 +145,7 @@ namespace BridgeTemperature.SectionProperties
             get
             {
                 if (_I2.IsNaN())
-                    this.calculatePrincipalProperties();
+                    this.CalculatePrincipalProperties();
                 return _I2;
             }
         }
@@ -155,7 +155,7 @@ namespace BridgeTemperature.SectionProperties
             get
             {
                 if (_Alfa.IsNaN())
-                    this.calculatePrincipalProperties();
+                    this.CalculatePrincipalProperties();
                 return _Alfa;
             }
         }
@@ -165,7 +165,7 @@ namespace BridgeTemperature.SectionProperties
             get
             {
                 if (_X0Max.IsNaN())
-                    this.extremeDistancesCentralCoordinateSystem();
+                    this.ExtremeDistancesCentralCoordinateSystem();
                 return _X0Max;
             }
         }
@@ -175,7 +175,7 @@ namespace BridgeTemperature.SectionProperties
             get
             {
                 if (_X0Min.IsNaN())
-                    this.extremeDistancesCentralCoordinateSystem();
+                    this.ExtremeDistancesCentralCoordinateSystem();
                 return _X0Min;
             }
         }
@@ -185,7 +185,7 @@ namespace BridgeTemperature.SectionProperties
             get
             {
                 if (_Y0Max.IsNaN())
-                    this.extremeDistancesCentralCoordinateSystem();
+                    this.ExtremeDistancesCentralCoordinateSystem();
                 return _Y0Max;
             }
         }
@@ -195,7 +195,7 @@ namespace BridgeTemperature.SectionProperties
             get
             {
                 if (_Y0Min.IsNaN())
-                    this.extremeDistancesCentralCoordinateSystem();
+                    this.ExtremeDistancesCentralCoordinateSystem();
                 return _Y0Min;
             }
         }
@@ -205,7 +205,7 @@ namespace BridgeTemperature.SectionProperties
             get
             {
                 if (_XIMax.IsNaN())
-                    this.extremeDistancesPrincipalCoordinateSystem();
+                    this.ExtremeDistancesPrincipalCoordinateSystem();
                 return _XIMax;
             }
         }
@@ -215,7 +215,7 @@ namespace BridgeTemperature.SectionProperties
             get
             {
                 if (_XIMin.IsNaN())
-                    this.extremeDistancesPrincipalCoordinateSystem();
+                    this.ExtremeDistancesPrincipalCoordinateSystem();
                 return _XIMin;
             }
         }
@@ -225,7 +225,7 @@ namespace BridgeTemperature.SectionProperties
             get
             {
                 if (_YIMax.IsNaN())
-                    this.extremeDistancesPrincipalCoordinateSystem();
+                    this.ExtremeDistancesPrincipalCoordinateSystem();
                 return _YIMax;
             }
         }
@@ -235,7 +235,7 @@ namespace BridgeTemperature.SectionProperties
             get
             {
                 if (_YIMin.IsNaN())
-                    this.extremeDistancesPrincipalCoordinateSystem();
+                    this.ExtremeDistancesPrincipalCoordinateSystem();
                 return _YIMin;
             }
         }
@@ -245,7 +245,7 @@ namespace BridgeTemperature.SectionProperties
             get
             {
                 if (_XMax.IsNaN())
-                    this.extremeCoordinates();
+                    this.ExtremeCoordinates();
                 return _XMax;
             }
         }
@@ -255,7 +255,7 @@ namespace BridgeTemperature.SectionProperties
             get
             {
                 if (_XMin.IsNaN())
-                    this.extremeCoordinates();
+                    this.ExtremeCoordinates();
                 return _XMin;
             }
         }
@@ -265,7 +265,7 @@ namespace BridgeTemperature.SectionProperties
             get
             {
                 if (_YMax.IsNaN())
-                    this.extremeCoordinates();
+                    this.ExtremeCoordinates();
                 return _YMax;
             }
         }
@@ -275,7 +275,7 @@ namespace BridgeTemperature.SectionProperties
             get
             {
                 if (_YMin.IsNaN())
-                    this.extremeCoordinates();
+                    this.ExtremeCoordinates();
                 return _YMin;
             }
         }
@@ -285,7 +285,7 @@ namespace BridgeTemperature.SectionProperties
             get
             {
                 if (_X0.IsNaN())
-                    this.calculateCentreOfGravity();
+                    this.CalculateCentreOfGravity();
                 return _X0;
             }
         }
@@ -295,7 +295,7 @@ namespace BridgeTemperature.SectionProperties
             get
             {
                 if (_Y0.IsNaN())
-                    this.calculateCentreOfGravity();
+                    this.CalculateCentreOfGravity();
                 return _Y0;
             }
         }
@@ -305,7 +305,7 @@ namespace BridgeTemperature.SectionProperties
             get
             {
                 if (_B.IsNaN())
-                    this.calculateRectangle();
+                    this.CalculateRectangle();
                 return _B;
             }
         }
@@ -315,7 +315,7 @@ namespace BridgeTemperature.SectionProperties
             get
             {
                 if (_H.IsNaN())
-                    this.calculateRectangle();
+                    this.CalculateRectangle();
                 return _H;
             }
         }
@@ -331,10 +331,10 @@ namespace BridgeTemperature.SectionProperties
         public SectionPropertiesCalculations(IList<PointD> coordinates)
         {
             this.coordinates = coordinates;
-            this.setNaNValues();
+            this.SetNaNValues();
         }
 
-        private void setNaNValues()
+        private void SetNaNValues()
         {
             _A = double.NaN;
             _Sx = double.NaN;
@@ -366,7 +366,7 @@ namespace BridgeTemperature.SectionProperties
             _H = double.NaN;
         }
 
-        private void calculateBasicProperties()
+        private void CalculateBasicProperties()
         {
             double a = 0;
             double sx = 0;
@@ -405,27 +405,27 @@ namespace BridgeTemperature.SectionProperties
             this._Ixy = ixy;
         }
 
-        private void calculateCentreOfGravity()
+        private void CalculateCentreOfGravity()
         {
             if (_A.IsNaN() || _Sx.IsNaN() || _Sy.IsNaN())
-                this.calculateBasicProperties();
+                this.CalculateBasicProperties();
             this._X0 = _Sy / _A;
             this._Y0 = _Sx / _A;
         }
 
-        private void calculateCentralProperties()
+        private void CalculateCentralProperties()
         {
             if (this._X0.IsNaN() || this._Y0.IsNaN())
-                this.calculateCentreOfGravity();
+                this.CalculateCentreOfGravity();
             this._Ix0 = this._Ix - this._A * this._Y0 * this._Y0;
             this._Iy0 = this._Iy - this._A * this._X0 * this._X0;
             this._Ixy0 = this._Ixy - this._A * this._X0 * this._Y0;
         }
 
-        private void calculatePrincipalProperties()
+        private void CalculatePrincipalProperties()
         {
             if (_Ix0.IsNaN() || _Iy0.IsNaN() || _Ixy0.IsNaN())
-                this.calculateCentralProperties();
+                this.CalculateCentralProperties();
             this._I1 = (_Ix0 + _Iy0) / 2 + 0.5 * Math.Sqrt(Math.Pow(_Iy0 - _Ix0, 2) + 4 * _Ixy0 * _Ixy0);
             this._I2 = (_Ix0 + _Iy0) / 2 - 0.5 * Math.Sqrt(Math.Pow(_Iy0 - _Ix0, 2) + 4 * _Ixy0 * _Ixy0);
             this._Alfa = Math.Atan(_Ixy0 / (_Iy0 - _I1));
@@ -433,20 +433,20 @@ namespace BridgeTemperature.SectionProperties
                 this._Alfa = Math.PI / 2;
         }
 
-        private void extremeDistancesCentralCoordinateSystem()
+        private void ExtremeDistancesCentralCoordinateSystem()
         {
             if (_X0.IsNaN() || _Y0.IsNaN())
-                this.calculateCentreOfGravity();
+                this.CalculateCentreOfGravity();
             _X0Max = coordinates.Max(point => point.X) - this._X0;
             _X0Min = coordinates.Min(point => point.X) - this._X0;
             _Y0Max = coordinates.Max(point => point.Y) - this._Y0;
             _Y0Min = coordinates.Min(point => point.Y) - this._Y0;
         }
 
-        private void extremeDistancesPrincipalCoordinateSystem()
+        private void ExtremeDistancesPrincipalCoordinateSystem()
         {
             if (_Alfa.IsNaN())
-                this.calculatePrincipalProperties();
+                this.CalculatePrincipalProperties();
             double cos = Math.Cos(_Alfa);
             double sin = Math.Sin(_Alfa);
             double xo = _X0 * cos - _Y0 * sin;
@@ -458,7 +458,7 @@ namespace BridgeTemperature.SectionProperties
             _YIMin = coordinates.Min(point => point.X * sin + point.Y * cos) - yo;
         }
 
-        private void extremeCoordinates()
+        private void ExtremeCoordinates()
         {
             _XMax = coordinates.Max(point => point.X);
             _YMax = coordinates.Max(point => point.Y);
@@ -466,64 +466,12 @@ namespace BridgeTemperature.SectionProperties
             _YMin = coordinates.Min(point => point.Y);
         }
 
-        private void calculateRectangle()
+        private void CalculateRectangle()
         {
             if (_Ix0.IsNaN())
-                this.calculateCentralProperties();
+                this.CalculateCentralProperties();
             _H = Math.Sqrt(12 * _Ix0 / _A);
             _B = _A / _H;
-        }
-
-        [Obsolete]
-        private void CalculateProperties()
-        {
-            double F = 0;
-            double Sx = 0;
-            double Sy = 0;
-            double Ix = 0;
-            double Iy = 0;
-            double Ixy = 0;
-
-            for (int i = 0; i <= coordinates.Count - 2; i++)
-            {
-                double x1, x2, y1, y2;
-                x1 = coordinates[i].X;
-                x2 = coordinates[i + 1].X;
-                y1 = coordinates[i].Y;
-                y2 = coordinates[i + 1].Y;
-                F = F + (x1 - x2) * (y2 + y1);
-                Sx = Sx + (x1 - x2) * (y1 * y1 + y1 * y2 + y2 * y2);
-                Sy = Sy + (y2 - y1) * (x1 * x1 + x1 * x2 + x2 * x2);
-                Ix = Ix + (x1 - x2) * (y1 * y1 * y1 + y1 * y1 * y2 + y1 * y2 * y2 + y2 * y2 * y2);
-                Iy = Iy + (y2 - y1) * (x1 * x1 * x1 + x1 * x1 * x2 + x1 * x2 * x2 + x2 * x2 * x2);
-                Ixy = Ixy + (x1 - x2) * (x1 * (3 * y1 * y1 + y2 * y2 + 2 * y1 * y2) + x2 * (3 * y2 * y2 + y1 * y1 + 2 * y1 * y2));
-            }
-            F = F / 2;
-            Sx = Sx / 6;
-            Sy = Sy / 6;
-            Ix = Ix / 12;
-            Iy = Iy / 12;
-            Ixy = Ixy / 24;
-            double x0 = Sy / F;
-            double y0 = Sx / F;
-            double Ix0 = Ix - F * y0 * y0;
-            double Iy0 = Iy - F * x0 * x0;
-            double Ixy0 = Ixy - F * x0 * y0;
-            double I1 = (Ix0 + Iy0) / 2 + 0.5 * Math.Sqrt(Math.Pow(Iy0 - Ix0, 2) + 4 * Ixy0 * Ixy0);
-            double I2 = (Ix0 + Iy0) / 2 - 0.5 * Math.Sqrt(Math.Pow(Iy0 - Ix0, 2) + 4 * Ixy0 * Ixy0);
-            double h = Math.Sqrt(12 * Ix0 / F);
-            double b = F / h;
-            double alfa = Math.Atan(Ixy0 / (Iy0 - I1));
-            if (double.IsNaN(alfa))
-                alfa = Math.PI / 2;
-
-            ExtremeDistances extremeCoordinates = new ExtremeDistances(new PointD(x0, y0));
-            double x0_max, x0_min, y0_max, y0_min;
-            double xI_max, xI_min, yI_max, yI_min;
-            double xmax, xmin, ymax, ymin;
-            extremeCoordinates.MaxDistancesCentralCoordinateSystem(coordinates, out x0_max, out x0_min, out y0_max, out y0_min);
-            extremeCoordinates.MaxDistancesPrincipalCoordinateSystem(coordinates, alfa, out xI_max, out xI_min, out yI_max, out yI_min);
-            extremeCoordinates.ExtremeCoordinates(coordinates, out xmax, out xmin, out ymax, out ymin);
         }
 
         public Dictionary<SectionCharacteristic, double> GetAllProperties()

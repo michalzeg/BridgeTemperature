@@ -45,7 +45,7 @@
     <Compile Include="Geometry\Interpolation.cs" />
     <Compile Include="Geometry\PointD.cs" />
     <Compile Include="Helpers\PropertyName.cs" />
-    <Compile Include="Helpers\SectionType.cs" />
+    <Compile Include="Sections\SectionType.cs" />
     <Compile Include="Materials\MaterialProvider.cs" />
     <Compile Include="Materials\Materials.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

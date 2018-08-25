@@ -41,7 +41,7 @@ namespace BridgeTemperature.Sections
             this.ModulusOfElasticity = modulusOfElasticity;
             this.ThermalCooeficient = thermalCooefficient;
 
-            SectionPropertiesCalculations properties = new SectionPropertiesCalculations(this.Coordinates);
+            var properties = new SectionPropertiesCalculations(this.Coordinates);
 
             this.Area = properties.A;
             this.CentreOfGravity = properties.CentreOfGravity;

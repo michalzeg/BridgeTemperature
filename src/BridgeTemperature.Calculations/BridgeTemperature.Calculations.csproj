@@ -52,7 +52,7 @@
     <Compile Include="Distributions\Distribution.cs" />
     <Compile Include="Calculators\DistributionCalculations.cs" />
     <Compile Include="Sections\Section.cs" />
-    <Compile Include="Distributions\TypicalCompositeSection.cs" />
+    <Compile Include="Sections\TypicalCompositeSection.cs" />
     <Compile Include="Interfaces\ICompositeSection.cs" />
     <Compile Include="Interfaces\IDistributable.cs" />
     <Compile Include="Calculators\Interigation.cs" />
