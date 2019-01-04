@@ -6,7 +6,7 @@
 ### Description
 Temperature distribution calculator for bridge sections
 
-### Main Features
+### Other information
 - Developed in C#
 - Unrestricted geometry, material and temperature distribution 
 - Sections with voids
