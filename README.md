@@ -2,6 +2,7 @@
 
 [![Build Status](https://dev.azure.com/michalzeg/GitHub/_apis/build/status/BridgeTemperature)](https://dev.azure.com/michalzeg/GitHub/_build/latest?definitionId=10)
 
+- Developed in C#
 - Unrestricted geometry, material and temperature distribution 
 - Sections with voids
 - Build-in Eurocode temperature distributions
