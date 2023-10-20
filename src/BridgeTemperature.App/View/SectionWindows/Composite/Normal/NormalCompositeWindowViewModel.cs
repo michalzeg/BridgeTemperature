@@ -32,20 +32,20 @@ namespace BridgeTemperature.ViewModel
             TempDistribution = new List<DistributionDrawingData>();
             Apply = new RelayCommand(apply);
 
-            tf2 = 0.02;
-            hw = 1;
-            tf1 = 0.02;
-            bf1 = 0.3;
-            bf2 = 0.2;
-            bp = 1;
-            hp = 0.3;
-            tw = 0.02;
-            dt1 = 50;
-            dt2 = 10;
-            h1 = 0.2;
-            h2 = 0.5;
+            _tf2 = 0.02;
+            _hw = 1;
+            _tf1 = 0.02;
+            _bf1 = 0.3;
+            _bf2 = 0.2;
+            _bp = 1;
+            _hp = 0.3;
+            _tw = 0.02;
+            _dt1 = 50;
+            _dt2 = 10;
+            _h1 = 0.2;
+            _h2 = 0.5;
 
-            compositeGirder = new NormalCompositeGirder(Tf1, Hw, Tf2, Tw, Bf1, Bf2, Bp, Hp, DT1, DT2, H1, H2);
+            _compositeGirder = new NormalCompositeGirder(Tf1, Hw, Tf2, Tw, Bf1, Bf2, Bp, Hp, DT1, DT2, H1, H2);
             updateDrawings();
         }
 
@@ -54,24 +54,24 @@ namespace BridgeTemperature.ViewModel
 
         private void apply()
         {
-            var steelSection = new Section(compositeGirder.GetPlateGirderCoordinates(), SectionType.Steel,
+            var steelSection = new Section(_compositeGirder.GetPlateGirderCoordinates(), SectionType.Steel,
                 SteelPropertiesVM.ModulusOfElasticity, SteelPropertiesVM.ThermalCoefficient,
-                compositeGirder.GetPlateGirderTemperature());
+                _compositeGirder.GetPlateGirderTemperature());
             Messenger.Default.Send<ISection>(steelSection);
 
-            var concreteSection = new Section(compositeGirder.GetSlabCoordinates(), SectionType.Concrete,
+            var concreteSection = new Section(_compositeGirder.GetSlabCoordinates(), SectionType.Concrete,
                 ConcretePropertiesVM.ModulusOfElasticity, ConcretePropertiesVM.ThermalCoefficient,
-                compositeGirder.GetSlabTemperature());
+                _compositeGirder.GetSlabTemperature());
 
             Messenger.Default.Send<ISection>(concreteSection);
         }
 
-        private NormalCompositeGirder compositeGirder;
+        private readonly NormalCompositeGirder _compositeGirder;
 
         private void updateDrawings()
         {
-            var steelSection = compositeGirder.GetPlateGirderCoordinates();
-            var concreteSection = compositeGirder.GetSlabCoordinates();
+            var steelSection = _compositeGirder.GetPlateGirderCoordinates();
+            var concreteSection = _compositeGirder.GetSlabCoordinates();
             var section = new List<SectionDrawingData>()
             { new SectionDrawingData(){ Coordinates = steelSection, Type = SectionType.Steel },
             new SectionDrawingData() {Coordinates =concreteSection,Type= SectionType.Concrete } };
@@ -80,19 +80,19 @@ namespace BridgeTemperature.ViewModel
 
             var distributionDataSlab = new DistributionDrawingData
             {
-                Distribution = compositeGirder.GetSlabTemperature(),
-                SectionMaxY = compositeGirder.MaxY,
-                SectionMinY = compositeGirder.MinY,
-                SectionMaxX = compositeGirder.MaxX,
-                SectionMinX = compositeGirder.MinX
+                Distribution = _compositeGirder.GetSlabTemperature(),
+                SectionMaxY = _compositeGirder.MaxY,
+                SectionMinY = _compositeGirder.MinY,
+                SectionMaxX = _compositeGirder.MaxX,
+                SectionMinX = _compositeGirder.MinX
             };
             var distributionDataGirder = new DistributionDrawingData
             {
-                Distribution = compositeGirder.GetPlateGirderTemperature(),
-                SectionMaxY = compositeGirder.MaxY,
-                SectionMinY = compositeGirder.MinY,
-                SectionMaxX = compositeGirder.MaxX,
-                SectionMinX = compositeGirder.MinX
+                Distribution = _compositeGirder.GetPlateGirderTemperature(),
+                SectionMaxY = _compositeGirder.MaxY,
+                SectionMinY = _compositeGirder.MinY,
+                SectionMaxX = _compositeGirder.MaxX,
+                SectionMinX = _compositeGirder.MinX
             };
 
             var distribution = new List<DistributionDrawingData>() { distributionDataSlab, distributionDataGirder };
@@ -100,193 +100,193 @@ namespace BridgeTemperature.ViewModel
             RaisePropertyChanged(() => TempDistribution);
         }
 
-        private double tf1;
+        private double _tf1;
 
         public double Tf1
         {
-            get { return tf1; }
+            get { return _tf1; }
             set
             {
-                if (value != tf1)
+                if (value != _tf1)
                 {
-                    tf1 = value;
-                    compositeGirder.Tf1 = value;
+                    _tf1 = value;
+                    _compositeGirder.Tf1 = value;
                     updateDrawings();
                 }
             }
         }
 
-        private double hw;
+        private double _hw;
 
         public double Hw
         {
-            get { return hw; }
+            get { return _hw; }
             set
             {
-                if (value != hw)
+                if (value != _hw)
                 {
-                    hw = value;
-                    compositeGirder.Hw = value;
+                    _hw = value;
+                    _compositeGirder.Hw = value;
                     updateDrawings();
                 }
             }
         }
 
-        private double tf2;
+        private double _tf2;
 
         public double Tf2
         {
-            get { return tf2; }
+            get { return _tf2; }
             set
             {
-                if (value != tf2)
+                if (value != _tf2)
                 {
-                    tf2 = value;
-                    compositeGirder.Tf2 = value;
+                    _tf2 = value;
+                    _compositeGirder.Tf2 = value;
                     updateDrawings();
                 }
             }
         }
 
-        private double tw;
+        private double _tw;
 
         public double Tw
         {
-            get { return tw; }
+            get { return _tw; }
             set
             {
-                if (value != tw)
+                if (value != _tw)
                 {
-                    tw = value;
-                    compositeGirder.Tw = value;
+                    _tw = value;
+                    _compositeGirder.Tw = value;
                     updateDrawings();
                 }
             }
         }
 
-        private double bf1;
+        private double _bf1;
 
         public double Bf1
         {
-            get { return bf1; }
+            get { return _bf1; }
             set
             {
-                if (value != bf1)
+                if (value != _bf1)
                 {
-                    bf1 = value;
-                    compositeGirder.Bf1 = value;
+                    _bf1 = value;
+                    _compositeGirder.Bf1 = value;
                     updateDrawings();
                 }
             }
         }
 
-        private double bf2;
+        private double _bf2;
 
         public double Bf2
         {
-            get { return bf2; }
+            get { return _bf2; }
             set
             {
-                if (value != bf2)
+                if (value != _bf2)
                 {
-                    bf2 = value;
-                    compositeGirder.Bf2 = value;
+                    _bf2 = value;
+                    _compositeGirder.Bf2 = value;
                     updateDrawings();
                 }
             }
         }
 
-        private double bp;
+        private double _bp;
 
         public double Bp
         {
-            get { return bp; }
+            get { return _bp; }
             set
             {
-                if (value != bp)
+                if (value != _bp)
                 {
-                    bp = value;
-                    compositeGirder.Bp = value;
+                    _bp = value;
+                    _compositeGirder.Bp = value;
                     updateDrawings();
                 }
             }
         }
 
-        private double hp;
+        private double _hp;
 
         public double Hp
         {
-            get { return hp; }
+            get { return _hp; }
             set
             {
-                if (value != hp)
+                if (value != _hp)
                 {
-                    hp = value;
-                    compositeGirder.Hp = value;
+                    _hp = value;
+                    _compositeGirder.Hp = value;
                     updateDrawings();
                 }
             }
         }
 
-        private double dt1;
+        private double _dt1;
 
         public double DT1
         {
-            get { return dt1; }
+            get { return _dt1; }
             set
             {
-                if (value != dt1)
+                if (value != _dt1)
                 {
-                    dt1 = value;
-                    compositeGirder.DT1 = value;
+                    _dt1 = value;
+                    _compositeGirder.DT1 = value;
                     updateDrawings();
                 }
             }
         }
 
-        private double dt2;
+        private double _dt2;
 
         public double DT2
         {
-            get { return dt2; }
+            get { return _dt2; }
             set
             {
-                if (value != dt2)
+                if (value != _dt2)
                 {
-                    dt2 = value;
-                    compositeGirder.DT2 = value;
+                    _dt2 = value;
+                    _compositeGirder.DT2 = value;
                     updateDrawings();
                 }
             }
         }
 
-        private double h1;
+        private double _h1;
 
         public double H1
         {
-            get { return h1; }
+            get { return _h1; }
             set
             {
-                if (value != h1)
+                if (value != _h1)
                 {
-                    h1 = value;
-                    compositeGirder.H1 = value;
+                    _h1 = value;
+                    _compositeGirder.H1 = value;
                     updateDrawings();
                 }
             }
         }
 
-        private double h2;
+        private double _h2;
 
         public double H2
         {
-            get { return h2; }
+            get { return _h2; }
             set
             {
-                if (value != h2)
+                if (value != _h2)
                 {
-                    h2 = value;
-                    compositeGirder.H2 = value;
+                    _h2 = value;
+                    _compositeGirder.H2 = value;
                     updateDrawings();
                 }
             }

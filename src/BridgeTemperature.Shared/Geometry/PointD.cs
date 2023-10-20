@@ -10,8 +10,8 @@ namespace BridgeTemperature.Shared.Geometry
 
         public PointD(double x, double y)
         {
-            this.X = x;
-            this.Y = y;
+            X = x;
+            Y = y;
         }
 
         public PointD()
@@ -32,6 +32,6 @@ namespace BridgeTemperature.Shared.Geometry
             return hashY ^ hashValue;
         }
 
-        public PointD Clone() => new PointD(this.X, this.Y);
+        public PointD Clone() => new PointD(X, Y);
     }
 }

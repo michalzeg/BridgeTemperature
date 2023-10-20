@@ -16,16 +16,20 @@ namespace BridgeTemperature.Calculations.Distributions
 
             foreach (var coordinate in coordinates)
             {
-                var distribution = new Distribution();
-                distribution.Y = coordinate.Y;
-                distribution.Value = base.GetValue(coordinate.Y) / thermalCoefficient / modulusOfElasticity;
+                var distribution = new Distribution
+                {
+                    Y = coordinate.Y,
+                    Value = base.GetValue(coordinate.Y) / thermalCoefficient / modulusOfElasticity
+                };
                 temperatureDistribution.Add(distribution);
             }
             foreach (var baseDistribution in base.Distribution)
             {
-                var distribution = new Distribution();
-                distribution.Y = baseDistribution.Y;
-                distribution.Value = baseDistribution.Value / thermalCoefficient / modulusOfElasticity;
+                var distribution = new Distribution
+                {
+                    Y = baseDistribution.Y,
+                    Value = baseDistribution.Value / thermalCoefficient / modulusOfElasticity
+                };
                 temperatureDistribution.Add(distribution);
             }
             return new TemperatureDistribution(temperatureDistribution.Distinct().OrderBy(e => e.Y));
@@ -37,9 +41,11 @@ namespace BridgeTemperature.Calculations.Distributions
             foreach (var coordinate in coordinates)
             {
                 double alfa = baseModulusOfElasticity / modulusOfElasticity;
-                var distribution = new Distribution();
-                distribution.Y = coordinate.Y;
-                distribution.Value = bendingMoment / momentOfInertia * (centreOfGravity - coordinate.Y) / alfa;
+                var distribution = new Distribution
+                {
+                    Y = coordinate.Y,
+                    Value = bendingMoment / momentOfInertia * (centreOfGravity - coordinate.Y) / alfa
+                };
                 stressDistribution.Add(distribution);
             }
             return new StressDistribution(stressDistribution.Distinct().OrderBy(e => e.Y));

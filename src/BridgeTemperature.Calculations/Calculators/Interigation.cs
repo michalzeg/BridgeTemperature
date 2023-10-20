@@ -9,7 +9,7 @@ namespace BridgeTemperature.Calculations.Calculators
 {
     public class Integration : IIntegration
     {
-        private readonly int numberOfSlices = 1500;
+        private readonly int _numberOfSlices = 1500;
         public double Moment { get; private set; }
         public double NormalForce { get; private set; }
 
@@ -32,22 +32,22 @@ namespace BridgeTemperature.Calculations.Calculators
             double sectionTypeMultiplier = (section.Type == SectionType.Void) ? -1 : 1;
 
             double currentY = section.YMin;
-            double deltaY = (section.YMax - section.YMin) / this.numberOfSlices;
+            double deltaY = (section.YMax - section.YMin) / this._numberOfSlices;
             do
             {
                 var slice = slicing.GetSlice(section.Coordinates, currentY + deltaY, currentY);
-                currentY = currentY + deltaY;
+                currentY += deltaY;
                 double value = distributionFunction(slice.CentreOfGravityY);
                 double normalForce = value * slice.Area * sectionTypeMultiplier;
                 double leverArm = Math.Abs(integrationPoint.Y - slice.CentreOfGravityY);
                 double moment = ((slice.CentreOfGravityY < integrationPoint.Y) ? leverArm * value * slice.Area : -leverArm * value * slice.Area) * sectionTypeMultiplier;
 
-                resultantMoment = resultantMoment + moment;
-                resultantNormalForce = resultantNormalForce + normalForce;
+                resultantMoment += moment;
+                resultantNormalForce += normalForce;
             }
             while (currentY <= section.YMax);
-            this.NormalForce = this.NormalForce + resultantNormalForce;
-            this.Moment = this.Moment + resultantMoment;
+            NormalForce += resultantNormalForce;
+            Moment += resultantMoment;
         }
     }
 }

@@ -30,8 +30,8 @@ namespace BridgeTemperature.ViewModel
             SectionPropertiesVM = new SectionPropertiesViewModel();
             PointsUpdated = new RelayCommand(pointUpdated);
             TemperatureUpdated = new RelayCommand(distributionUpdated);
-            this.Points = new ObservableCollection<PointD>();
-            this.Temperature = new ObservableCollection<Distribution>();
+            Points = new ObservableCollection<PointD>();
+            Temperature = new ObservableCollection<Distribution>();
 
             Section = new ObservableCollection<SectionDrawingData>();
 

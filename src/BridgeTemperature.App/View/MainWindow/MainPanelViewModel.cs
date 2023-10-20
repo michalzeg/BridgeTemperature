@@ -119,46 +119,46 @@ namespace BridgeTemperature.ViewModel
             }
         }
 
-        private string uniformDistributionLabel;
+        private string _uniformDistributionLabel;
 
         public string UniformDistributionLabel
         {
-            get { return uniformDistributionLabel; }
+            get { return _uniformDistributionLabel; }
             set
             {
-                if (value != uniformDistributionLabel)
+                if (value != _uniformDistributionLabel)
                 {
-                    uniformDistributionLabel = value;
+                    _uniformDistributionLabel = value;
                     RaisePropertyChanged(() => UniformDistributionLabel);
                 }
             }
         }
 
-        private string bendingDistributionLabel;
+        private string _bendingDistributionLabel;
 
         public string BendingDistributionLabel
         {
-            get { return bendingDistributionLabel; }
+            get { return _bendingDistributionLabel; }
             set
             {
-                if (value != bendingDistributionLabel)
+                if (value != _bendingDistributionLabel)
                 {
-                    bendingDistributionLabel = value;
+                    _bendingDistributionLabel = value;
                     RaisePropertyChanged(() => BendingDistributionLabel);
                 }
             }
         }
 
-        private string selfDistributionLabel;
+        private string _selfDistributionLabel;
 
         public string SelfDistributionLabel
         {
-            get { return selfDistributionLabel; }
+            get { return _selfDistributionLabel; }
             set
             {
-                if (value != selfDistributionLabel)
+                if (value != _selfDistributionLabel)
                 {
-                    selfDistributionLabel = value;
+                    _selfDistributionLabel = value;
                     RaisePropertyChanged(() => SelfDistributionLabel);
                 }
             }

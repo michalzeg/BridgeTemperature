@@ -15,11 +15,11 @@ namespace BridgeTemperature.Calculations.Sections
         public TypicalCompositeSection(ICollection<ISection> sections)
         {
             var compositeProperties = new CompositeSectionPropertiesCalculations(sections);
-            this.Sections = sections;
-            this.BaseModulusOfElasticity = compositeProperties.BaseModulusOfElasticity;
-            this.CentreOfGravity = compositeProperties.CentreOfGravity;
-            this.Area = compositeProperties.Area;
-            this.MomentOfIntertia = compositeProperties.SecondMomentOfArea;
+            Sections = sections;
+            BaseModulusOfElasticity = compositeProperties.BaseModulusOfElasticity;
+            CentreOfGravity = compositeProperties.CentreOfGravity;
+            Area = compositeProperties.Area;
+            MomentOfIntertia = compositeProperties.SecondMomentOfArea;
         }
     }
 }

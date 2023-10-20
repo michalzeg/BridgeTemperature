@@ -36,39 +36,35 @@ namespace BridgeTemperature.Calculations.Sections
 
         public Section(IList<PointD> coordinates, SectionType type, double modulusOfElasticity, double thermalCooefficient, IEnumerable<Distribution> externalTemperatureDistribution)
         {
-            this.Coordinates = CheckIfCoordinatesAreClockwise(coordinates);
-            this.CheckLastElement();
-            this.Type = type;
-            this.ModulusOfElasticity = modulusOfElasticity;
-            this.ThermalCooeficient = thermalCooefficient;
+            Coordinates = CheckIfCoordinatesAreClockwise(coordinates);
+            CheckLastElement();
+            Type = type;
+            ModulusOfElasticity = modulusOfElasticity;
+            ThermalCooeficient = thermalCooefficient;
 
             var properties = new SectionPropertiesCalculations(this.Coordinates);
 
-            this.Area = properties.A;
-            this.CentreOfGravity = properties.CentreOfGravity;
-            this.MomentOfInertia = properties.Ix0;
-            this.YMax = properties.YMax;
-            this.YMin = properties.YMin;
-            this.XMax = properties.XMax;
-            this.XMin = properties.XMin;
-            this.Height = properties.YMax - properties.YMin;
+            Area = properties.A;
+            CentreOfGravity = properties.CentreOfGravity;
+            MomentOfInertia = properties.Ix0;
+            YMax = properties.YMax;
+            YMin = properties.YMin;
+            XMax = properties.XMax;
+            XMin = properties.XMin;
+            Height = properties.YMax - properties.YMin;
 
-            this.ExternalTemperature = new TemperatureDistribution(externalTemperatureDistribution.OrderBy(e => e.Y));
-            this.ExternalStress = this.ExternalTemperature.ConvertToStressDistribution(coordinates, modulusOfElasticity, thermalCooefficient);
+            ExternalTemperature = new TemperatureDistribution(externalTemperatureDistribution.OrderBy(e => e.Y));
+            ExternalStress = ExternalTemperature.ConvertToStressDistribution(coordinates, modulusOfElasticity, thermalCooefficient);
         }
 
         private void CheckLastElement()
         {
-            PointD firstPoint = this.Coordinates[0];
-            PointD lastPoint = this.Coordinates.Last();
+            PointD firstPoint = Coordinates[0];
+            PointD lastPoint = Coordinates.Last();
 
-            if (firstPoint.X.IsApproximatelyEqualTo(lastPoint.X) && firstPoint.Y.IsApproximatelyEqualTo(lastPoint.Y))
+            if (!firstPoint.X.IsApproximatelyEqualTo(lastPoint.X) || !firstPoint.Y.IsApproximatelyEqualTo(lastPoint.Y))
             {
-                return;
-            }
-            else
-            {
-                this.Coordinates.Add(firstPoint);
+                Coordinates.Add(firstPoint);
             }
         }
 
@@ -80,7 +76,7 @@ namespace BridgeTemperature.Calculations.Sections
             var tempCoord = new List<PointD>(coordinates);
             for (int i = 0; i <= coordinates.Count - 3; i++)
             {
-                var crossPrd = this.CrossProduct(coordinates[i], coordinates[i + 1], coordinates[i + 2]);
+                var crossPrd = CrossProduct(coordinates[i], coordinates[i + 1], coordinates[i + 2]);
                 if (crossPrd > 0)
                 {
                     //clockwise
@@ -107,8 +103,7 @@ namespace BridgeTemperature.Calculations.Sections
             vector2[0] = point2.X - point1.X;
             vector2[1] = point2.Y - point1.Y;
 
-            double result;
-            result = vector1[0] * vector2[1] - vector1[1] * vector2[0];
+            double result = vector1[0] * vector2[1] - vector1[1] * vector2[0];
             return result;
         }
     }

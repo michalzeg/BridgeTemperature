@@ -60,8 +60,8 @@ namespace BridgeTemperature.Drawing
                 return;
             }
             PolygonDrawing drawing = new PolygonDrawing(scaleCalculator);
-            this.scaleCalculator.UpdateProperties(Sections.Select(e => e.Coordinates).ToList());
-            this.Children.Clear();
+            scaleCalculator.UpdateProperties(Sections.Select(e => e.Coordinates).ToList());
+            Children.Clear();
             foreach (var section in Sections)
             {
                 var polygon = drawing.CreatePolygonDrawing(section.Coordinates);
@@ -83,12 +83,18 @@ namespace BridgeTemperature.Drawing
         private Brush GetBrush(SectionType type)
         {
             Brush brush = CustomBrush();
-            if (type == SectionType.Concrete)
-                brush = ConcreteBrush();
-            else if (type == SectionType.Steel)
-                brush = SteelBrush();
-            else if (type == SectionType.Void)
-                brush = VoidBrush();
+            switch (type)
+            {
+                case SectionType.Concrete:
+                    brush = ConcreteBrush();
+                    break;
+                case SectionType.Steel:
+                    brush = SteelBrush();
+                    break;
+                case SectionType.Void:
+                    brush = VoidBrush();
+                    break;
+            }
             return brush;
         }
 

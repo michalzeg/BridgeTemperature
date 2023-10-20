@@ -39,8 +39,7 @@ namespace BridgeTemperature.Calculations.Calculators
         {
             foreach (var section in compositeSection.Sections)
             {
-                var uniformDistribution = StressDistribution.AxialStress(section.Coordinates, normalForce, compositeSection.Area, compositeSection.BaseModulusOfElasticity, section.ModulusOfElasticity);
-                section.UniformStress = uniformDistribution;
+                section.UniformStress = StressDistribution.AxialStress(section.Coordinates, normalForce, compositeSection.Area, compositeSection.BaseModulusOfElasticity, section.ModulusOfElasticity);
                 section.UniformStress.MultiplyDistribution(-1);
             }
         }
@@ -61,8 +60,7 @@ namespace BridgeTemperature.Calculations.Calculators
         {
             foreach (var section in compositeSection.Sections)
             {
-                StressDistribution bendingDistribution = StressDistribution.BendingStress(section.Coordinates, moment, compositeSection.CentreOfGravity.Y, compositeSection.MomentOfIntertia, compositeSection.BaseModulusOfElasticity, section.ModulusOfElasticity);
-                section.BendingStress = bendingDistribution;
+                section.BendingStress = StressDistribution.BendingStress(section.Coordinates, moment, compositeSection.CentreOfGravity.Y, compositeSection.MomentOfIntertia, compositeSection.BaseModulusOfElasticity, section.ModulusOfElasticity);
                 section.BendingStress.MultiplyDistribution(-1);
 
                 var selfEquilibratingStress = new StressDistribution(section.ExternalStress.Distribution);

@@ -29,8 +29,8 @@ namespace BridgeTemperature.Drawing
         protected PointD TransformCoordinatesToCentreOfGrid(PointD point)
         {
             var newPoint = new PointD();
-            newPoint.X = ((point.X - this.scaleProperties.Centre.X) * scaleProperties.ScaleX) + scaleProperties.CanvasActualWidth() / 2;
-            newPoint.Y = (-(point.Y - this.scaleProperties.Centre.Y) * scaleProperties.ScaleY) + scaleProperties.CanvasActualHeight() / 2;
+            newPoint.X = ((point.X - scaleProperties.Centre.X) * scaleProperties.ScaleX) + scaleProperties.CanvasActualWidth() / 2;
+            newPoint.Y = (-(point.Y - scaleProperties.Centre.Y) * scaleProperties.ScaleY) + scaleProperties.CanvasActualHeight() / 2;
             return newPoint;
         }
 

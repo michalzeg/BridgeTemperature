@@ -29,22 +29,22 @@ namespace BridgeTemperature.ViewModel
             TempDistribution = new List<DistributionDrawingData>();
             Apply = new RelayCommand(apply);
 
-            tf2 = 0.2;
-            hw = 1.2;
-            tf1 = 0.2;
-            bf1 = 2;
-            bf2 = 0.8;
-            tw = 0.2;
-            dt1 = 50;
-            dt2 = 10;
-            h1 = 0.2;
-            h2 = 0.2;
-            h3 = 0.2;
-            h4 = 0.3;
-            dt3 = 10;
-            dt4 = 40;
+            _tf2 = 0.2;
+            _hw = 1.2;
+            _tf1 = 0.2;
+            _bf1 = 2;
+            _bf2 = 0.8;
+            _tw = 0.2;
+            _dt1 = 50;
+            _dt2 = 10;
+            _h1 = 0.2;
+            _h2 = 0.2;
+            _h3 = 0.2;
+            _h4 = 0.3;
+            _dt3 = 10;
+            _dt4 = 40;
 
-            concreteGirder = new BoxGirder(Tf1, Hw, Tf2, Tw, Bf1, Bf2, DT1, DT2, DT3, DT4, H1, H2, H3, H4);
+            _concreteGirder = new BoxGirder(Tf1, Hw, Tf2, Tw, Bf1, Bf2, DT1, DT2, DT3, DT4, H1, H2, H3, H4);
             updateDrawings();
         }
 
@@ -53,18 +53,18 @@ namespace BridgeTemperature.ViewModel
 
         private void apply()
         {
-            var concreteSection = new Section(concreteGirder.GetIGirderCoordinates(), SectionType.Concrete,
+            var concreteSection = new Section(_concreteGirder.GetIGirderCoordinates(), SectionType.Concrete,
                 ConcretePropertiesVM.ModulusOfElasticity, ConcretePropertiesVM.ThermalCoefficient,
-                concreteGirder.GetIGirderDistribution());
+                _concreteGirder.GetIGirderDistribution());
 
             Messenger.Default.Send<ISection>(concreteSection);
         }
 
-        private BoxGirder concreteGirder;
+        private readonly BoxGirder _concreteGirder;
 
         private void updateDrawings()
         {
-            var sectionCoordinates = concreteGirder.GetIGirderCoordinates();
+            var sectionCoordinates = _concreteGirder.GetIGirderCoordinates();
             var section = new List<SectionDrawingData>()
             { new SectionDrawingData(){ Coordinates = sectionCoordinates, Type = SectionType.Concrete } };
             Section = section;
@@ -72,7 +72,7 @@ namespace BridgeTemperature.ViewModel
 
             var distributionData = new DistributionDrawingData
             {
-                Distribution = concreteGirder.GetIGirderDistribution(),
+                Distribution = _concreteGirder.GetIGirderDistribution(),
                 SectionMaxY = sectionCoordinates.Max(e => e.Y),
                 SectionMinY = sectionCoordinates.Min(e => e.Y),
                 SectionMaxX = sectionCoordinates.Max(e => e.X),
@@ -83,225 +83,225 @@ namespace BridgeTemperature.ViewModel
             RaisePropertyChanged(() => TempDistribution);
         }
 
-        private double tf1;
+        private double _tf1;
 
         public double Tf1
         {
-            get { return tf1; }
+            get { return _tf1; }
             set
             {
-                if (value != tf1)
+                if (value != _tf1)
                 {
-                    tf1 = value;
-                    concreteGirder.Tf1 = value;
+                    _tf1 = value;
+                    _concreteGirder.Tf1 = value;
                     updateDrawings();
                 }
             }
         }
 
-        private double hw;
+        private double _hw;
 
         public double Hw
         {
-            get { return hw; }
+            get { return _hw; }
             set
             {
-                if (value != hw)
+                if (value != _hw)
                 {
-                    hw = value;
-                    concreteGirder.Hw = value;
+                    _hw = value;
+                    _concreteGirder.Hw = value;
                     updateDrawings();
                 }
             }
         }
 
-        private double tf2;
+        private double _tf2;
 
         public double Tf2
         {
-            get { return tf2; }
+            get { return _tf2; }
             set
             {
-                if (value != tf2)
+                if (value != _tf2)
                 {
-                    tf2 = value;
-                    concreteGirder.Tf2 = value;
+                    _tf2 = value;
+                    _concreteGirder.Tf2 = value;
                     updateDrawings();
                 }
             }
         }
 
-        private double tw;
+        private double _tw;
 
         public double Tw
         {
-            get { return tw; }
+            get { return _tw; }
             set
             {
-                if (value != tw)
+                if (value != _tw)
                 {
-                    tw = value;
-                    concreteGirder.Tw = value;
+                    _tw = value;
+                    _concreteGirder.Tw = value;
                     updateDrawings();
                 }
             }
         }
 
-        private double bf1;
+        private double _bf1;
 
         public double Bf1
         {
-            get { return bf1; }
+            get { return _bf1; }
             set
             {
-                if (value != bf1)
+                if (value != _bf1)
                 {
-                    bf1 = value;
-                    concreteGirder.Bf1 = value;
+                    _bf1 = value;
+                    _concreteGirder.Bf1 = value;
                     updateDrawings();
                 }
             }
         }
 
-        private double bf2;
+        private double _bf2;
 
         public double Bf2
         {
-            get { return bf2; }
+            get { return _bf2; }
             set
             {
-                if (value != bf2)
+                if (value != _bf2)
                 {
-                    bf2 = value;
-                    concreteGirder.Bf2 = value;
+                    _bf2 = value;
+                    _concreteGirder.Bf2 = value;
                     updateDrawings();
                 }
             }
         }
 
-        private double dt1;
+        private double _dt1;
 
         public double DT1
         {
-            get { return dt1; }
+            get { return _dt1; }
             set
             {
-                if (value != dt1)
+                if (value != _dt1)
                 {
-                    dt1 = value;
-                    concreteGirder.DT1 = value;
+                    _dt1 = value;
+                    _concreteGirder.DT1 = value;
                     updateDrawings();
                 }
             }
         }
 
-        private double dt2;
+        private double _dt2;
 
         public double DT2
         {
-            get { return dt2; }
+            get { return _dt2; }
             set
             {
-                if (value != dt2)
+                if (value != _dt2)
                 {
-                    dt2 = value;
-                    concreteGirder.DT2 = value;
+                    _dt2 = value;
+                    _concreteGirder.DT2 = value;
                     updateDrawings();
                 }
             }
         }
 
-        private double h1;
+        private double _h1;
 
         public double H1
         {
-            get { return h1; }
+            get { return _h1; }
             set
             {
-                if (value != h1)
+                if (value != _h1)
                 {
-                    h1 = value;
-                    concreteGirder.H1 = value;
+                    _h1 = value;
+                    _concreteGirder.H1 = value;
                     updateDrawings();
                 }
             }
         }
 
-        private double h2;
+        private double _h2;
 
         public double H2
         {
-            get { return h2; }
+            get { return _h2; }
             set
             {
-                if (value != h2)
+                if (value != _h2)
                 {
-                    h2 = value;
-                    concreteGirder.H2 = value;
+                    _h2 = value;
+                    _concreteGirder.H2 = value;
                     updateDrawings();
                 }
             }
         }
 
-        private double dt3;
+        private double _dt3;
 
         public double DT3
         {
-            get { return dt3; }
+            get { return _dt3; }
             set
             {
-                if (value != dt3)
+                if (value != _dt3)
                 {
-                    dt3 = value;
-                    concreteGirder.DT3 = value;
+                    _dt3 = value;
+                    _concreteGirder.DT3 = value;
                     updateDrawings();
                 }
             }
         }
 
-        private double dt4;
+        private double _dt4;
 
         public double DT4
         {
-            get { return dt4; }
+            get { return _dt4; }
             set
             {
-                if (value != dt4)
+                if (value != _dt4)
                 {
-                    dt4 = value;
-                    concreteGirder.DT4 = value;
+                    _dt4 = value;
+                    _concreteGirder.DT4 = value;
                     updateDrawings();
                 }
             }
         }
 
-        private double h3;
+        private double _h3;
 
         public double H3
         {
-            get { return h3; }
+            get { return _h3; }
             set
             {
-                if (value != h3)
+                if (value != _h3)
                 {
-                    h3 = value;
-                    concreteGirder.H3 = value;
+                    _h3 = value;
+                    _concreteGirder.H3 = value;
                     updateDrawings();
                 }
             }
         }
 
-        private double h4;
+        private double _h4;
 
         public double H4
         {
-            get { return h4; }
+            get { return _h4; }
             set
             {
-                if (value != h4)
+                if (value != _h4)
                 {
-                    h4 = value;
-                    concreteGirder.H4 = value;
+                    _h4 = value;
+                    _concreteGirder.H4 = value;
                     updateDrawings();
                 }
             }

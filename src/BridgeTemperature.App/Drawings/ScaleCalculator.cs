@@ -18,9 +18,9 @@ namespace BridgeTemperature.Drawing
 
         public ScaleCalculator(Func<double> actualWidth, Func<double> actualHeight)
         {
-            this.CanvasActualHeight = actualHeight;
-            this.CanvasActualWidth = actualWidth;
-            this.Centre = new PointD(0, 0);
+            CanvasActualHeight = actualHeight;
+            CanvasActualWidth = actualWidth;
+            Centre = new PointD(0, 0);
         }
 
         public void UpdateProperties(IList<IList<PointD>> perimeters)
@@ -33,15 +33,15 @@ namespace BridgeTemperature.Drawing
             var yMax = perimeters.Max(e => e.Max(g => g.Y));
             var yMin = perimeters.Min(e => e.Min(g => g.Y));
 
-            this.MaxY = yMax;
-            this.MinY = yMin;
+            MaxY = yMax;
+            MinY = yMin;
 
             var drawingWidth = xMax - xMin;
             var drawingHeight = yMax - yMin;
 
-            this.Centre = new PointD(drawingWidth / 2 + xMin, drawingHeight / 2 + yMin);
-            var scaleX = this.CanvasActualWidth() / drawingWidth;
-            var scaleY = this.CanvasActualHeight() / drawingHeight;
+            Centre = new PointD(drawingWidth / 2 + xMin, drawingHeight / 2 + yMin);
+            var scaleX = CanvasActualWidth() / drawingWidth;
+            var scaleY = CanvasActualHeight() / drawingHeight;
 
             CalculateScale(scaleX, scaleY);
         }
@@ -49,8 +49,8 @@ namespace BridgeTemperature.Drawing
         protected virtual void CalculateScale(double scaleX, double scaleY)
         {
             var scale = Math.Min(scaleX, scaleY);
-            this.ScaleY = scale;
-            this.ScaleX = scale;
+            ScaleY = scale;
+            ScaleX = scale;
         }
     }
 }

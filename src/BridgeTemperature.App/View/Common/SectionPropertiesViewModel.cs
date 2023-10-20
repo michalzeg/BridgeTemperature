@@ -29,9 +29,9 @@ namespace BridgeTemperature.ViewModel
                 if (value != selectedMaterial)
                 {
                     selectedMaterial = value;
-                    this.ModulusOfElasticity = value.E;
-                    this.ThermalCoefficient = value.ThermalCoefficient;
-                    RaisePropertyChanged(() => this.SelectedMaterial);
+                    ModulusOfElasticity = value.E;
+                    ThermalCoefficient = value.ThermalCoefficient;
+                    RaisePropertyChanged(() => SelectedMaterial);
                 }
             }
         }
@@ -46,7 +46,7 @@ namespace BridgeTemperature.ViewModel
                 if (value != modulusOfElasticity)
                 {
                     modulusOfElasticity = value;
-                    RaisePropertyChanged(() => this.ModulusOfElasticity);
+                    RaisePropertyChanged(() => ModulusOfElasticity);
                 }
             }
         }
@@ -61,7 +61,7 @@ namespace BridgeTemperature.ViewModel
                 if (value != thermalCoefficient)
                 {
                     thermalCoefficient = value;
-                    RaisePropertyChanged(() => this.ThermalCoefficient);
+                    RaisePropertyChanged(() => ThermalCoefficient);
                 }
             }
         }

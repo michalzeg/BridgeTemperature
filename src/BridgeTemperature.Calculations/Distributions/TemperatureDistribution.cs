@@ -15,16 +15,20 @@ namespace BridgeTemperature.Calculations.Distributions
             var stressDistribution = new List<Distribution>();
             foreach (var coordinate in coordinates)
             {
-                var distribution = new Distribution();
-                distribution.Y = coordinate.Y;
-                distribution.Value = this.interpolation.Interpolate(coordinate.Y) * thermalCoefficient * modulusOfElasticity;
+                var distribution = new Distribution
+                {
+                    Y = coordinate.Y,
+                    Value = this.interpolation.Interpolate(coordinate.Y) * thermalCoefficient * modulusOfElasticity
+                };
                 stressDistribution.Add(distribution);
             }
             foreach (var baseDistribution in base.Distribution)
             {
-                var distribution = new Distribution();
-                distribution.Y = baseDistribution.Y;
-                distribution.Value = baseDistribution.Value * thermalCoefficient * modulusOfElasticity;
+                var distribution = new Distribution
+                {
+                    Y = baseDistribution.Y,
+                    Value = baseDistribution.Value * thermalCoefficient * modulusOfElasticity
+                };
                 stressDistribution.Add(distribution);
             }
 

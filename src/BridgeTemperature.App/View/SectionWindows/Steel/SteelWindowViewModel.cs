@@ -28,15 +28,15 @@ namespace BridgeTemperature.ViewModel
             TempDistribution = new List<DistributionDrawingData>();
             Apply = new RelayCommand(apply);
 
-            tf2 = 0.02;
-            hw = 1;
-            tf1 = 0.02;
-            bf = 0.3;
-            tw = 0.02;
-            h1 = 0.2;
-            dt1 = 20;
+            _tf2 = 0.02;
+            _hw = 1;
+            _tf1 = 0.02;
+            _bf = 0.3;
+            _tw = 0.02;
+            _h1 = 0.2;
+            _dt1 = 20;
 
-            steelPlateGirder = new SteelPlateGirder(Tf1, Hw, Tf2, Bf, Tw, H1, DT1);
+            _steelPlateGirder = new SteelPlateGirder(Tf1, Hw, Tf2, Bf, Tw, H1, DT1);
             UpdateDrawings();
         }
 
@@ -45,17 +45,17 @@ namespace BridgeTemperature.ViewModel
 
         private void apply()
         {
-            var section = new Section(steelPlateGirder.GetCoordinates(), SectionType.Steel,
+            var section = new Section(_steelPlateGirder.GetCoordinates(), SectionType.Steel,
                 SectionPropertiesVM.ModulusOfElasticity, SectionPropertiesVM.ThermalCoefficient,
-                steelPlateGirder.GetTemperature());
+                _steelPlateGirder.GetTemperature());
             Messenger.Default.Send<ISection>(section);
         }
 
-        private SteelPlateGirder steelPlateGirder;
+        private readonly SteelPlateGirder _steelPlateGirder;
 
         private void UpdateDrawings()
         {
-            var sectionCoordinates = steelPlateGirder.GetCoordinates();
+            var sectionCoordinates = _steelPlateGirder.GetCoordinates();
             var section = new List<SectionDrawingData>()
             { new SectionDrawingData(){ Coordinates = sectionCoordinates, Type = SectionType.Steel } };
             Section = section;
@@ -63,7 +63,7 @@ namespace BridgeTemperature.ViewModel
 
             var distributionData = new DistributionDrawingData
             {
-                Distribution = steelPlateGirder.GetTemperature(),
+                Distribution = _steelPlateGirder.GetTemperature(),
                 SectionMaxY = sectionCoordinates.Max(e => e.Y),
                 SectionMinY = sectionCoordinates.Min(e => e.Y),
                 SectionMaxX = sectionCoordinates.Max(e => e.X),
@@ -74,113 +74,113 @@ namespace BridgeTemperature.ViewModel
             RaisePropertyChanged(() => TempDistribution);
         }
 
-        private double tf1;
+        private double _tf1;
 
         public double Tf1
         {
-            get { return tf1; }
+            get { return _tf1; }
             set
             {
-                if (value != tf1)
+                if (value != _tf1)
                 {
-                    tf1 = value;
-                    steelPlateGirder.Tf1 = value;
+                    _tf1 = value;
+                    _steelPlateGirder.Tf1 = value;
                     UpdateDrawings();
                 }
             }
         }
 
-        private double hw;
+        private double _hw;
 
         public double Hw
         {
-            get { return hw; }
+            get { return _hw; }
             set
             {
-                if (value != hw)
+                if (value != _hw)
                 {
-                    hw = value;
-                    steelPlateGirder.Hw = value;
+                    _hw = value;
+                    _steelPlateGirder.Hw = value;
                     UpdateDrawings();
                 }
             }
         }
 
-        private double tf2;
+        private double _tf2;
 
         public double Tf2
         {
-            get { return tf2; }
+            get { return _tf2; }
             set
             {
-                if (value != tf2)
+                if (value != _tf2)
                 {
-                    tf2 = value;
-                    steelPlateGirder.Tf2 = value;
+                    _tf2 = value;
+                    _steelPlateGirder.Tf2 = value;
                     UpdateDrawings();
                 }
             }
         }
 
-        private double tw;
+        private double _tw;
 
         public double Tw
         {
-            get { return tw; }
+            get { return _tw; }
             set
             {
-                if (value != tw)
+                if (value != _tw)
                 {
-                    tw = value;
-                    steelPlateGirder.Tw = value;
+                    _tw = value;
+                    _steelPlateGirder.Tw = value;
                     UpdateDrawings();
                 }
             }
         }
 
-        private double bf;
+        private double _bf;
 
         public double Bf
         {
-            get { return bf; }
+            get { return _bf; }
             set
             {
-                if (value != bf)
+                if (value != _bf)
                 {
-                    bf = value;
-                    steelPlateGirder.Bf = value;
+                    _bf = value;
+                    _steelPlateGirder.Bf = value;
                     UpdateDrawings();
                 }
             }
         }
 
-        private double dt1;
+        private double _dt1;
 
         public double DT1
         {
-            get { return dt1; }
+            get { return _dt1; }
             set
             {
-                if (value != dt1)
+                if (value != _dt1)
                 {
-                    dt1 = value;
-                    steelPlateGirder.DT1 = value;
+                    _dt1 = value;
+                    _steelPlateGirder.DT1 = value;
                     UpdateDrawings();
                 }
             }
         }
 
-        private double h1;
+        private double _h1;
 
         public double H1
         {
-            get { return h1; }
+            get { return _h1; }
             set
             {
-                if (value != h1)
+                if (value != _h1)
                 {
-                    h1 = value;
-                    steelPlateGirder.H1 = value;
+                    _h1 = value;
+                    _steelPlateGirder.H1 = value;
                     UpdateDrawings();
                 }
             }

@@ -27,14 +27,14 @@ namespace BridgeTemperature.ViewModel
             Section = new List<SectionDrawingData>();
             TempDistribution = new List<DistributionDrawingData>();
             Apply = new RelayCommand(apply);
-            h = 0.2;
-            b = 1;
-            x = 0.5;
-            y = 0.1;
-            dt1 = 30;
-            dt2 = 20;
+            _h = 0.2;
+            _b = 1;
+            _x = 0.5;
+            _y = 0.1;
+            _dt1 = 30;
+            _dt2 = 20;
 
-            rectangularGirder = new RectangularGirder(B, H, X, Y, DT1, DT2);
+            _rectangularGirder = new RectangularGirder(B, H, X, Y, DT1, DT2);
             UpdateDrawings();
         }
 
@@ -43,17 +43,17 @@ namespace BridgeTemperature.ViewModel
 
         private void apply()
         {
-            var section = new Section(rectangularGirder.GetCoordinates(), SectionType.Custom,
+            var section = new Section(_rectangularGirder.GetCoordinates(), SectionType.Custom,
                 SectionPropertiesVM.ModulusOfElasticity, SectionPropertiesVM.ThermalCoefficient,
-                rectangularGirder.GetTemperature());
+                _rectangularGirder.GetTemperature());
             Messenger.Default.Send<ISection>(section);
         }
 
-        private RectangularGirder rectangularGirder;
+        private readonly RectangularGirder _rectangularGirder;
 
         private void UpdateDrawings()
         {
-            var sectionCoordinates = rectangularGirder.GetCoordinates();
+            var sectionCoordinates = _rectangularGirder.GetCoordinates();
             var section = new List<SectionDrawingData>()
             { new SectionDrawingData(){ Coordinates = sectionCoordinates, Type = SectionType.Custom } };
             Section = section;
@@ -61,7 +61,7 @@ namespace BridgeTemperature.ViewModel
 
             var distributionData = new DistributionDrawingData
             {
-                Distribution = rectangularGirder.GetTemperature(),
+                Distribution = _rectangularGirder.GetTemperature(),
                 SectionMaxY = sectionCoordinates.Max(e => e.Y),
                 SectionMinY = sectionCoordinates.Min(e => e.Y),
                 SectionMaxX = sectionCoordinates.Max(e => e.X),
@@ -72,97 +72,97 @@ namespace BridgeTemperature.ViewModel
             RaisePropertyChanged(() => TempDistribution);
         }
 
-        private double b;
+        private double _b;
 
         public double B
         {
-            get { return b; }
+            get { return _b; }
             set
             {
-                if (value != b)
+                if (value != _b)
                 {
-                    b = value;
-                    rectangularGirder.B = value;
+                    _b = value;
+                    _rectangularGirder.B = value;
                     UpdateDrawings();
                 }
             }
         }
 
-        private double h;
+        private double _h;
 
         public double H
         {
-            get { return h; }
+            get { return _h; }
             set
             {
-                if (value != h)
+                if (value != _h)
                 {
-                    h = value;
-                    rectangularGirder.H = value;
+                    _h = value;
+                    _rectangularGirder.H = value;
                     UpdateDrawings();
                 }
             }
         }
 
-        private double x;
+        private double _x;
 
         public double X
         {
-            get { return x; }
+            get { return _x; }
             set
             {
-                if (value != x)
+                if (value != _x)
                 {
-                    x = value;
-                    rectangularGirder.X = value;
+                    _x = value;
+                    _rectangularGirder.X = value;
                     UpdateDrawings();
                 }
             }
         }
 
-        private double y;
+        private double _y;
 
         public double Y
         {
-            get { return y; }
+            get { return _y; }
             set
             {
-                if (value != y)
+                if (value != _y)
                 {
-                    y = value;
-                    rectangularGirder.Y = value;
+                    _y = value;
+                    _rectangularGirder.Y = value;
                     UpdateDrawings();
                 }
             }
         }
 
-        private double dt1;
+        private double _dt1;
 
         public double DT1
         {
-            get { return dt1; }
+            get { return _dt1; }
             set
             {
-                if (value != dt1)
+                if (value != _dt1)
                 {
-                    dt1 = value;
-                    rectangularGirder.DT1 = value;
+                    _dt1 = value;
+                    _rectangularGirder.DT1 = value;
                     UpdateDrawings();
                 }
             }
         }
 
-        private double dt2;
+        private double _dt2;
 
         public double DT2
         {
-            get { return dt2; }
+            get { return _dt2; }
             set
             {
-                if (value != dt2)
+                if (value != _dt2)
                 {
-                    dt2 = value;
-                    rectangularGirder.DT2 = value;
+                    _dt2 = value;
+                    _rectangularGirder.DT2 = value;
                     UpdateDrawings();
                 }
             }
