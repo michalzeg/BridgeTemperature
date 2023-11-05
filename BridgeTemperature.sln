@@ -5,7 +5,7 @@ VisualStudioVersion = 15.0.27703.2035
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BridgeTemperature.App", "src\BridgeTemperature.App\BridgeTemperature.App.csproj", "{2EABA49F-E79E-4D23-96E9-D12D05AD4CA3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BridgeTemperatureTests", "tests\BridgeTemperatureTests\BridgeTemperatureTests.csproj", "{2B3E392D-4C4E-40F6-A8C3-3A803CA0CB99}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BridgeTemperatureTests", "tests\BridgeTemperatureTests.csproj", "{2B3E392D-4C4E-40F6-A8C3-3A803CA0CB99}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BridgeTemperature.Shared", "src\BridgeTemperature.Shared\BridgeTemperature.Shared.csproj", "{173D8831-7024-488F-A35C-A667972D5E7E}"
 EndProject
