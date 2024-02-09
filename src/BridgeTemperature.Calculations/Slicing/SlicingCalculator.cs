@@ -11,7 +11,7 @@ namespace BridgeTemperature.Calculations.Slicing
     {
         public SectionSlice GetSlice(IList<PointD> section, double upperY, double lowerY)
         {
-            var lowerCoordinates = this.lowerSection(section, lowerY);
+            var lowerCoordinates = this.LowerSection(section, lowerY);
             var upperCoordinates = this.UpperSection(lowerCoordinates, upperY);
             var sectionSlice = this.CalculateProperties(upperCoordinates);
             return sectionSlice;
@@ -28,7 +28,7 @@ namespace BridgeTemperature.Calculations.Slicing
             return slice;
         }
 
-        private IList<PointD> lowerSection(IList<PointD> section, double elevation)
+        private IList<PointD> LowerSection(IList<PointD> section, double elevation)
         {
             var compressedSection = new List<PointD>();
 

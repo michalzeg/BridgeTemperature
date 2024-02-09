@@ -17,16 +17,16 @@ namespace BridgeTemperature.Calculations.Sections
         public CompositeSectionPropertiesCalculations(IEnumerable<ICompositePropertiesCalculations> sections)
         {
             _sections = sections;
-            getBaseModulusOfElasticity();
-            calculateSectionProperties();
+            GetBaseModulusOfElasticity();
+            CalculateSectionProperties();
         }
 
-        private void getBaseModulusOfElasticity()
+        private void GetBaseModulusOfElasticity()
         {
             BaseModulusOfElasticity = _sections.Max(e => e.ModulusOfElasticity);
         }
 
-        private void calculateSectionProperties()
+        private void CalculateSectionProperties()
         {
             double firstMomentOfAreaX = 0;
             double firstMomentOfAreaY = 0;
